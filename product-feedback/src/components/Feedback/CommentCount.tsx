@@ -3,6 +3,7 @@ import { FaComment } from "react-icons/fa";
 
 const CommentCount = () => {
   return (
+    // TODO: Make the div a link
     <div className="flex items-center justify-between gap-[8px]">
       <FaComment className="text-el-comment" />
       <span className="text-body-3">6</span>
