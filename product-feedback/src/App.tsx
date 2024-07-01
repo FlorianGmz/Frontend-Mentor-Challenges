@@ -1,7 +1,9 @@
+import Feedback from "./components/Feedback";
+
 function App() {
   return (
     <>
-      <div className="text-xs text-center text-bt-blue_def">HELLO WORLD</div>
+      <Feedback />
     </>
   );
 }

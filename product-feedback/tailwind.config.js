@@ -19,6 +19,8 @@ export default {
       el_hover: "#D0D7FF",
       el_active: "#4661E6",
       "el-font_def": "#3A4374",
+      "el-comment": "#CDD2EE",
+      "feedback-description": "#637196",
     },
     fontSize: {
       h1: [
