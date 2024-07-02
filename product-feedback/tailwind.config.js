@@ -20,6 +20,7 @@ export default {
       el_active: "#4661E6",
       "el-font_def": "#3A4374",
       "el-comment": "#CDD2EE",
+      "el-sort_active": "#C3C7D9",
       "feedback-description": "#637196",
     },
     fontSize: {
