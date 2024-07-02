@@ -1,12 +1,23 @@
-import { RxCaretUp } from "react-icons/rx";
-
 const Upvote = () => {
   return (
     <button
       type="button"
-      className="group flex h-[53px] w-[40px] flex-col items-center justify-center rounded-lg bg-el_def transition-colors hover:bg-el_hover focus:bg-el_active"
+      className="focus:text-bt-white_de group flex h-[53px] w-[40px] flex-col items-center justify-around rounded-lg bg-el_def py-[8px] transition-colors hover:bg-el_hover focus:bg-el_active"
     >
-      <RxCaretUp className="font-[800] text-bt-blue_def group-focus:text-bt-white_def" />
+      <svg
+        width="10"
+        height="7"
+        xmlns="http://www.w3.org/2000/svg"
+        className="stroke-bt-blue_def group-focus:stroke-bt-white_def"
+      >
+        <path
+          d="M1 6l4-4 4 4"
+          stroke-width="2.3"
+          fill="none"
+          fill-rule="evenodd"
+        />
+      </svg>
+      {/* <RxCaretUp className="font-[800] text-bt-blue_def group-focus:text-bt-white_def" /> */}
       <span className="text-body-3 text-el-font_def group-focus:text-bt-white_def">
         123
       </span>

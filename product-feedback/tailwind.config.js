@@ -55,6 +55,13 @@ export default {
           fontWeight: "700",
         },
       ],
+      "comment-count": [
+        "16px",
+        {
+          letterSpacing: "-0.22px",
+          fontWeight: "700",
+        },
+      ],
       "body-1": [
         "16px",
         {
