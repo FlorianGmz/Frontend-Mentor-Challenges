@@ -1,3 +1,4 @@
+import AddFeedbackLink from "./AddFeedbackLink";
 import SortingElement from "./SortingElement";
 import SuggestionsIcon from "./SuggestionsIcon";
 
@@ -9,7 +10,7 @@ const SuggestionsBar = () => {
         <h3 className="text-h3 text-bt-white_def">6 Suggestions</h3>
       </div>
       <SortingElement />
-      <div></div>
+      <AddFeedbackLink />
     </div>
   );
 };
