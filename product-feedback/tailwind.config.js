@@ -22,6 +22,7 @@ export default {
       "el-comment": "#CDD2EE",
       "el-sort_active": "#C3C7D9",
       "feedback-description": "#637196",
+      "feedback-board": "#DBDCFD",
     },
     fontSize: {
       h1: [

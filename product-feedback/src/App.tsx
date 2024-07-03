@@ -1,4 +1,5 @@
 import Feedback from "./components/Feedback/Feedback";
+import FrontendMentorSticker from "./components/FrontendMentorSticker";
 import SuggestionsBar from "./components/SuggestionsBar/SuggestionsBar";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <SuggestionsBar />
       <Feedback />
+      <FrontendMentorSticker />
     </>
   );
 }
