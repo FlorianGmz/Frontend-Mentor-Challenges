@@ -4,24 +4,31 @@ import DropdownMenu from "./DropdownMenu";
 import ArrowIconUp from "./ArrowIconUp";
 
 const SortingElement = () => {
-  const [selectedOption, setSelectedOption] = useState("most-upvotes");
-  const [toggleOptions, setToggleOptions] = useState(false);
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedOption(e.target.value);
-  };
+  const [selectedOption, setSelectedOption] = useState({
+    label: "Most Upvotes",
+    value: "most-upvotes",
+  });
+  console.log(selectedOption);
+  const [toggleDropDownMenu, setToggleDropDownMenu] = useState(false);
+
   return (
     <div
-      onClick={() => setToggleOptions(!toggleOptions)}
+      onClick={() => setToggleDropDownMenu(!toggleDropDownMenu)}
       className="group flex cursor-pointer items-center gap-1"
     >
-      <span className="group-focus-within:text-el-sort_active text-[14px] text-bt-white_def">
+      <span className="text-[14px] text-bt-white_def group-focus-within:text-el-sort_active">
         Sort by :
       </span>
-      <p className="group-focus-within:text-el-sort_active bg-bt-dark-blue_back text-h4 text-bt-white_def focus:outline-none">
-        {selectedOption}
+      <p className="bg-bt-dark-blue_back text-h4 text-bt-white_def focus:outline-none group-focus-within:text-el-sort_active">
+        {selectedOption.label}
       </p>
-      {toggleOptions ? <ArrowIconUp /> : <ArrowIconDown />}
-      {toggleOptions && <DropdownMenu />}
+      {toggleDropDownMenu ? <ArrowIconUp /> : <ArrowIconDown />}
+      {toggleDropDownMenu && (
+        <DropdownMenu
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+        />
+      )}
     </div>
   );
 };
