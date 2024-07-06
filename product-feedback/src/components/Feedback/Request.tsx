@@ -1,4 +1,4 @@
-import Category from "../Category";
+import CategoryBadge from "./CategoryBadge.tsx";
 
 const Request = () => {
   return (
@@ -7,7 +7,7 @@ const Request = () => {
         Title
       </h3>
       <p className="text-body-1 text-feedback-description">Description</p>
-      <Category />
+      <CategoryBadge categoryName={"Feature"} />
     </div>
   );
 };

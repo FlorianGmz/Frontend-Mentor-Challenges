@@ -17,7 +17,6 @@ const Upvote = () => {
           fill-rule="evenodd"
         />
       </svg>
-      {/* <RxCaretUp className="font-[800] text-bt-blue_def group-focus:text-bt-white_def" /> */}
       <span className="text-body-3 text-el-font_def group-focus:text-bt-white_def">
         123
       </span>

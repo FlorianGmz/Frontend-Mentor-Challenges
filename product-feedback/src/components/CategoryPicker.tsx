@@ -9,7 +9,6 @@ const CategoryPicker = () => {
   const nonDataCategories = ["all", "ui", "ux"];
   const categories = [...nonDataCategories, ...allDataCategories];
   const filteredCategories = Array.from(new Set(categories));
-
   const [categorySelected, setCategorySelected] = useState("all");
 
   return (
@@ -19,6 +18,7 @@ const CategoryPicker = () => {
           key={category}
           categoryName={category}
           categorySelected={categorySelected}
+          setCategorySelected={setCategorySelected}
         />
       ))}
     </div>
