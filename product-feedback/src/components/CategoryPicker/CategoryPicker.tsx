@@ -12,7 +12,7 @@ const CategoryPicker = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   return (
-    <div className="flex h-[166px] w-[255px] flex-wrap items-start gap-[8px] rounded-xl bg-bt-white_def p-[24px]">
+    <div className="flex h-[166px] w-[255px] flex-wrap items-center gap-[8px] rounded-xl bg-bt-white_def p-[24px]">
       {filteredCategories.map((category) => (
         <Category
           key={category}

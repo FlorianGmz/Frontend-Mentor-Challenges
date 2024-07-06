@@ -1,4 +1,10 @@
-const Upvote = () => {
+import React from "react";
+
+interface UpvoteProps {
+  upvotes: number;
+}
+
+const Upvote: React.FC<UpvoteProps> = ({ upvotes }) => {
   return (
     <button
       type="button"
@@ -18,7 +24,7 @@ const Upvote = () => {
         />
       </svg>
       <span className="text-body-3 text-el-font_def group-focus:text-bt-white_def">
-        123
+        {upvotes}
       </span>
     </button>
   );

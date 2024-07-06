@@ -1,6 +1,11 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
-const CommentCount = () => {
+interface CommentCountProps {
+  numberOfComments: number | undefined;
+}
+
+const CommentCount: React.FC<CommentCountProps> = ({ numberOfComments }) => {
   return (
     // TODO: Make the div a link
     <div className="flex items-center justify-between gap-[8px]">
@@ -11,7 +16,11 @@ const CommentCount = () => {
           fill-rule="nonzero"
         />
       </svg>
-      <span className="text-comment-count">6</span>
+      <span
+        className={`text-comment-count ${numberOfComments ? "text-comment-count" : "text-el-comment"}`}
+      >
+        {numberOfComments ? numberOfComments : "0"}
+      </span>
     </div>
   );
 };
