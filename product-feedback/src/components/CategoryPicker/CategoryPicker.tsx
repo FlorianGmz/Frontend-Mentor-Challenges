@@ -1,6 +1,6 @@
 import Category from "./Category";
 
-import data from "../data/data.json";
+import data from "../../data/data.json";
 import { useState } from "react";
 
 const CategoryPicker = () => {

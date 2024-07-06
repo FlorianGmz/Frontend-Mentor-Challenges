@@ -15,11 +15,12 @@ const Category: React.FC<CategoryProps> = ({
     setSelectedCategory("");
     setSelectedCategory(categoryName);
   };
-  console.log(selectedCategory);
+
   const isSelected = categoryName === selectedCategory;
   const bgColor = isSelected ? "bg-el_active" : "bg-el_def";
   const textColor = isSelected ? "text-bt-white_def" : "text-bt-blue_def";
   const hoverColor = isSelected ? "" : "hover:bg-el_hover";
+
   return (
     <div
       onClick={() => handleClick()}
