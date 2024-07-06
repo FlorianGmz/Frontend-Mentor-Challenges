@@ -5,10 +5,19 @@ import SuggestionsIcon from "./SuggestionsIcon";
 
 interface SuggestionsBarProps {
   suggestionsCount: number;
+  selectedOption: { label: string; value: string };
+  setSelectedOption: React.Dispatch<
+    React.SetStateAction<{
+      label: string;
+      value: string;
+    }>
+  >;
 }
 
 const SuggestionsBar: React.FC<SuggestionsBarProps> = ({
   suggestionsCount,
+  selectedOption,
+  setSelectedOption,
 }) => {
   return (
     <div className="mb-[4px] flex h-[72px] w-[825px] items-center justify-between rounded-xl bg-bt-dark-blue_back px-[16px] py-[14px]">
@@ -16,10 +25,15 @@ const SuggestionsBar: React.FC<SuggestionsBarProps> = ({
         <SuggestionsIcon />
         <h3 className="text-h3 text-bt-white_def">
           {suggestionsCount > 0
-            ? `${suggestionsCount} Suggestions`
+            ? suggestionsCount === 1
+              ? `${suggestionsCount} Suggestion`
+              : `${suggestionsCount} Suggestions`
             : "No Suggestions"}
         </h3>
-        <SortingElement />
+        <SortingElement
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+        />
       </div>
       <AddFeedbackLink />
     </div>

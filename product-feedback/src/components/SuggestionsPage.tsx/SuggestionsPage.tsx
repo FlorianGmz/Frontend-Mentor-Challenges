@@ -9,8 +9,13 @@ import { useState } from "react";
 const SuggestionsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const feedbackSuggestions = data.productRequests.filter((request) => {
-    return request.status === "suggestion";
+  const [selectedOption, setSelectedOption] = useState({
+    label: "Most Upvotes",
+    value: "most-upvotes",
+  });
+
+  const feedbackSuggestions = data.productRequests.filter((suggestion) => {
+    return suggestion.status === "suggestion";
   });
 
   const filteredSuggestions = feedbackSuggestions.filter((suggestion) =>
@@ -19,6 +24,19 @@ const SuggestionsPage = () => {
       : suggestion.category === selectedCategory,
   );
 
+  function sortSuggestions(a, b) {
+    if (selectedOption.value === "most-upvotes") {
+      return b.upvotes - a.upvotes;
+    } else if (selectedOption.value === "least-upvotes") {
+      return a.upvotes - b.upvotes;
+    } else if (selectedOption.value === "most-comments") {
+      return b.comments?.length - a.comments?.length;
+    } else if (selectedOption.value === "least-comments") {
+      return a.comments?.length - b.comments?.length;
+    }
+  }
+
+  filteredSuggestions.sort(sortSuggestions);
   return (
     <div className="mx-auto my-[100px] flex w-[1110px] gap-[30px]">
       <div className="flex flex-col gap-[24px]">
@@ -30,7 +48,11 @@ const SuggestionsPage = () => {
         <RoadmapNav />
       </div>
       <div className="flex flex-col gap-[20px]">
-        <SuggestionsBar suggestionsCount={feedbackSuggestions.length} />
+        <SuggestionsBar
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          suggestionsCount={filteredSuggestions.length}
+        />
         {filteredSuggestions.map((feedback) => (
           <Feedback key={feedback.id} feedback={feedback} />
         ))}

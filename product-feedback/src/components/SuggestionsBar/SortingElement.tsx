@@ -1,14 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import ArrowIconDown from "./ArrowIconDown";
 import DropdownMenu from "./DropdownMenu";
 import ArrowIconUp from "./ArrowIconUp";
 
-const SortingElement = () => {
-  const [selectedOption, setSelectedOption] = useState({
-    label: "Most Upvotes",
-    value: "most-upvotes",
-  });
-  console.log(selectedOption);
+interface SortingElementProps {
+  selectedOption: { label: string; value: string };
+  setSelectedOption: React.Dispatch<
+    React.SetStateAction<{
+      label: string;
+      value: string;
+    }>
+  >;
+}
+
+const SortingElement: React.FC<SortingElementProps> = ({
+  selectedOption,
+  setSelectedOption,
+}) => {
   const [toggleDropDownMenu, setToggleDropDownMenu] = useState(false);
 
   return (
