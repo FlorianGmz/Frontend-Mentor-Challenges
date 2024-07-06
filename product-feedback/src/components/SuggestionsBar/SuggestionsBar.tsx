@@ -12,15 +12,15 @@ const SuggestionsBar: React.FC<SuggestionsBarProps> = ({
 }) => {
   return (
     <div className="mb-[4px] flex h-[72px] w-[825px] items-center justify-between rounded-xl bg-bt-dark-blue_back px-[16px] py-[14px]">
-      <div className="flex gap-[16px]">
+      <div className="flex items-center gap-[16px]">
         <SuggestionsIcon />
         <h3 className="text-h3 text-bt-white_def">
           {suggestionsCount > 0
             ? `${suggestionsCount} Suggestions`
             : "No Suggestions"}
         </h3>
+        <SortingElement />
       </div>
-      <SortingElement />
       <AddFeedbackLink />
     </div>
   );

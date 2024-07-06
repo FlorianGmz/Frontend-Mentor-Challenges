@@ -14,7 +14,7 @@ const SortingElement = () => {
   return (
     <div
       onClick={() => setToggleDropDownMenu(!toggleDropDownMenu)}
-      className="group flex cursor-pointer items-center gap-1"
+      className="group ml-[22px] flex cursor-pointer items-center gap-1"
     >
       <span className="text-[14px] text-bt-white_def group-focus-within:text-el-sort_active">
         Sort by :
