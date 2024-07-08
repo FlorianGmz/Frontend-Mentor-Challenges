@@ -6,6 +6,7 @@ import data from "../../data/data.json";
 import Feedback from "../Feedback/Feedback";
 import { useState } from "react";
 import { FeedbackType } from "../../@types/type";
+import NoFeedback from "../EmptySuggestions.tsx/EmptySuggestion";
 
 const SuggestionsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -24,6 +25,8 @@ const SuggestionsPage = () => {
       ? feedbackSuggestions
       : suggestion.category === selectedCategory,
   );
+
+  console.log(filteredSuggestions);
 
   function sortSuggestions(a: FeedbackType, b: FeedbackType) {
     if (selectedOption.value === "most-upvotes") {
@@ -61,9 +64,13 @@ const SuggestionsPage = () => {
           setSelectedOption={setSelectedOption}
           suggestionsCount={filteredSuggestions.length}
         />
-        {filteredSuggestions.map((feedback) => (
-          <Feedback key={feedback.id} feedback={feedback} />
-        ))}
+        {filteredSuggestions.length >= 1 ? (
+          filteredSuggestions.map((feedback) => (
+            <Feedback key={feedback.id} feedback={feedback} />
+          ))
+        ) : (
+          <NoFeedback />
+        )}
       </div>
     </div>
   );
