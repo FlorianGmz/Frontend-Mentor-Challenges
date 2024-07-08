@@ -5,7 +5,7 @@ import SuggestionsBar from "../SuggestionsBar/SuggestionsBar";
 import data from "../../data/data.json";
 import Feedback from "../Feedback/Feedback";
 import { useState } from "react";
-import { Comment, FeedbackType } from "../../@types/type";
+import { FeedbackType } from "../../@types/type";
 
 const SuggestionsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -41,6 +41,7 @@ const SuggestionsPage = () => {
         ((b as FeedbackType).comments?.length ?? 0)
       );
     }
+    return 0;
   }
 
   filteredSuggestions.sort(sortSuggestions);
