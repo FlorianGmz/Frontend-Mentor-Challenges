@@ -5,6 +5,7 @@ import SuggestionsBar from "../SuggestionsBar/SuggestionsBar";
 import data from "../../data/data.json";
 import Feedback from "../Feedback/Feedback";
 import { useState } from "react";
+import { Comment, FeedbackType } from "../../@types/type";
 
 const SuggestionsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -24,15 +25,21 @@ const SuggestionsPage = () => {
       : suggestion.category === selectedCategory,
   );
 
-  function sortSuggestions(a, b) {
+  function sortSuggestions(a: FeedbackType, b: FeedbackType) {
     if (selectedOption.value === "most-upvotes") {
       return b.upvotes - a.upvotes;
     } else if (selectedOption.value === "least-upvotes") {
       return a.upvotes - b.upvotes;
     } else if (selectedOption.value === "most-comments") {
-      return b.comments?.length - a.comments?.length;
+      return (
+        ((b as FeedbackType).comments?.length ?? 0) -
+        ((a as FeedbackType).comments?.length ?? 0)
+      );
     } else if (selectedOption.value === "least-comments") {
-      return a.comments?.length - b.comments?.length;
+      return (
+        ((a as FeedbackType).comments?.length ?? 0) -
+        ((b as FeedbackType).comments?.length ?? 0)
+      );
     }
   }
 
