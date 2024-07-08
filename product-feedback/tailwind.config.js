@@ -19,6 +19,10 @@ export default {
       el_hover: "#D0D7FF",
       el_active: "#4661E6",
       "el-font_def": "#3A4374",
+      "el-comment": "#CDD2EE",
+      "el-sort_active": "#C3C7D9",
+      "feedback-description": "#637196",
+      "feedback-board": "#DBDCFD",
     },
     fontSize: {
       h1: [
@@ -50,6 +54,13 @@ export default {
         {
           lineHeight: "20px",
           letterSpacing: "-0.2px",
+          fontWeight: "700",
+        },
+      ],
+      "comment-count": [
+        "16px",
+        {
+          letterSpacing: "-0.22px",
           fontWeight: "700",
         },
       ],
