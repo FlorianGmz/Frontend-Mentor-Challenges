@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 interface CommentCountProps {
   numberOfComments: number | undefined;
@@ -7,7 +6,6 @@ interface CommentCountProps {
 
 const CommentCount: React.FC<CommentCountProps> = ({ numberOfComments }) => {
   return (
-    // TODO: Make the div a link
     <div className="flex items-center justify-between gap-[8px]">
       <svg width="18" height="16" xmlns="http://www.w3.org/2000/svg">
         <path
