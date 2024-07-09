@@ -1,7 +1,7 @@
 import React from "react";
-import AddFeedbackLink from "./AddFeedbackLink";
 import SortingElement from "./SortingElement";
 import SuggestionsIcon from "./SuggestionsIcon";
+import NavButton from "../NavButton";
 
 interface SuggestionsBarProps {
   suggestionsCount: number;
@@ -35,7 +35,11 @@ const SuggestionsBar: React.FC<SuggestionsBarProps> = ({
           setSelectedOption={setSelectedOption}
         />
       </div>
-      <AddFeedbackLink />
+      <NavButton
+        to="/feedback/add"
+        bgColor="bt-purple_def"
+        bgHoverColor="bt-purple_hover"
+      />
     </div>
   );
 };

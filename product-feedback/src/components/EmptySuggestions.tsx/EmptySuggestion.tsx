@@ -1,4 +1,4 @@
-import AddFeedbackLink from "../SuggestionsBar/AddFeedbackLink";
+import NavButton from "../NavButton";
 import IllustrationEmpty from "./IllustrationEmpty";
 
 const NoFeedback = () => {
@@ -12,7 +12,11 @@ const NoFeedback = () => {
         Got a suggestion? Found a bug that needs to be squashed? We love hearing
         about new ideas to improve our app.
       </p>
-      <AddFeedbackLink />
+      <NavButton
+        to="/feedback/add"
+        bgColor="bt-purple_def"
+        bgHoverColor="bt-purple_hover"
+      />
     </div>
   );
 };
