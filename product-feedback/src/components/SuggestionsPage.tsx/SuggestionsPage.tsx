@@ -2,13 +2,12 @@ import CategoryPicker from "../CategoryPicker/CategoryPicker";
 import FrontendMentorSticker from "../FrontendMentorSticker";
 import RoadmapNav from "../RoadmapNav/RoadmapNav";
 import SuggestionsBar from "../SuggestionsBar/SuggestionsBar";
-import data from "../../data/data.json";
 import Feedback from "../Feedback/Feedback";
-import { useState } from "react";
-import { FeedbackType } from "../../@types/type";
+import React, { useState } from "react";
+import { AppData, FeedbackType } from "../../@types/type";
 import NoFeedback from "../EmptySuggestions.tsx/EmptySuggestion";
 
-const SuggestionsPage = () => {
+const SuggestionsPage: React.FC<AppData> = ({ data }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const [selectedOption, setSelectedOption] = useState({

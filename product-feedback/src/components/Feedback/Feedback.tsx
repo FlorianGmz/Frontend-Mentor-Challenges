@@ -13,7 +13,7 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback }) => {
   const { id, title, category, upvotes, description, comments } = feedback;
 
   return (
-    <div className="group flex h-[151px] w-[825px] cursor-pointer rounded-xl bg-bt-white_def px-[32px] py-[28px]">
+    <div className="group flex h-[151px] cursor-pointer rounded-xl bg-bt-white_def px-[32px] py-[28px]">
       <Upvote upvotes={upvotes} />
       <NavLink to={`/feedback/${id}`} className="flex w-full justify-between">
         <Request category={category} title={title} description={description} />
