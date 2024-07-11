@@ -13,12 +13,17 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback }) => {
   const { id, title, category, upvotes, description, comments } = feedback;
 
   return (
-    <div className="group flex h-[151px] cursor-pointer rounded-xl bg-bt-white_def px-[32px] py-[28px]">
-      <Upvote upvotes={upvotes} />
-      <NavLink to={`/feedback/${id}`} className="flex w-full justify-between">
+    <div className="group mx-[24px] flex h-[200px] cursor-pointer flex-col gap-[12px] rounded-xl bg-bt-white_def p-[24px]">
+      <NavLink
+        className="flex flex-auto flex-col items-start justify-between"
+        to={`/feedback/${id}`}
+      >
         <Request category={category} title={title} description={description} />
-        <CommentCount numberOfComments={comments?.length} />
       </NavLink>
+      <div className="flex justify-between">
+        <Upvote upvotes={upvotes} />
+        <CommentCount numberOfComments={comments?.length} />
+      </div>
     </div>
   );
 };

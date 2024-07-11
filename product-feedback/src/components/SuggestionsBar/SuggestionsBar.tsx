@@ -20,10 +20,12 @@ const SuggestionsBar: React.FC<SuggestionsBarProps> = ({
   setSelectedOption,
 }) => {
   return (
-    <div className="mb-[4px] flex h-[72px] w-[825px] items-center justify-between rounded-xl bg-bt-dark-blue_back px-[16px] py-[14px]">
-      <div className="flex items-center gap-[16px]">
-        <SuggestionsIcon />
-        <h3 className="text-h3 text-bt-white_def">
+    <div className="flex h-[56px] w-screen items-center justify-between bg-bt-dark-blue_back px-[24px] py-[8px]">
+      <div className="flex items-center justify-start">
+        <div className="hidden">
+          <SuggestionsIcon />
+        </div>
+        <h3 className="hidden text-h3 text-bt-white_def">
           {suggestionsCount > 0
             ? suggestionsCount === 1
               ? `${suggestionsCount} Suggestion`

@@ -85,6 +85,13 @@ export default {
           fontWeight: "600",
         },
       ],
+      "body-4": [
+        "15px",
+        {
+          letterSpacing: "-0.19px",
+          fontWeight: "700",
+        },
+      ],
     },
     extend: {},
   },

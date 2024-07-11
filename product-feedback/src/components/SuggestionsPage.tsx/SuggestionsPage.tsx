@@ -1,11 +1,9 @@
-import CategoryPicker from "../CategoryPicker/CategoryPicker";
-import FrontendMentorSticker from "../FrontendMentorSticker";
-import RoadmapNav from "../RoadmapNav/RoadmapNav";
 import SuggestionsBar from "../SuggestionsBar/SuggestionsBar";
 import Feedback from "../Feedback/Feedback";
 import React, { useState } from "react";
 import { AppData, FeedbackType } from "../../@types/type";
 import NoFeedback from "../EmptySuggestions.tsx/EmptySuggestion";
+import SideSection from "../SideSection/SideSection";
 
 const SuggestionsPage: React.FC<AppData> = ({ data }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -47,22 +45,19 @@ const SuggestionsPage: React.FC<AppData> = ({ data }) => {
   }
 
   filteredSuggestions.sort(sortSuggestions);
+
   return (
-    <div className="mx-auto my-[100px] flex w-[1110px] gap-[30px]">
-      <div className="flex flex-col gap-[24px]">
-        <FrontendMentorSticker />
-        <CategoryPicker
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
-        <RoadmapNav />
-      </div>
-      <div className="flex flex-col gap-[20px]">
-        <SuggestionsBar
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-          suggestionsCount={filteredSuggestions.length}
-        />
+    <div className="flex flex-col">
+      <SideSection
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
+      <SuggestionsBar
+        selectedOption={selectedOption}
+        setSelectedOption={setSelectedOption}
+        suggestionsCount={filteredSuggestions.length}
+      />
+      <section className="mb-[70px] mt-[32px] flex flex-col gap-[16px]">
         {filteredSuggestions.length >= 1 ? (
           filteredSuggestions.map((feedback) => (
             <Feedback key={feedback.id} feedback={feedback} />
@@ -70,7 +65,7 @@ const SuggestionsPage: React.FC<AppData> = ({ data }) => {
         ) : (
           <NoFeedback />
         )}
-      </div>
+      </section>
     </div>
   );
 };

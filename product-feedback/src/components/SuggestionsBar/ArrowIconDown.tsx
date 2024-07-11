@@ -5,7 +5,7 @@ const ArrowIconDown = () => {
         <path
           d="M1 1l4 4 4-4"
           stroke="#FFFFFF"
-          stroke-width="2"
+          stroke-width="3"
           fill="none"
           fill-rule="evenodd"
         />

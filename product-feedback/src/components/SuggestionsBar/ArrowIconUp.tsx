@@ -5,7 +5,7 @@ const ArrowIconUp = () => {
         <path
           d="M1 6l4-4 4 4"
           stroke="#FFFFFF"
-          stroke-width="2"
+          stroke-width="3"
           fill="none"
           fill-rule="evenodd"
         />

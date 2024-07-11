@@ -1,5 +1,5 @@
 import StatusCircle from "./StatusCircle";
-import data from "../../data/data.json";
+import data from "../../../data/data.json";
 import React from "react";
 
 interface RoadmapStatusProps {

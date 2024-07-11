@@ -16,7 +16,7 @@ const Upvote: React.FC<UpvoteProps> = ({ upvotes }) => {
   return (
     <button
       type="button"
-      className="focus:text-bt-white_de group mr-[40px] flex h-[53px] w-[40px] flex-col items-center justify-around rounded-lg bg-el_def py-[8px] transition-colors hover:bg-el_hover disabled:bg-el_active"
+      className="focus:text-bt-white_de group flex h-[32px] w-[69px] items-center justify-around rounded-xl bg-el_def px-[13px] py-[6px] transition-colors hover:bg-el_hover disabled:bg-el_active"
       onClick={handleClick}
     >
       <svg

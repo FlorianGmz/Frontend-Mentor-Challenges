@@ -17,7 +17,7 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
     <div className="mx-auto my-[100px] flex w-[730px] flex-col gap-[24px]">
       <Header />
       <Feedback feedback={currentFeedback[0]} />
-      <CommentsSection />
+      <CommentsSection feedback={currentFeedback[0]} />
     </div>
   );
 };
