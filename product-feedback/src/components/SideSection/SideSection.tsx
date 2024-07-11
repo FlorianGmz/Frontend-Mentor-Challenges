@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import FrontendMentorHeader from "./FrontendMentorSticker";
+import FrontendMentorHeader from "./FrontendMentorHeader";
 import SideBar from "./SideBar";
+import CategoryPicker from "./CategoryPicker/CategoryPicker";
+import RoadmapNav from "./RoadmapNav/RoadmapNav";
 
 interface SideSectionProps {
   selectedCategory: string;
@@ -13,7 +15,7 @@ const SideSection: React.FC<SideSectionProps> = ({
 }) => {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   return (
-    <div className="flex flex-col">
+    <div className="gd flex flex-col md:mx-auto md:my-[40px] md:w-[689px] md:flex-row md:gap-[10px]">
       <FrontendMentorHeader
         sidebarIsOpen={sidebarIsOpen}
         setSidebarIsOpen={setSidebarIsOpen}
@@ -24,6 +26,12 @@ const SideSection: React.FC<SideSectionProps> = ({
           setSelectedCategory={setSelectedCategory}
         />
       )}
+      <div className="hidden md:block">
+        <CategoryPicker />
+      </div>
+      <div className="hidden md:block">
+        <RoadmapNav />
+      </div>
     </div>
   );
 };

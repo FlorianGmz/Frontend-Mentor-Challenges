@@ -20,7 +20,7 @@ const CategoryPicker: React.FC<CategoryPickerProps> = ({
   const filteredCategories = Array.from(new Set(categories));
 
   return (
-    <div className="flex h-[166px] w-[255px] flex-wrap items-center gap-[8px] rounded-xl bg-bt-white_def p-[24px]">
+    <div className="flex h-[178px] w-[223px] flex-wrap items-center gap-[8px] rounded-xl bg-bt-white_def px-[18px] py-[24px] md:h-[178px] md:w-[223px] md:gap-[10px]">
       {filteredCategories.map((category) => (
         <Category
           key={category}

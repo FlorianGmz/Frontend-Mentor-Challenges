@@ -20,7 +20,7 @@ const RoadmapNav = () => {
     },
   ];
   return (
-    <div className="flex h-[178px] w-[255px] flex-col justify-between rounded-xl bg-bt-white_def px-[24px] py-[24px]">
+    <div className="flex h-[178px] w-[223px] flex-col justify-between rounded-xl bg-bt-white_def px-[24px] py-[19px] md:h-[178px] md:w-[223px]">
       <div className="flex items-center justify-between">
         <h3 className="text-h3">Roadmap</h3>
         <NavLink

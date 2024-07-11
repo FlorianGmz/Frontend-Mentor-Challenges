@@ -20,9 +20,9 @@ const SuggestionsBar: React.FC<SuggestionsBarProps> = ({
   setSelectedOption,
 }) => {
   return (
-    <div className="flex h-[56px] w-screen items-center justify-between bg-bt-dark-blue_back px-[24px] py-[8px]">
+    <div className="flex h-[56px] w-screen items-center justify-between bg-bt-dark-blue_back px-[24px] py-[8px] md:mx-auto md:h-[72px] md:w-[689px] md:rounded-xl">
       <div className="flex items-center justify-start">
-        <div className="hidden">
+        <div className="hidden md:block">
           <SuggestionsIcon />
         </div>
         <h3 className="hidden text-h3 text-bt-white_def">
