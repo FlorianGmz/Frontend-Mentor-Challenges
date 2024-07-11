@@ -27,7 +27,7 @@ const DropdownMenu: React.FC<DropDownMenuProps> = ({
   };
 
   return (
-    <div className="absolute top-[190px] z-10 mb-28 flex h-[192px] w-[255px] cursor-pointer flex-col justify-between rounded-xl bg-bt-white_def py-[12px] text-body-1 text-feedback-description shadow-2xl">
+    <div className="absolute top-[140px] z-10 mb-28 flex h-[192px] w-[255px] cursor-pointer flex-col justify-between rounded-xl bg-bt-white_def py-[12px] text-body-1 text-feedback-description drop-shadow-lg">
       {options.map((option, index) => (
         <React.Fragment key={option.value}>
           <div
