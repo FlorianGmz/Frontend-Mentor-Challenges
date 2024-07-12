@@ -16,7 +16,7 @@ const SideSection: React.FC<SideSectionProps> = ({
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
 
   return (
-    <div className="gd flex flex-col md:mx-auto md:my-[40px] md:w-[689px] md:flex-row md:gap-[10px]">
+    <div className="flex flex-col md:mx-auto md:my-[40px] md:w-[689px] md:flex-row md:gap-[10px] xl:mx-0 xl:my-0 xl:h-[529px] xl:w-[255px] xl:flex-col xl:gap-[24px]">
       <FrontendMentorHeader
         sidebarIsOpen={sidebarIsOpen}
         setSidebarIsOpen={setSidebarIsOpen}

@@ -47,25 +47,27 @@ const SuggestionsPage: React.FC<AppData> = ({ data }) => {
   filteredSuggestions.sort(sortSuggestions);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col xl:mx-auto xl:my-[50px] xl:w-[1110px] xl:flex-row xl:justify-center xl:gap-[30px]">
       <SideSection
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      <SuggestionsBar
-        selectedOption={selectedOption}
-        setSelectedOption={setSelectedOption}
-        suggestionsCount={filteredSuggestions.length}
-      />
-      <section className="mb-[70px] mt-[32px] flex flex-col gap-[16px] md:mt-[24px]">
-        {filteredSuggestions.length >= 1 ? (
-          filteredSuggestions.map((feedback) => (
-            <Feedback key={feedback.id} feedback={feedback} />
-          ))
-        ) : (
-          <NoFeedback />
-        )}
-      </section>
+      <div>
+        <SuggestionsBar
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          suggestionsCount={filteredSuggestions.length}
+        />
+        <section className="mb-[70px] mt-[32px] flex flex-col gap-[16px] md:mt-[24px] xl:gap-[20px]">
+          {filteredSuggestions.length >= 1 ? (
+            filteredSuggestions.map((feedback) => (
+              <Feedback key={feedback.id} feedback={feedback} />
+            ))
+          ) : (
+            <NoFeedback />
+          )}
+        </section>
+      </div>
     </div>
   );
 };

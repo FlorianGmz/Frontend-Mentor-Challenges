@@ -3,7 +3,7 @@ import IllustrationEmpty from "./IllustrationEmpty";
 
 const NoFeedback = () => {
   return (
-    <div className="m-auto flex h-[460px] w-[327px] flex-col items-center justify-between rounded-lg bg-bt-white_def px-[24px] py-[76px] md:h-[600px] md:w-[689px] md:px-[139px] md:py-[110px]">
+    <div className="m-auto flex h-[460px] w-[327px] flex-col items-center justify-between rounded-lg bg-bt-white_def px-[24px] py-[76px] md:h-[600px] md:w-[689px] md:px-[139px] md:py-[110px] xl:h-[600px] xl:w-[825px] xl:px-[206px]">
       <div className="md:mb-[53px]">
         <IllustrationEmpty />
       </div>

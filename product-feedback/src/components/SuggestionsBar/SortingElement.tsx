@@ -24,10 +24,10 @@ const SortingElement: React.FC<SortingElementProps> = ({
       onClick={() => setToggleDropDownMenu(!toggleDropDownMenu)}
       className="group flex cursor-pointer items-center gap-1"
     >
-      <span className="text-[13px] text-el_def group-focus-within:text-el-sort_active">
+      <span className="text-[13px] text-el_def group-focus-within:text-el-sort_active md:text-[14px]">
         Sort by :
       </span>
-      <p className="bg-bt-dark-blue_back text-[13px] font-bold text-bt-white_def focus:outline-none group-focus-within:text-el-sort_active">
+      <p className="bg-bt-dark-blue_back text-[13px] font-bold text-bt-white_def focus:outline-none group-focus-within:text-el-sort_active md:text-[14px]">
         {selectedOption.label}
       </p>
       {toggleDropDownMenu ? <ArrowIconUp /> : <ArrowIconDown />}
