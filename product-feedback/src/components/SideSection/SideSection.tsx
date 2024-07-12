@@ -14,6 +14,7 @@ const SideSection: React.FC<SideSectionProps> = ({
   setSelectedCategory,
 }) => {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+
   return (
     <div className="gd flex flex-col md:mx-auto md:my-[40px] md:w-[689px] md:flex-row md:gap-[10px]">
       <FrontendMentorHeader
@@ -27,7 +28,10 @@ const SideSection: React.FC<SideSectionProps> = ({
         />
       )}
       <div className="hidden md:block">
-        <CategoryPicker />
+        <CategoryPicker
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
       </div>
       <div className="hidden md:block">
         <RoadmapNav />

@@ -16,7 +16,7 @@ const Upvote: React.FC<UpvoteProps> = ({ upvotes }) => {
   return (
     <button
       type="button"
-      className="focus:text-bt-white_de group flex h-[32px] w-[69px] items-center justify-around rounded-xl bg-el_def px-[13px] py-[6px] transition-colors hover:bg-el_hover disabled:bg-el_active"
+      className="focus:text-bt-white_de group flex h-[32px] w-[69px] items-center justify-around rounded-xl bg-el_def px-[13px] py-[6px] transition-colors hover:bg-el_hover disabled:bg-el_active md:h-[53px] md:w-[40px] md:flex-col md:px-[9px]"
       onClick={handleClick}
     >
       <svg
@@ -32,7 +32,7 @@ const Upvote: React.FC<UpvoteProps> = ({ upvotes }) => {
           fill-rule="evenodd"
         />
       </svg>
-      <span className="text-body-3 text-el-font_def group-disabled:text-bt-white_def">
+      <span className="text-[13px] font-bold text-el-font_def group-disabled:text-bt-white_def">
         {actualVote}
       </span>
     </button>

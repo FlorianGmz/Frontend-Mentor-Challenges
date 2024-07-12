@@ -15,7 +15,7 @@ const CommentCount: React.FC<CommentCountProps> = ({ numberOfComments }) => {
         />
       </svg>
       <span
-        className={`text-comment-count ${numberOfComments ? "text-comment-count" : "text-el-comment"}`}
+        className={`text-[13px] font-bold md:text-[16px] ${numberOfComments ? "text-el-font_def" : "text-el-comment"}`}
       >
         {numberOfComments ? numberOfComments : "0"}
       </span>
