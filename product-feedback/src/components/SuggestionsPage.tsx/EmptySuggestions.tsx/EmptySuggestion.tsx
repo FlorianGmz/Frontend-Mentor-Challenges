@@ -1,4 +1,4 @@
-import NavButton from "../NavButton";
+import NavButton from "../../ui/NavButton";
 import IllustrationEmpty from "./IllustrationEmpty";
 
 const NoFeedback = () => {

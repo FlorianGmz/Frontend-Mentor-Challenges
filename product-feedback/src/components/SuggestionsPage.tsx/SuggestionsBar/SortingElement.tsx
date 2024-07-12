@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ArrowIconDown from "./ArrowIconDown";
+import ArrowIconDown from "../../ui/icons/ArrowIconDown";
 import DropdownMenu from "./DropdownMenu";
-import ArrowIconUp from "./ArrowIconUp";
+import ArrowIconUp from "../../ui/icons/ArrowIconUp";
 
 interface SortingElementProps {
   selectedOption: { label: string; value: string };

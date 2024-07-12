@@ -2,8 +2,8 @@ import React from "react";
 import CommentCount from "./CommentCount";
 import Request from "./Request";
 import Upvote from "./Upvote";
-import { FeedbackType } from "../../@types/type";
 import { NavLink } from "react-router-dom";
+import { FeedbackType } from "../../../@types/type";
 
 interface FeedbackProps {
   feedback: FeedbackType;

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import Feedback from "../Feedback/Feedback";
+import Feedback from "../ui/Feedback/Feedback";
 import Header from "./Header";
 import React from "react";
 import { AppData } from "../../@types/type";

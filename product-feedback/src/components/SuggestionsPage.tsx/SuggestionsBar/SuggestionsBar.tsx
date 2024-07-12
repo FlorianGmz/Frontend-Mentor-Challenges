@@ -1,7 +1,7 @@
 import React from "react";
 import SortingElement from "./SortingElement";
 import SuggestionsIcon from "./SuggestionsIcon";
-import NavButton from "../NavButton";
+import NavButton from "../../ui/NavButton";
 
 interface SuggestionsBarProps {
   suggestionsCount: number;

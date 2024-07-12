@@ -1,9 +1,9 @@
-import SuggestionsBar from "../SuggestionsBar/SuggestionsBar";
-import Feedback from "../Feedback/Feedback";
+import SuggestionsBar from "./SuggestionsBar/SuggestionsBar";
+import Feedback from "../ui/Feedback/Feedback";
 import React, { useState } from "react";
 import { AppData, FeedbackType } from "../../@types/type";
-import NoFeedback from "../EmptySuggestions.tsx/EmptySuggestion";
-import SideSection from "../SideSection/SideSection";
+import NoFeedback from "./EmptySuggestions.tsx/EmptySuggestion";
+import SideSection from "./SideSection/SideSection";
 
 const SuggestionsPage: React.FC<AppData> = ({ data }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");

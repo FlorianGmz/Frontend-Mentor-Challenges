@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import IconPlus from "./SuggestionsBar/IconPlus";
 import React from "react";
+import IconPlus from "./icons/IconPlus";
 
 interface NavButtonProps {
   to: string;

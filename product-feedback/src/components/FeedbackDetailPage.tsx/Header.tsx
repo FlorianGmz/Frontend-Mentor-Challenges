@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import NavButton from "../NavButton";
-import IconArrowLeft from "./IconArrowLeft";
+import IconArrowLeft from "../ui/icons/IconArrowLeft";
+import NavButton from "../ui/NavButton";
 
 const Header = () => {
   return (

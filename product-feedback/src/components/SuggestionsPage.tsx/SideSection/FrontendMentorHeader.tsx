@@ -1,6 +1,6 @@
 import React from "react";
-import IconHamburger from "./IconHamburger";
-import IconClose from "./IconClose";
+import IconHamburger from "../../ui/icons/IconHamburger";
+import IconClose from "../../ui/icons/IconClose";
 
 interface FrontendMentorHeaderProps {
   sidebarIsOpen: boolean;

@@ -1,5 +1,5 @@
 import React from "react";
-import CheckIcon from "./CheckIcon";
+import CheckIcon from "../../ui/icons/CheckIcon";
 
 interface DropDownMenuProps {
   selectedOption: { label: string; value: string };
