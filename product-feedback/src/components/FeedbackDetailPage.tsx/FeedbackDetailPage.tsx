@@ -4,6 +4,7 @@ import Header from "./Header";
 import React from "react";
 import { AppData } from "../../@types/type";
 import CommentsSection from "./CommentsSection";
+import AddForm from "./AddForm";
 
 const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
   const currentParam = useParams();
@@ -14,10 +15,11 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
   console.log(currentFeedback);
 
   return (
-    <div className="mx-auto my-[100px] flex w-[730px] flex-col gap-[24px]">
+    <div className="flex w-screen flex-col gap-[24px] py-[24px]">
       <Header />
       <Feedback feedback={currentFeedback[0]} />
       <CommentsSection feedback={currentFeedback[0]} />
+      <AddForm commentType="comment" />
     </div>
   );
 };
