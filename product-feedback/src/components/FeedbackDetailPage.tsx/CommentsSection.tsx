@@ -16,6 +16,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ feedback }) => {
       }
     });
   }
+
   return (
     <div className="mx-auto w-[327px] rounded-xl bg-bt-white_def px-[32px] py-[24px]">
       <h3 className="text-h3 text-el-font_def">
