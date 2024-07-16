@@ -10,7 +10,7 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
   const currentUser = data.currentUser;
   let currentCommentId = 0;
   const [comment, setComment] = useState("");
-  const [currentFeedback, setCurrentFeedback] = useState(null);
+  // const [currentFeedback, setCurrentFeedback] = useState(null);
 
   const currentParam = useParams();
   const currentId = currentParam?.id;
@@ -37,7 +37,7 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (comment.trim()) {
-      addNewComment(currentUser, currentCommentId, comment);
+      addNewComment(currentUser, newCommentId, comment);
       setComment("");
     }
   };
@@ -48,7 +48,11 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
       <Feedback feedback={currentFeedback[0]} />
       <CommentsSection feedback={currentFeedback[0]} />
       <form onSubmit={handleSubmit}>
-        <AddForm commentType="comment" setComment={setComment} />
+        <AddForm
+          commentType="comment"
+          comment={comment}
+          setComment={setComment}
+        />
       </form>
     </div>
   );

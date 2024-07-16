@@ -22,8 +22,8 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ feedback }) => {
       <h3 className="text-h3 text-el-font_def">
         {numberOfComments >= 1 ? `${numberOfComments}` : "No"} Comments
       </h3>
-      {feedback.comments?.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
+      {feedback.comments?.map((comment, index) => (
+        <Comment key={comment.id} index={index} comment={comment} />
       ))}
     </div>
   );

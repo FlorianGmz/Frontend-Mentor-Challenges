@@ -3,10 +3,15 @@ import AddButton from "../ui/AddButton";
 
 interface AddFormProps {
   commentType: string;
+  comment: string;
   setComment: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const AddForm: React.FC<AddFormProps> = ({ commentType, setComment }) => {
+const AddForm: React.FC<AddFormProps> = ({
+  commentType,
+  comment,
+  setComment,
+}) => {
   const [charCount, setCharCount] = useState(250);
   const maxChars = 250;
 
@@ -23,6 +28,7 @@ const AddForm: React.FC<AddFormProps> = ({ commentType, setComment }) => {
       <textarea
         className="mb-[16px] h-[80px] w-full rounded-lg bg-body-bg p-[16px] text-[13px] text-[#8C92B3] focus:outline focus:outline-1 focus:outline-el_active"
         name="text"
+        value={comment}
         maxLength={maxChars}
         onChange={handleChange}
         placeholder={`Type your ${commentType} here`}
