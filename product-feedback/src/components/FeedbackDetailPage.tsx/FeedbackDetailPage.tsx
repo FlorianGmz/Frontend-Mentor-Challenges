@@ -4,13 +4,13 @@ import Header from "./Header";
 import React, { useState } from "react";
 import { AppData } from "../../@types/type";
 import CommentsSection from "./CommentsSection";
-import AddForm from "./AddForm";
+import AddCommentForm from "./AddForm";
 
 const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
   const currentUser = data.currentUser;
   let currentCommentId = 0;
   const [comment, setComment] = useState("");
-  // const [currentFeedback, setCurrentFeedback] = useState(null);
+  const [charCount, setCharCount] = useState(250);
 
   const currentParam = useParams();
   const currentId = currentParam?.id;
@@ -26,7 +26,11 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
   });
   const newCommentId = currentCommentId + 1;
 
-  const addNewComment = (currentUser, newCommentId, comment) => {
+  const addNewComment = (
+    currentUser: { image: string; name: string; username: string },
+    newCommentId: number,
+    comment: string,
+  ) => {
     currentFeedback[0].comments?.push({
       id: newCommentId,
       content: comment,
@@ -34,13 +38,21 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const [emptySubmit, setEmpySubmit] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (comment.trim()) {
+      setEmpySubmit(false);
       addNewComment(currentUser, newCommentId, comment);
       setComment("");
+      setCharCount(250);
+    } else {
+      setEmpySubmit(true);
     }
   };
+
+  console.log(currentFeedback[0]);
 
   return (
     <div className="flex w-screen flex-col gap-[24px] py-[24px]">
@@ -48,10 +60,13 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
       <Feedback feedback={currentFeedback[0]} />
       <CommentsSection feedback={currentFeedback[0]} />
       <form onSubmit={handleSubmit}>
-        <AddForm
+        <AddCommentForm
+          charCount={charCount}
+          setCharCount={setCharCount}
           commentType="comment"
           comment={comment}
           setComment={setComment}
+          emptySubmit={emptySubmit}
         />
       </form>
     </div>
