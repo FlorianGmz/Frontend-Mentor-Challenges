@@ -6,9 +6,10 @@ import AddForm from "./AddForm";
 
 interface CommentProps {
   comment: CommentType;
+  index: number;
 }
 
-const Comment: React.FC<CommentProps> = ({ comment }) => {
+const Comment: React.FC<CommentProps> = ({ comment, index }) => {
   const { content, user, replies } = comment;
   const commentUsername = user.username;
   const currentUser = data.currentUser;
@@ -32,16 +33,26 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (reply.trim()) {
+      if (!comment.replies) {
+        comment.replies = [];
+      }
       setEmpySubmit(false);
-      addNewReply(currentUser, newCommentId, comment);
+      addNewReply(currentUser, commentUsername, reply);
       setReply("");
       setCharCount(250);
+      setPostReply((toggle) => !toggle);
     } else {
       setEmpySubmit(true);
     }
   };
+
+  const isFirstComment = index === 0;
+
   return (
     <div className="flex flex-col">
+      {!isFirstComment && (
+        <span className="h-[1px] w-full bg-[#8C92B3] opacity-30"></span>
+      )}
       <div className="flex flex-col gap-[16px] py-[24px]">
         <div className="flex items-center justify-between">
           <div className="flex gap-[16px]">
@@ -80,13 +91,12 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
           </form>
         )}
       </div>
-      {!replies && (
-        <span className="h-[1px] w-full bg-[#8C92B3] opacity-30"></span>
-      )}
       <div className="flex">
-        {replies && (
-          <span className="mr-[24px] h-[240px] w-[1px] bg-[#8C92B3] opacity-30"></span>
-        )}
+        <div>
+          {replies && (
+            <span className="mr-[24px] h-1/2 w-[1px] bg-[#8C92B3] opacity-30"></span>
+          )}
+        </div>
         <div>
           {replies?.map((reply) => <Reply key={reply.content} reply={reply} />)}
         </div>

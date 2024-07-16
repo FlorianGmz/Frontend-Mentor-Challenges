@@ -25,7 +25,6 @@ const AddForm: React.FC<AddFormProps> = ({
     setComment(e.target.value);
     setCharCount(maxChars - e.target.value.length);
   };
-  console.log(emptySubmit);
 
   return (
     <div
