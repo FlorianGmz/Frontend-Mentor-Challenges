@@ -15,7 +15,7 @@ const Comment: React.FC<CommentProps> = ({ commentData, index }) => {
   const [commentState, setCommentState] = useState<CommentType>(commentData);
   const { user, content, replies } = commentState;
 
-  const currentUser = data.currentUser; // Ensure this is properly defined
+  const currentUser = data.currentUser;
 
   const [postReply, setPostReply] = useState(false);
 
