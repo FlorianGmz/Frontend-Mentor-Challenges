@@ -1,38 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import { Reply as ReplyType } from "../../@types/type";
+import AddForm from "./AddForm";
+import useFormState from "../../hooks/UseFormState";
+import data from "../../data/data.json";
+import CommentCard from "./CommentCard";
 
 interface ReplyProps {
   reply: ReplyType;
+  index: number;
+  handleAddReply: (newReply: ReplyType) => void;
 }
 
-const Reply: React.FC<ReplyProps> = ({ reply }) => {
+const Reply: React.FC<ReplyProps> = ({ reply, index, handleAddReply }) => {
   const { content, replyingTo, user } = reply;
+  const firstReply = index === 0;
+  const commentUsername = user.username;
+  const currentUser = data.currentUser;
+  const [postReply, setPostReply] = useState(false);
+
+  const {
+    comment,
+    charCount,
+    emptySubmit,
+    setComment,
+    setCharCount,
+    setEmptySubmit,
+  } = useFormState();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (comment.trim()) {
+      const newReply = {
+        content: comment,
+        replyingTo: commentUsername,
+        user: currentUser,
+      };
+      handleAddReply(newReply);
+      setComment("");
+      setCharCount(250);
+      setPostReply(false);
+    } else {
+      setEmptySubmit(true);
+    }
+  };
+
   return (
-    <div className="mb-[24px] flex flex-col gap-[16px]">
-      <div className="flex items-center justify-between">
-        <div className="flex gap-[16px]">
-          <img
-            src={user.image}
-            alt="User profile"
-            className="h-[40px] w-[40px] rounded-full"
-          />
-          <div className="flex flex-col">
-            <p className="text-[13px] font-bold text-el-font_def">
-              {user.name}
-            </p>
-            <p className="text-[13px] text-feedback-description">
-              @{user.username}
-            </p>
+    <div>
+      {firstReply && (
+        <span className="relative top-0 h-full w-[1px] bg-[#8C92B3] opacity-30"></span>
+      )}
+      <div className="ml-[24px]">
+        <CommentCard
+          user={user}
+          setPostReply={setPostReply}
+          content={content}
+          reply={true}
+          replyingTo={replyingTo}
+        />
+        {postReply && (
+          <div className="pb-[24px]">
+            <form onSubmit={handleSubmit}>
+              <AddForm
+                charCount={charCount}
+                setCharCount={setCharCount}
+                commentType="reply"
+                comment={comment}
+                setComment={setComment}
+                emptySubmit={emptySubmit}
+              />
+            </form>
           </div>
-        </div>
-        <p className="text-body-3 text-el_active">Reply</p>
+        )}
       </div>
-      <p className="text-[13px] text-feedback-description">
-        <span className="text-[13px] font-bold text-bt-purple_def">
-          @{replyingTo}
-        </span>
-        {` ${content}`}
-      </p>
     </div>
   );
 };

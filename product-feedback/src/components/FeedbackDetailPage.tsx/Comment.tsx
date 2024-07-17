@@ -1,107 +1,98 @@
 import React, { useState } from "react";
-import data from "../../data/data.json";
 import { Comment as CommentType } from "../../@types/type";
 import Reply from "./Reply";
 import AddForm from "./AddForm";
+import useFormState from "../../hooks/UseFormState";
+import data from "../../data/data.json";
+import CommentCard from "./CommentCard";
 
 interface CommentProps {
-  comment: CommentType;
+  commentData: CommentType;
   index: number;
 }
 
-const Comment: React.FC<CommentProps> = ({ comment, index }) => {
-  const { content, user, replies } = comment;
-  const commentUsername = user.username;
-  const currentUser = data.currentUser;
-  const [reply, setReply] = useState("");
-  const [charCount, setCharCount] = useState(250);
-  const [postReply, setPostReply] = useState(false);
-  const [emptySubmit, setEmpySubmit] = useState(false);
+const Comment: React.FC<CommentProps> = ({ commentData, index }) => {
+  const [commentState, setCommentState] = useState<CommentType>(commentData);
+  const { user, content, replies } = commentState;
 
-  const addNewReply = (
-    currentUser: { image: string; name: string; username: string },
-    commentUsername: string,
-    reply: string,
-  ) => {
-    comment.replies?.push({
-      content: reply,
-      replyingTo: commentUsername,
-      user: currentUser,
-    });
+  const currentUser = data.currentUser; // Ensure this is properly defined
+
+  const [postReply, setPostReply] = useState(false);
+
+  const handleAddReply = (newReply: {
+    content: string;
+    replyingTo: string;
+    user: { image: string; name: string; username: string };
+  }) => {
+    setCommentState((prevComment) => ({
+      ...prevComment,
+      replies: [...(prevComment.replies || []), newReply],
+    }));
   };
+
+  const {
+    comment,
+    charCount,
+    emptySubmit,
+    setComment,
+    setCharCount,
+    setEmptySubmit,
+  } = useFormState();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (reply.trim()) {
-      if (!comment.replies) {
-        comment.replies = [];
-      }
-      setEmpySubmit(false);
-      addNewReply(currentUser, commentUsername, reply);
-      setReply("");
+    if (comment.trim()) {
+      const newReply = {
+        content: comment,
+        replyingTo: user.username,
+        user: currentUser,
+      };
+      handleAddReply(newReply);
+      setComment("");
       setCharCount(250);
-      setPostReply((toggle) => !toggle);
+      setPostReply(false);
     } else {
-      setEmpySubmit(true);
+      setEmptySubmit(true);
     }
   };
 
   const isFirstComment = index === 0;
 
   return (
-    <div className="flex flex-col">
+    <section className="flex h-auto w-auto flex-col">
       {!isFirstComment && (
         <span className="h-[1px] w-full bg-[#8C92B3] opacity-30"></span>
       )}
-      <div className="flex flex-col gap-[16px] py-[24px]">
-        <div className="flex items-center justify-between">
-          <div className="flex gap-[16px]">
-            <img
-              src={user.image}
-              alt="User profile"
-              className="h-[40px] w-[40px] rounded-full"
-            />
-            <div className="flex flex-col">
-              <p className="text-[13px] font-bold text-el-font_def">
-                {user.name}
-              </p>
-              <p className="text-[13px] text-feedback-description">
-                @{user.username}
-              </p>
-            </div>
-          </div>
-          <span
-            onClick={() => setPostReply((toggle) => !toggle)}
-            className="text-body-3 text-el_active"
-          >
-            Reply
-          </span>
-        </div>
-        <p className="text-[13px] text-feedback-description">{content}</p>
-        {postReply && (
+      <CommentCard
+        user={user}
+        setPostReply={setPostReply}
+        content={content}
+        replyingTo={user.username}
+        reply={false}
+      />
+      {postReply && (
+        <div className="pb-[24px]">
           <form onSubmit={handleSubmit}>
             <AddForm
               charCount={charCount}
               setCharCount={setCharCount}
               commentType="reply"
-              comment={reply}
-              setComment={setReply}
+              comment={comment}
+              setComment={setComment}
               emptySubmit={emptySubmit}
             />
           </form>
-        )}
-      </div>
-      <div className="flex">
-        <div>
-          {replies && (
-            <span className="mr-[24px] h-1/2 w-[1px] bg-[#8C92B3] opacity-30"></span>
-          )}
         </div>
-        <div>
-          {replies?.map((reply) => <Reply key={reply.content} reply={reply} />)}
-        </div>
-      </div>
-    </div>
+      )}
+      {replies?.map((reply, index) => (
+        <Reply
+          key={index}
+          reply={reply}
+          handleAddReply={handleAddReply}
+          index={index}
+        />
+      ))}
+    </section>
   );
 };
 

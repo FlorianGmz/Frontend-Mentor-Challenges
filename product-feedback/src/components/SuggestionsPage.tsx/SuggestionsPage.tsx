@@ -23,8 +23,6 @@ const SuggestionsPage: React.FC<AppData> = ({ data }) => {
       : suggestion.category === selectedCategory,
   );
 
-  console.log(filteredSuggestions);
-
   function sortSuggestions(a: FeedbackType, b: FeedbackType) {
     if (selectedOption.value === "most-upvotes") {
       return b.upvotes - a.upvotes;
