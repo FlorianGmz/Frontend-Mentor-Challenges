@@ -49,7 +49,7 @@ const Reply: React.FC<ReplyProps> = ({ reply, index, handleAddReply }) => {
       {firstReply && (
         <span className="relative top-0 h-full w-[1px] bg-[#8C92B3] opacity-30"></span>
       )}
-      <div className="ml-[24px]">
+      <div className="ml-[24px] md:ml-[46px]">
         <CommentCard
           user={user}
           setPostReply={setPostReply}

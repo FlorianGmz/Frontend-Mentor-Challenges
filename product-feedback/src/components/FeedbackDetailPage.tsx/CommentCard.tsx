@@ -19,17 +19,17 @@ const CommentCard: React.FC<CommentCardProps> = ({
   return (
     <div className="flex flex-col gap-[16px] py-[24px]">
       <div className="flex items-center justify-between">
-        <div className="flex gap-[16px]">
+        <div className="flex gap-[16px] md:gap-[32px]">
           <img
             src={user.image}
             alt="User profile"
             className="h-[40px] w-[40px] rounded-full"
           />
           <div className="flex flex-col">
-            <p className="text-[13px] font-bold text-el-font_def">
+            <p className="text-[13px] font-bold text-el-font_def md:text-[14px]">
               {user.name}
             </p>
-            <p className="text-[13px] text-feedback-description">
+            <p className="text-[13px] text-feedback-description md:text-[14px]">
               @{user.username}
             </p>
           </div>
@@ -42,8 +42,8 @@ const CommentCard: React.FC<CommentCardProps> = ({
         </span>
       </div>
 
-      <p className="text-[13px] text-feedback-description">
-        <span className="text-[13px] font-bold text-bt-purple_def">
+      <p className="text-[13px] text-feedback-description md:ml-[71px] md:text-body-2">
+        <span className="text-[13px] font-bold text-bt-purple_def md:text-[15px]">
           {reply && `@${replyingTo} `}
         </span>
         {content}

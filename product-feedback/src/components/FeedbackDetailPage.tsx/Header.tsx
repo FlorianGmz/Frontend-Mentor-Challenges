@@ -1,16 +1,10 @@
-import { NavLink } from "react-router-dom";
-import IconArrowLeft from "../ui/icons/IconArrowLeft";
+import GoBackLink from "../ui/GoBackLink";
 import NavButton from "../ui/NavButton";
 
 const Header = () => {
   return (
-    <div className="mx-auto flex h-[40px] w-[327px] items-center justify-between">
-      <div className="flex items-center gap-[16px]">
-        <IconArrowLeft />
-        <NavLink to={"before"} className="text-h4 text-bt-white_font">
-          Go Back
-        </NavLink>
-      </div>
+    <div className="mx-auto flex h-[40px] w-[327px] items-center justify-between md:h-[44px] md:w-[689px]">
+      <GoBackLink />
       <NavButton
         to="/feedback/edit"
         bgColor="bt-blue_def"

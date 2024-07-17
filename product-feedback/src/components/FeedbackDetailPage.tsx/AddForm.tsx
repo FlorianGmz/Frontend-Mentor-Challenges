@@ -28,15 +28,15 @@ const AddForm: React.FC<AddFormProps> = ({
 
   return (
     <div
-      className={`mx-auto ${commentPost ? "mb-[50px]" : ""} h-auto ${commentPost ? "w-[327px]" : "w-full"} rounded-xl bg-bt-white_def ${commentPost ? "p-[24px]" : ""}`}
+      className={`mx-auto h-auto ${commentPost ? "mb-[50px] w-[327px] p-[24px] md:h-[246px] md:w-[689px]" : ""} w-full rounded-xl bg-bt-white_def`}
     >
       {commentPost && (
-        <h1 className="mb-[24px] text-h3 capitalize text-el-font_def">
+        <h1 className="mb-[24px] text-h3 capitalize text-el-font_def md:mb-[16px]">
           add {commentType}
         </h1>
       )}
       <textarea
-        className={` ${emptySubmit ? "outline outline-1 outline-bt-red_def" : ""} mb-[16px] h-[80px] w-full rounded-lg bg-body-bg p-[16px] text-[13px] text-[#8C92B3] focus:outline focus:outline-1 focus:outline-el_active`}
+        className={` ${emptySubmit && "outline outline-1 outline-bt-red_def"} ${commentPost && "md:ml-0"} mb-[16px] h-[80px] w-full rounded-lg bg-body-bg p-[16px] text-[13px] text-[#8C92B3] focus:outline focus:outline-1 focus:outline-el_active md:mb-[14px] md:ml-[71px] md:text-[15px]`}
         name="text"
         value={comment}
         maxLength={maxChars}
@@ -45,12 +45,16 @@ const AddForm: React.FC<AddFormProps> = ({
         id=""
       />
       {emptySubmit && (
-        <p className="relative bottom-4 text-[14px] text-bt-red_def">
+        <p
+          className={`relative bottom-4 ${!commentPost && "md:ml-[71px]"} text-[14px] text-bt-red_def`}
+        >
           Can't be empty
         </p>
       )}
       <div className="flex items-center justify-between">
-        <p className="text-[13px] text-feedback-description">
+        <p
+          className={`text-[13px] text-feedback-description ${!commentPost && "md:ml-[71px]"}`}
+        >
           {charCount} Characters left
         </p>{" "}
         <AddButton commentType={commentType} />
