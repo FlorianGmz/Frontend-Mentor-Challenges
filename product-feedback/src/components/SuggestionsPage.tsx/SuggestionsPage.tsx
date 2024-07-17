@@ -59,7 +59,11 @@ const SuggestionsPage: React.FC<AppData> = ({ data }) => {
         <section className="mb-[70px] mt-[32px] flex flex-col gap-[16px] md:mt-[24px] xl:gap-[20px]">
           {filteredSuggestions.length >= 1 ? (
             filteredSuggestions.map((feedback) => (
-              <Feedback key={feedback.id} feedback={feedback} />
+              <Feedback
+                key={feedback.id}
+                feedback={feedback}
+                feedbackDetailPage={false}
+              />
             ))
           ) : (
             <NoFeedback />

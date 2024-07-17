@@ -83,8 +83,8 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
   return (
     <div className="flex w-full flex-col gap-[24px] py-[24px]">
       <Header />
-      <Feedback feedback={feedback} />
-      <div className="mx-auto w-[327px] rounded-xl bg-bt-white_def px-[32px] py-[24px] md:w-[689px]">
+      <Feedback feedback={feedback} feedbackDetailPage={true} />
+      <div className="mx-auto w-[327px] rounded-xl bg-bt-white_def px-[32px] py-[24px] md:w-[689px] xl:w-[730px]">
         <h3 className="text-h3 text-el-font_def">
           {numberOfComments >= 1 ? `${numberOfComments}` : "No"} Comments
         </h3>

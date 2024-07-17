@@ -36,7 +36,7 @@ const CommentCard: React.FC<CommentCardProps> = ({
         </div>
         <span
           onClick={() => setPostReply((toggle) => !toggle)}
-          className="text-body-3 text-el_active"
+          className="cursor-pointer text-body-3 text-el_active hover:underline"
         >
           Reply
         </span>
