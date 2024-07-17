@@ -41,7 +41,6 @@ const CommentCard: React.FC<CommentCardProps> = ({
           Reply
         </span>
       </div>
-
       <p className="text-[13px] text-feedback-description md:ml-[71px] md:text-body-2">
         <span className="text-[13px] font-bold text-bt-purple_def md:text-[15px]">
           {reply && `@${replyingTo} `}

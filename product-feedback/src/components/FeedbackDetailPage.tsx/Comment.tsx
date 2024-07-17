@@ -59,7 +59,7 @@ const Comment: React.FC<CommentProps> = ({ commentData, index }) => {
   const isFirstComment = index === 0;
 
   return (
-    <section className="flex h-auto w-auto flex-col">
+    <section className="flex h-auto flex-col">
       {!isFirstComment && (
         <span className="h-[1px] w-full bg-[#8C92B3] opacity-30"></span>
       )}
@@ -71,7 +71,7 @@ const Comment: React.FC<CommentProps> = ({ commentData, index }) => {
         reply={false}
       />
       {postReply && (
-        <div className="pb-[24px]">
+        <div className="w-full pb-[24px]">
           <form onSubmit={handleSubmit}>
             <AddForm
               charCount={charCount}
