@@ -6,12 +6,13 @@ interface AddButtonProps {
 
 const AddButton: React.FC<AddButtonProps> = ({ commentType }) => {
   const commentPost = commentType === "comment";
+  const feedbackPost = commentType === "feedback";
   return (
     <button
       type="submit"
-      className={`md:text[14px] flex cursor-pointer items-center gap-1 rounded-xl bg-bt-purple_def px-[16px] py-[11px] text-[13px] font-bold text-bt-white_def transition-colors hover:bg-bt-purple_hover md:px-[24px] md:py-[12px] xl:w-[117px] ${commentPost && "xl:w-[142px]"} xl:justify-center`}
+      className={`md:text[14px] flex cursor-pointer items-center justify-center gap-1 rounded-xl bg-bt-purple_def px-[16px] py-[11px] text-[13px] font-bold text-el_def transition-colors hover:bg-bt-purple_hover md:px-[24px] md:py-[12px] ${commentPost ? "xl:w-[142px]" : "xl:w-[117px]"} xl:justify-center`}
     >
-      <span className="capitalize">{`Post ${commentType}`}</span>
+      <span className="capitalize">{`${feedbackPost ? "Add" : "Post"} ${commentType}`}</span>
     </button>
   );
 };

@@ -23,7 +23,7 @@ const NavButton: React.FC<NavButtonProps> = ({ to, bgColor, bgHoverColor }) => {
   return (
     <NavLink
       to={to}
-      className={`flex cursor-pointer items-center gap-1 rounded-xl ${bgClasses[bgColor]} md:text[14px] px-[16px] py-[11px] text-[13px] font-bold text-bt-white_def transition-colors md:px-[24px] md:py-[12px] ${hoverClasses[bgHoverColor]}`}
+      className={`flex cursor-pointer items-center gap-1 rounded-xl ${bgClasses[bgColor]} md:text[14px] px-[16px] py-[11px] text-[13px] font-bold text-el_def transition-colors md:px-[24px] md:py-[12px] ${hoverClasses[bgHoverColor]}`}
     >
       {isAddButton && <IconPlus />}
       <span>{isAddButton ? "Add" : "Edit"} Feedback</span>

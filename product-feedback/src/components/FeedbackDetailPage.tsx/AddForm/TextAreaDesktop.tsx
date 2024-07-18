@@ -28,7 +28,7 @@ const TextAreaDesktop: React.FC<TextAreaDesktopProps> = ({
       />
       {emptySubmit && (
         <p
-          className={`relative bottom-4 hidden ${!commentPost && "md:ml-[71px] xl:block"} text-[14px] text-bt-red_def xl:bottom-1 ${commentPost && "hidden"}`}
+          className={`relative bottom-4 hidden ${!commentPost ? "md:ml-[71px] xl:block" : ""} text-[14px] text-bt-red_def xl:bottom-1 ${commentPost ? "hidden" : ""}`}
         >
           Can't be empty
         </p>
