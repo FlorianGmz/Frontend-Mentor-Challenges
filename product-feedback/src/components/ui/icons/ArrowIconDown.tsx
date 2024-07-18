@@ -1,11 +1,11 @@
-const ArrowIconUp = () => {
+const ArrowIconDown = () => {
   return (
     <div>
       <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
         <path
-          d="M1 6l4-4 4 4"
+          d="M1 1l4 4 4-4"
           stroke="#FFFFFF"
-          stroke-width="2"
+          stroke-width="3"
           fill="none"
           fill-rule="evenodd"
         />
@@ -14,4 +14,4 @@ const ArrowIconUp = () => {
   );
 };
 
-export default ArrowIconUp;
+export default ArrowIconDown;

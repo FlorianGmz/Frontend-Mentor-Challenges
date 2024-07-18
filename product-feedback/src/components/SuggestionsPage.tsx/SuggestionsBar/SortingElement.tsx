@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ArrowIconDown from "./ArrowIconDown";
+import ArrowIconDown from "../../ui/icons/ArrowIconDown";
 import DropdownMenu from "./DropdownMenu";
-import ArrowIconUp from "./ArrowIconUp";
+import ArrowIconUp from "../../ui/icons/ArrowIconUp";
 
 interface SortingElementProps {
   selectedOption: { label: string; value: string };
@@ -22,12 +22,12 @@ const SortingElement: React.FC<SortingElementProps> = ({
   return (
     <div
       onClick={() => setToggleDropDownMenu(!toggleDropDownMenu)}
-      className="group ml-[22px] flex cursor-pointer items-center gap-1"
+      className="group flex cursor-pointer items-center gap-1"
     >
-      <span className="text-[14px] text-bt-white_def group-focus-within:text-el-sort_active">
+      <span className="text-[13px] text-el_def group-focus-within:text-el-sort_active md:text-[14px]">
         Sort by :
       </span>
-      <p className="bg-bt-dark-blue_back text-h4 text-bt-white_def focus:outline-none group-focus-within:text-el-sort_active">
+      <p className="bg-bt-dark-blue_back text-[13px] font-bold text-bt-white_def focus:outline-none group-focus-within:text-el-sort_active md:text-[14px]">
         {selectedOption.label}
       </p>
       {toggleDropDownMenu ? <ArrowIconUp /> : <ArrowIconDown />}

@@ -1,14 +1,11 @@
-import CategoryPicker from "../CategoryPicker/CategoryPicker";
-import FrontendMentorSticker from "../FrontendMentorSticker";
-import RoadmapNav from "../RoadmapNav/RoadmapNav";
-import SuggestionsBar from "../SuggestionsBar/SuggestionsBar";
-import data from "../../data/data.json";
-import Feedback from "../Feedback/Feedback";
-import { useState } from "react";
-import { FeedbackType } from "../../@types/type";
-import NoFeedback from "../EmptySuggestions.tsx/EmptySuggestion";
+import SuggestionsBar from "./SuggestionsBar/SuggestionsBar";
+import Feedback from "../ui/Feedback/Feedback";
+import React, { useState } from "react";
+import { AppData, FeedbackType } from "../../@types/type";
+import NoFeedback from "./EmptySuggestions.tsx/EmptySuggestion";
+import SideSection from "./SideSection/SideSection";
 
-const SuggestionsPage = () => {
+const SuggestionsPage: React.FC<AppData> = ({ data }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const [selectedOption, setSelectedOption] = useState({
@@ -25,8 +22,6 @@ const SuggestionsPage = () => {
       ? feedbackSuggestions
       : suggestion.category === selectedCategory,
   );
-
-  console.log(filteredSuggestions);
 
   function sortSuggestions(a: FeedbackType, b: FeedbackType) {
     if (selectedOption.value === "most-upvotes") {
@@ -48,29 +43,32 @@ const SuggestionsPage = () => {
   }
 
   filteredSuggestions.sort(sortSuggestions);
+
   return (
-    <div className="mx-auto my-[100px] flex w-[1110px] gap-[30px]">
-      <div className="flex flex-col gap-[24px]">
-        <FrontendMentorSticker />
-        <CategoryPicker
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
-        <RoadmapNav />
-      </div>
-      <div className="flex flex-col gap-[20px]">
+    <div className="flex flex-col xl:mx-auto xl:my-[50px] xl:w-[1110px] xl:flex-row xl:justify-center xl:gap-[30px]">
+      <SideSection
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
+      <div>
         <SuggestionsBar
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
           suggestionsCount={filteredSuggestions.length}
         />
-        {filteredSuggestions.length >= 1 ? (
-          filteredSuggestions.map((feedback) => (
-            <Feedback key={feedback.id} feedback={feedback} />
-          ))
-        ) : (
-          <NoFeedback />
-        )}
+        <section className="mb-[70px] mt-[32px] flex flex-col gap-[16px] md:mt-[24px] xl:gap-[20px]">
+          {filteredSuggestions.length >= 1 ? (
+            filteredSuggestions.map((feedback) => (
+              <Feedback
+                key={feedback.id}
+                feedback={feedback}
+                feedbackDetailPage={false}
+              />
+            ))
+          ) : (
+            <NoFeedback />
+          )}
+        </section>
       </div>
     </div>
   );

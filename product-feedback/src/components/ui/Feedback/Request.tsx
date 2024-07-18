@@ -9,13 +9,15 @@ interface RequestProps {
 
 const Request: React.FC<RequestProps> = ({ category, title, description }) => {
   return (
-    <div className="flex flex-col items-start justify-between">
-      <h3 className="text-h3 text-el-font_def group-hover:text-bt-blue_def">
+    <>
+      <h3 className="mb-[9px] text-[13px] font-bold text-el-font_def group-hover:text-bt-blue_def md:mb-0 md:flex md:flex-col md:justify-between md:text-h3">
         {title}
       </h3>
-      <p className="text-body-1 text-feedback-description">{description}</p>
+      <p className="text-[13px] text-feedback-description md:text-body-1">
+        {description}
+      </p>
       <CategoryBadge categoryName={category} />
-    </div>
+    </>
   );
 };
 
