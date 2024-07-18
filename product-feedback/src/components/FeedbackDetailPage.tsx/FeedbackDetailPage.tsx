@@ -80,6 +80,7 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
     });
   }
 
+  console.log(feedback);
   return (
     <div className="flex w-full flex-col gap-[24px] py-[24px]">
       <Header />
@@ -89,7 +90,12 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
           {numberOfComments >= 1 ? `${numberOfComments}` : "No"} Comments
         </h3>
         {feedback?.comments?.map((comment, index) => (
-          <Comment key={comment.id} index={index} commentData={comment} />
+          <Comment
+            key={comment.id}
+            index={index}
+            commentData={comment}
+            setFeedback={setFeedback}
+          />
         ))}
       </div>
       <form onSubmit={handleSubmit}>

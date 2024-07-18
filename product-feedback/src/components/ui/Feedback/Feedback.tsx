@@ -28,7 +28,7 @@ const Feedback: React.FC<FeedbackProps> = ({
 
   return (
     <div
-      className={`group mx-auto flex h-[200px] w-[327px] cursor-pointer flex-col gap-[12px] rounded-xl bg-bt-white_def p-[24px] md:mx-auto md:h-[151px] md:w-[689px] md:flex-row md:items-center md:justify-between md:px-[32px] md:py-[28px] xl:w-[825px] ${feedbackDetailPage && "xl:w-[730px]"}`}
+      className={`group mx-auto flex h-[200px] w-[327px] cursor-pointer flex-col gap-[12px] rounded-xl bg-bt-white_def p-[24px] md:mx-auto md:h-[151px] md:w-[689px] md:flex-row md:items-center md:justify-between md:px-[32px] md:py-[28px] ${feedbackDetailPage ? "xl:w-[730px]" : "xl:w-[825px]"}`}
     >
       <div className="hidden md:mr-[40px] md:block md:self-start">
         <Upvote upvotes={upvotes} />

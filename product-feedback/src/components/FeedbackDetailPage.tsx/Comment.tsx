@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { Comment as CommentType } from "../../@types/type";
+import {
+  Comment as CommentType,
+  FeedbackType,
+  Reply as ReplyType,
+} from "../../@types/type";
 import Reply from "./Reply";
 import AddForm from "./AddForm";
 import useFormState from "../../hooks/UseFormState";
@@ -9,26 +13,18 @@ import CommentCard from "./CommentCard";
 interface CommentProps {
   commentData: CommentType;
   index: number;
+  setFeedback: React.Dispatch<React.SetStateAction<FeedbackType | undefined>>;
 }
 
-const Comment: React.FC<CommentProps> = ({ commentData, index }) => {
-  const [commentState, setCommentState] = useState<CommentType>(commentData);
-  const { user, content, replies } = commentState;
-
+const Comment: React.FC<CommentProps> = ({
+  commentData,
+  index,
+  setFeedback,
+}) => {
+  const { user, content, replies } = commentData;
   const currentUser = data.currentUser;
 
   const [postReply, setPostReply] = useState(false);
-
-  const handleAddReply = (newReply: {
-    content: string;
-    replyingTo: string;
-    user: { image: string; name: string; username: string };
-  }) => {
-    setCommentState((prevComment) => ({
-      ...prevComment,
-      replies: [...(prevComment.replies || []), newReply],
-    }));
-  };
 
   const {
     comment,
@@ -38,6 +34,28 @@ const Comment: React.FC<CommentProps> = ({ commentData, index }) => {
     setCharCount,
     setEmptySubmit,
   } = useFormState();
+
+  const handleAddReply = (newReply: ReplyType) => {
+    setFeedback((prevFeedback) => {
+      if (!prevFeedback) return prevFeedback;
+
+      // Find the specific comment and add a reply to it
+      const updatedComments = prevFeedback.comments?.map((comment) => {
+        if (comment.id === commentData.id) {
+          return {
+            ...comment,
+            replies: [...(comment.replies || []), newReply],
+          };
+        }
+        return comment;
+      });
+
+      return {
+        ...prevFeedback,
+        comments: updatedComments,
+      };
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
