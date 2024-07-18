@@ -7,9 +7,9 @@ import {
   Comment as CommentType,
   FeedbackType,
 } from "../../@types/type";
-import AddForm from "./AddForm";
+import AddForm from "./AddForm/AddForm";
 import useFormState from "../../hooks/UseFormState";
-import Comment from "./Comment"; // Ensure Comment is imported correctly
+import Comment from "./Comment";
 
 const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
   const {
@@ -80,11 +80,10 @@ const FeedbackDetailPage: React.FC<AppData> = ({ data }) => {
     });
   }
 
-  console.log(feedback);
   return (
     <div className="flex w-full flex-col gap-[24px] py-[24px]">
       <Header />
-      <Feedback feedback={feedback} feedbackDetailPage={true} />
+      {feedback && <Feedback feedback={feedback} feedbackDetailPage={true} />}
       <div className="mx-auto w-[327px] rounded-xl bg-bt-white_def px-[32px] py-[24px] md:w-[689px] xl:w-[730px]">
         <h3 className="text-h3 text-el-font_def">
           {numberOfComments >= 1 ? `${numberOfComments}` : "No"} Comments

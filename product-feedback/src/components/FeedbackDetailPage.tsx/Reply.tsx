@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Reply as ReplyType } from "../../@types/type";
-import AddForm from "./AddForm";
+import AddForm from "./AddForm/AddForm";
 import useFormState from "../../hooks/UseFormState";
 import data from "../../data/data.json";
 import CommentCard from "./CommentCard";
