@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SuggestionsPage from "./components/SuggestionsPage.tsx/SuggestionsPage";
 import FeedbackDetailPage from "./components/FeedbackDetailPage.tsx/FeedbackDetailPage";
 import ScrollToTop from "./ScrollToTop";
+import CreateFeedbackPage from "./components/CreateFeedbackPage.tsx/CreateFeedbackPage";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <ScrollToTop />
-        <FeedbackDetailPage data={data} />
+        <CreateFeedbackPage data={data} />
       </>
     ),
   },

@@ -9,7 +9,7 @@ interface NavButtonProps {
 }
 
 const NavButton: React.FC<NavButtonProps> = ({ to, bgColor, bgHoverColor }) => {
-  const isAddButton = to === "/feedback/add";
+  const isAddButton = to === "/feedback/create";
 
   const bgClasses = {
     "bt-blue_def": "bg-bt-blue_def",
