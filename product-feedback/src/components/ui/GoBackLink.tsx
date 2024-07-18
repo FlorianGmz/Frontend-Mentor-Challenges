@@ -5,7 +5,7 @@ const GoBackLink = () => {
   return (
     <div className="flex items-center gap-[16px] hover:cursor-pointer hover:underline">
       <IconArrowLeft />
-      <NavLink to={"before"} className="text-h4 text-bt-white_font">
+      <NavLink to={"/suggestions"} className="text-h4 text-bt-white_font">
         Go Back
       </NavLink>
     </div>
