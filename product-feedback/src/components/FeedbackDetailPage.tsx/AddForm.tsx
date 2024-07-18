@@ -35,8 +35,8 @@ const AddForm: React.FC<AddFormProps> = ({
           add {commentType}
         </h1>
       )}
-      <div className="block gap-[16px] xl:flex xl:w-full xl:justify-between">
-        <div className="block w-full xl:flex xl:w-full xl:flex-col">
+      <div className="hidden gap-[16px] xl:flex xl:w-full xl:justify-between">
+        <div className="w-full xl:flex xl:w-full xl:flex-col">
           <textarea
             className={` ${emptySubmit && "outline outline-1 outline-bt-red_def"} ${commentPost && "md:ml-[0px] xl:ml-[0px]"} mb-[16px] h-[80px] rounded-lg bg-body-bg p-[16px] text-[13px] text-[#8C92B3] hover:cursor-pointer focus:outline focus:outline-1 focus:outline-el_active md:mb-[14px] md:ml-[71px] md:text-[15px]`}
             name="text"
@@ -58,9 +58,18 @@ const AddForm: React.FC<AddFormProps> = ({
           <AddButton commentType="reply" />
         </div>
       </div>
+      <textarea
+        className={` ${emptySubmit ? "outline outline-1 outline-bt-red_def" : ""} ${commentPost ? "md:ml-[0px] xl:ml-[0px]" : "md:ml-[71px]"} mb-[16px] h-[80px] rounded-lg bg-body-bg p-[16px] text-[13px] text-[#8C92B3] hover:cursor-pointer focus:outline focus:outline-1 focus:outline-el_active md:mb-[14px] md:text-[15px] xl:hidden`}
+        name="text"
+        value={comment}
+        maxLength={maxChars}
+        onChange={handleChange}
+        placeholder={`Type your ${commentType} here`}
+        id=""
+      />
       {emptySubmit && (
         <p
-          className={`relative bottom-2 ${!commentPost && "md:ml-[71px] xl:hidden"} text-[14px] text-bt-red_def xl:bottom-1`}
+          className={`relative bottom-2 ${!commentPost ? "md:ml-[71px] xl:hidden" : ""} text-[14px] text-bt-red_def xl:bottom-1`}
         >
           Can't be empty
         </p>
