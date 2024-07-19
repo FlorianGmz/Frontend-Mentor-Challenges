@@ -31,8 +31,8 @@ const CreateFeedbackPage: React.FC<AppData> = ({ data }) => {
         <div className="mx-auto w-[327px] py-[24px]">
           <GoBackLink />{" "}
         </div>
-        <div className="mx-auto mt-[30px] flex w-[327px] flex-col gap-[24px] rounded-xl bg-bt-white_def p-[24px]">
-          <div className="absolute top-[70px] scale-75">
+        <div className="mx-auto mt-[20px] flex w-[327px] flex-col gap-[24px] rounded-xl bg-bt-white_def p-[24px]">
+          <div className="absolute top-[60px] scale-75">
             <IconNewFeedback />
           </div>
           <h1 className="mt-[20px] text-h3 text-el-font_def">

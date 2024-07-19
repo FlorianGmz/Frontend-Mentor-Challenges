@@ -19,9 +19,8 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
     setFocus((toggle) => !toggle);
     setOpenMenu((toggle) => !toggle);
   };
-
   return (
-    <div>
+    <div className="relative">
       <h3 className="text-[13px] font-bold text-el-font_def">Category</h3>
       <p className="text-[13px] text-bt-white_font">
         Choose a category for your feedback
@@ -40,13 +39,15 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
         ) : (
           <ArrowIconDown color={"#4661E6"} />
         )}
-        {openMenu && (
-          <DropdownCategory
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-          />
-        )}
       </div>
+      {openMenu && (
+        <DropdownCategory
+          setOpenMenu={setOpenMenu}
+          setFocus={setFocus}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+      )}
     </div>
   );
 };

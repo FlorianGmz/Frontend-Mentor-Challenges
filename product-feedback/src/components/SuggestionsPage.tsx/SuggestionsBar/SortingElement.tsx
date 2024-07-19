@@ -19,18 +19,32 @@ const SortingElement: React.FC<SortingElementProps> = ({
 }) => {
   const [toggleDropDownMenu, setToggleDropDownMenu] = useState(false);
 
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setToggleDropDownMenu((toggle) => !toggle);
+    setIsClicked((toggle) => !toggle);
+  };
   return (
     <div
-      onClick={() => setToggleDropDownMenu(!toggleDropDownMenu)}
+      onClick={handleClick}
       className="group flex cursor-pointer items-center gap-1"
     >
-      <span className="text-[13px] text-el_def group-focus-within:text-el-sort_active md:text-[14px]">
+      <span
+        className={`text-[13px] ${isClicked ? "text-el-sort_active" : "text-el_def"} md:text-[14px]`}
+      >
         Sort by :
       </span>
-      <p className="bg-bt-dark-blue_back text-[13px] font-bold text-bt-white_def focus:outline-none group-focus-within:text-el-sort_active md:text-[14px]">
+      <p
+        className={`bg-bt-dark-blue_back text-[13px] font-bold focus:outline-none ${isClicked ? "text-el-sort_active" : "text-bt-white_def"} md:text-[14px]`}
+      >
         {selectedOption.label}
       </p>
-      {toggleDropDownMenu ? <ArrowIconUp /> : <ArrowIconDown />}
+      {toggleDropDownMenu ? (
+        <ArrowIconUp color="" />
+      ) : (
+        <ArrowIconDown color="" />
+      )}
       {toggleDropDownMenu && (
         <DropdownMenu
           selectedOption={selectedOption}
