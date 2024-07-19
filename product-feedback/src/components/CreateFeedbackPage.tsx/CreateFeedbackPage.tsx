@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AppData, FeedbackType } from "../../@types/type";
+import { FeedbackType, User } from "../../@types/type";
 import GoBackLink from "../ui/GoBackLink";
 import IconNewFeedback from "../ui/icons/IconNewFeedback";
 import TitleInput from "./TitleInput";
@@ -10,13 +10,18 @@ import ConfirmButton from "../ui/ConfirmButton";
 import { useNavigate } from "react-router-dom";
 
 interface CreateFeedbackPageProps {
-  data: AppData;
-  feedbackSuggestions: FeedbackType[];
+  localData: { currentUser: User; productRequests: FeedbackType[] };
+  setLocalData: React.Dispatch<
+    React.SetStateAction<{
+      currentUser: User;
+      productRequests: FeedbackType[];
+    }>
+  >;
 }
 
 const CreateFeedbackPage: React.FC<CreateFeedbackPageProps> = ({
-  data,
-  feedbackSuggestions,
+  localData,
+  setLocalData,
 }) => {
   const navigate = useNavigate();
 
@@ -26,7 +31,7 @@ const CreateFeedbackPage: React.FC<CreateFeedbackPageProps> = ({
   const [description, setDescription] = useState("");
   const [emptyDescription, setEmptyDescription] = useState(false);
 
-  const totalComments = data.productRequests.flatMap((request) => {
+  const totalComments = localData.productRequests.flatMap((request) => {
     return request.comments || [];
   });
   const currentCommentId = totalComments.length;
@@ -43,7 +48,14 @@ const CreateFeedbackPage: React.FC<CreateFeedbackPageProps> = ({
   };
 
   const addNewFeedback = (newFeedback: FeedbackType) => {
-    feedbackSuggestions.push(newFeedback);
+    setLocalData((prevData) => {
+      const updatedRequests = [...prevData.productRequests, newFeedback];
+
+      return {
+        ...prevData,
+        productRequests: updatedRequests,
+      };
+    });
   };
 
   const handleSubmit = (e) => {

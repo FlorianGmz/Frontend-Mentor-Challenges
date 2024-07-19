@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface UpvoteProps {
   upvotes: number;
+  addVote: (feedbackId: number) => void;
+  feedbackId: number;
 }
 
-const Upvote: React.FC<UpvoteProps> = ({ upvotes }) => {
-  const [actualVote, setActualVote] = useState(upvotes);
-
+const Upvote: React.FC<UpvoteProps> = ({ upvotes, addVote, feedbackId }) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setActualVote((actualVote) => actualVote + 1);
+    addVote(feedbackId);
     const currentButton = event.currentTarget as HTMLButtonElement;
     currentButton.disabled = true;
   };
@@ -33,7 +33,7 @@ const Upvote: React.FC<UpvoteProps> = ({ upvotes }) => {
         />
       </svg>
       <span className="text-[13px] font-bold text-el-font_def group-disabled:text-bt-white_def">
-        {actualVote}
+        {upvotes}
       </span>
     </button>
   );

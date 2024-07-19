@@ -11,6 +11,7 @@ import {
 import AddForm from "./AddForm/AddForm";
 import useFormState from "../../hooks/UseFormState";
 import Comment from "./Comment";
+import Upvote from "../ui/Feedback/Upvote";
 
 interface FeedbackDetailPageProps {
   localData: { currentUser: User; productRequests: FeedbackType[] };
@@ -101,6 +102,24 @@ const FeedbackDetailPage: React.FC<FeedbackDetailPageProps> = ({
     });
   };
 
+  const addVote = (feedbackId: number) => {
+    setLocalData((prevData) => {
+      const newVote = prevData.productRequests.map((request) => {
+        if (request.id === feedbackId) {
+          return {
+            ...request,
+            upvotes: (request.upvotes += 1),
+          };
+        }
+        return request;
+      });
+      return {
+        ...prevData,
+        productRequests: newVote,
+      };
+    });
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (comment.trim()) {
@@ -132,7 +151,11 @@ const FeedbackDetailPage: React.FC<FeedbackDetailPageProps> = ({
     <div className="flex w-full flex-col gap-[24px] py-[24px]">
       <Header />
       {currentFeedback && (
-        <Feedback feedback={currentFeedback} feedbackDetailPage={true} />
+        <Feedback
+          feedback={currentFeedback}
+          feedbackDetailPage={true}
+          addVote={addVote}
+        />
       )}
       <div className="mx-auto w-[327px] rounded-xl bg-bt-white_def px-[32px] py-[24px] md:w-[689px] xl:w-[730px]">
         <h3 className="text-h3 text-el-font_def">
