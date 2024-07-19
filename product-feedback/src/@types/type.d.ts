@@ -28,5 +28,5 @@ export interface FeedbackType {
 }
 
 export interface AppData {
-  data: { currentUser: User; productRequests: FeedbackType[] };
+  localData: { currentUser: User; productRequests: FeedbackType[] };
 }

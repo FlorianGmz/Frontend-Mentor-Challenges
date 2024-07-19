@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  Comment as CommentType,
-  FeedbackType,
-  Reply as ReplyType,
-} from "../../@types/type";
+import { Comment as CommentType, Reply as ReplyType } from "../../@types/type";
 import Reply from "./Reply";
 import AddForm from "./AddForm/AddForm";
 import useFormState from "../../hooks/UseFormState";
@@ -13,15 +9,15 @@ import CommentCard from "./CommentCard";
 interface CommentProps {
   commentData: CommentType;
   index: number;
-  setFeedback: React.Dispatch<React.SetStateAction<FeedbackType | undefined>>;
+  addNewReply: (newReply: ReplyType, commentId: number) => void;
 }
 
 const Comment: React.FC<CommentProps> = ({
   commentData,
   index,
-  setFeedback,
+  addNewReply,
 }) => {
-  const { user, content, replies } = commentData;
+  const { user, content, replies, id } = commentData;
   const currentUser = data.currentUser;
 
   const [postReply, setPostReply] = useState(false);
@@ -35,28 +31,6 @@ const Comment: React.FC<CommentProps> = ({
     setEmptySubmit,
   } = useFormState();
 
-  const handleAddReply = (newReply: ReplyType) => {
-    setFeedback((prevFeedback) => {
-      if (!prevFeedback) return prevFeedback;
-
-      // Find the specific comment and add a reply to it
-      const updatedComments = prevFeedback.comments?.map((comment) => {
-        if (comment.id === commentData.id) {
-          return {
-            ...comment,
-            replies: [...(comment.replies || []), newReply],
-          };
-        }
-        return comment;
-      });
-
-      return {
-        ...prevFeedback,
-        comments: updatedComments,
-      };
-    });
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (comment.trim()) {
@@ -65,7 +39,7 @@ const Comment: React.FC<CommentProps> = ({
         replyingTo: user.username,
         user: currentUser,
       };
-      handleAddReply(newReply);
+      addNewReply(newReply, id);
       setComment("");
       setCharCount(250);
       setPostReply(false);
@@ -106,8 +80,9 @@ const Comment: React.FC<CommentProps> = ({
         <Reply
           key={index}
           reply={reply}
-          handleAddReply={handleAddReply}
+          addNewReply={addNewReply}
           index={index}
+          commentId={id}
         />
       ))}
     </section>

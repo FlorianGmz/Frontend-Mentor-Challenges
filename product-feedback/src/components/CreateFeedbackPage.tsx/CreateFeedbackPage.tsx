@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AppData } from "../../@types/type";
+import { AppData, FeedbackType } from "../../@types/type";
 import GoBackLink from "../ui/GoBackLink";
 import IconNewFeedback from "../ui/icons/IconNewFeedback";
 import TitleInput from "./TitleInput";
@@ -7,27 +7,62 @@ import CategoryInput from "./CategoryInput";
 import DetailInput from "./DetailInput";
 import AddButton from "../ui/AddButton";
 import ConfirmButton from "../ui/ConfirmButton";
+import { useNavigate } from "react-router-dom";
 
-const CreateFeedbackPage: React.FC<AppData> = ({ data }) => {
+interface CreateFeedbackPageProps {
+  data: AppData;
+  feedbackSuggestions: FeedbackType[];
+}
+
+const CreateFeedbackPage: React.FC<CreateFeedbackPageProps> = ({
+  data,
+  feedbackSuggestions,
+}) => {
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
+  const [emptyTitle, setEmptyTitle] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("feature");
   const [description, setDescription] = useState("");
+  const [emptyDescription, setEmptyDescription] = useState(false);
 
-  const [newFeedback, setNewFeedback] = useState({
-    id: null,
-    title: { title },
-    category: { selectedCategory },
+  const totalComments = data.productRequests.flatMap((request) => {
+    return request.comments || [];
+  });
+  const currentCommentId = totalComments.length;
+  const newCommentId = currentCommentId + 1;
+
+  const newFeedback: FeedbackType = {
+    id: newCommentId,
+    title: title,
+    category: selectedCategory,
     upvotes: 0,
     status: "suggestion",
-    description: { description },
+    description: description,
     comments: [],
-  });
+  };
 
-  console.log(title);
-  console.log(selectedCategory);
+  const addNewFeedback = (newFeedback: FeedbackType) => {
+    feedbackSuggestions.push(newFeedback);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!title) {
+      setEmptyTitle(true);
+    }
+    if (!description) {
+      setEmptyDescription(true);
+    }
+    if (title && description) {
+      addNewFeedback(newFeedback);
+      navigate("/suggestions");
+    }
+  };
+
   return (
     <div className="flex flex-col">
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className="mx-auto w-[327px] py-[24px]">
           <GoBackLink />{" "}
         </div>
@@ -43,7 +78,7 @@ const CreateFeedbackPage: React.FC<AppData> = ({ data }) => {
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
           />
-          <DetailInput />
+          <DetailInput setDescription={setDescription} />
           <div className="mt-[16px] flex flex-col gap-[16px]">
             <AddButton commentType="feedback" />
             <ConfirmButton type="cancel" />

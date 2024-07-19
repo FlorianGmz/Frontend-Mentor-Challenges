@@ -5,7 +5,7 @@ import { AppData, FeedbackType } from "../../@types/type";
 import NoFeedback from "./EmptySuggestions.tsx/EmptySuggestion";
 import SideSection from "./SideSection/SideSection";
 
-const SuggestionsPage: React.FC<AppData> = ({ data }) => {
+const SuggestionsPage: React.FC<AppData> = ({ localData }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const [selectedOption, setSelectedOption] = useState({
@@ -13,14 +13,15 @@ const SuggestionsPage: React.FC<AppData> = ({ data }) => {
     value: "most-upvotes",
   });
 
-  const feedbackSuggestions = data.productRequests.filter((suggestion) => {
+  const feedbackSuggestions = localData.productRequests.filter((suggestion) => {
     return suggestion.status === "suggestion";
   });
 
-  const filteredSuggestions = feedbackSuggestions.filter((suggestion) =>
-    selectedCategory === "all"
-      ? feedbackSuggestions
-      : suggestion.category === selectedCategory,
+  const filteredSuggestions = feedbackSuggestions.filter(
+    (suggestion: FeedbackType) =>
+      selectedCategory === "all"
+        ? feedbackSuggestions
+        : suggestion.category === selectedCategory,
   );
 
   function sortSuggestions(a: FeedbackType, b: FeedbackType) {

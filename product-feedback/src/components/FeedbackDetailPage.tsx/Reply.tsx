@@ -8,10 +8,16 @@ import CommentCard from "./CommentCard";
 interface ReplyProps {
   reply: ReplyType;
   index: number;
-  handleAddReply: (newReply: ReplyType) => void;
+  addNewReply: (newReply: ReplyType, commentId: number) => void;
+  commentId: number;
 }
 
-const Reply: React.FC<ReplyProps> = ({ reply, index, handleAddReply }) => {
+const Reply: React.FC<ReplyProps> = ({
+  commentId,
+  reply,
+  index,
+  addNewReply,
+}) => {
   const { content, replyingTo, user } = reply;
   const firstReply = index === 0;
   const commentUsername = user.username;
@@ -35,7 +41,7 @@ const Reply: React.FC<ReplyProps> = ({ reply, index, handleAddReply }) => {
         replyingTo: commentUsername,
         user: currentUser,
       };
-      handleAddReply(newReply);
+      addNewReply(newReply, commentId);
       setComment("");
       setCharCount(250);
       setPostReply(false);
