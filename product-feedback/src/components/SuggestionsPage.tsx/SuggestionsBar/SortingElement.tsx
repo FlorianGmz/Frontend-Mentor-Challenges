@@ -41,9 +41,9 @@ const SortingElement: React.FC<SortingElementProps> = ({
         {selectedOption.label}
       </p>
       {toggleDropDownMenu ? (
-        <ArrowIconUp color="" />
+        <ArrowIconUp color="#FFFFFF" />
       ) : (
-        <ArrowIconDown color="" />
+        <ArrowIconDown color="#FFFFFF" />
       )}
       {toggleDropDownMenu && (
         <DropdownMenu

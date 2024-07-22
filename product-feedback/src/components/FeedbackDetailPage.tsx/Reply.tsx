@@ -2,26 +2,32 @@ import React, { useState } from "react";
 import { Reply as ReplyType } from "../../@types/type";
 import AddForm from "./AddForm/AddForm";
 import useFormState from "../../hooks/UseFormState";
-import data from "../../data/data.json";
 import CommentCard from "./CommentCard";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
 
 interface ReplyProps {
   reply: ReplyType;
   index: number;
-  addNewReply: (newReply: ReplyType, commentId: number) => void;
+  addReply: (
+    newReply: ReplyType,
+    commentId: number,
+    feedbackId: number,
+  ) => void;
   commentId: number;
+  feedbackId: number;
 }
 
 const Reply: React.FC<ReplyProps> = ({
   commentId,
   reply,
   index,
-  addNewReply,
+  addReply,
+  feedbackId,
 }) => {
   const { content, replyingTo, user } = reply;
   const firstReply = index === 0;
   const commentUsername = user.username;
-  const currentUser = data.currentUser;
+  const { currentUser } = useFeedbacks();
   const [postReply, setPostReply] = useState(false);
 
   const {
@@ -41,7 +47,7 @@ const Reply: React.FC<ReplyProps> = ({
         replyingTo: commentUsername,
         user: currentUser,
       };
-      addNewReply(newReply, commentId);
+      addReply(newReply, commentId, feedbackId);
       setComment("");
       setCharCount(250);
       setPostReply(false);

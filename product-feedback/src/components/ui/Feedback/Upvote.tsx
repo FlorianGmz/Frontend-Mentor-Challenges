@@ -2,16 +2,11 @@ import React, { useState } from "react";
 
 interface UpvoteProps {
   upvotes: number;
-  addVote: (
-    feedbackId: number,
-    hasVoted: React.Dispatch<React.SetStateAction<boolean>>,
-  ) => void;
   feedbackId: number;
 }
 
-const Upvote: React.FC<UpvoteProps> = ({ upvotes, addVote, feedbackId }) => {
+const Upvote: React.FC<UpvoteProps> = ({ upvotes, feedbackId }) => {
   const [voted, setVoted] = useState(false);
-  console.log(voted);
 
   const handleClick = () => {
     addVote(feedbackId, setVoted);
