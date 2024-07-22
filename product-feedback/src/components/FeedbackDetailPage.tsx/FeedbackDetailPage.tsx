@@ -2,24 +2,13 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Feedback from "../ui/Feedback/Feedback";
 import Header from "./Header";
-import { Comment as CommentType, FeedbackType, User } from "../../@types/type";
+import { Comment as CommentType, FeedbackType } from "../../@types/type";
 import AddForm from "./AddForm/AddForm";
 import useFormState from "../../hooks/UseFormState";
 import Comment from "./Comment";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 
-interface FeedbackDetailPageProps {
-  setLocalData: React.Dispatch<
-    React.SetStateAction<{
-      currentUser: User;
-      productRequests: FeedbackType[];
-    }>
-  >;
-}
-
-const FeedbackDetailPage: React.FC<FeedbackDetailPageProps> = ({
-  setLocalData,
-}) => {
+const FeedbackDetailPage = () => {
   const {
     comment,
     charCount,

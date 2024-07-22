@@ -29,7 +29,7 @@ function reducer(state: initialStateType, action) {
     case "feedback/newReply":
       return { ...state, allFeedbacks: action.payload };
     case "feedback/create":
-      return { ...state, currentFeedback: action.payload };
+      return { ...state, allFeedbacks: action.payload };
     case "feedback/addVote":
       return {
         ...state,
@@ -111,6 +111,13 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
     dispatch({ type: "feedback/newReply", payload: updatedRequests });
   }
 
+  function createFeedback(newFeedback: FeedbackType) {
+    dispatch({
+      type: "feedback/create",
+      payload: [...allFeedbacks, newFeedback],
+    });
+  }
+
   return (
     <FeedbacksContext.Provider
       value={{
@@ -123,6 +130,7 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
         getFeedback,
         addComment,
         addReply,
+        createFeedback,
       }}
     >
       {children}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FeedbackType, User } from "../../@types/type";
+import { FeedbackType } from "../../@types/type";
 import GoBackLink from "../ui/GoBackLink";
 import IconNewFeedback from "../ui/icons/IconNewFeedback";
 import TitleInput from "./TitleInput";
@@ -8,22 +8,12 @@ import DetailInput from "./DetailInput";
 import AddButton from "../ui/AddButton";
 import ConfirmButton from "../ui/ConfirmButton";
 import { useNavigate } from "react-router-dom";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
 
-interface CreateFeedbackPageProps {
-  localData: { currentUser: User; productRequests: FeedbackType[] };
-  setLocalData: React.Dispatch<
-    React.SetStateAction<{
-      currentUser: User;
-      productRequests: FeedbackType[];
-    }>
-  >;
-}
-
-const CreateFeedbackPage: React.FC<CreateFeedbackPageProps> = ({
-  localData,
-  setLocalData,
-}) => {
+const CreateFeedbackPage = () => {
   const navigate = useNavigate();
+
+  const { allFeedbacks, createFeedback } = useFeedbacks();
 
   const [title, setTitle] = useState("");
   const [emptyTitle, setEmptyTitle] = useState(false);
@@ -31,14 +21,13 @@ const CreateFeedbackPage: React.FC<CreateFeedbackPageProps> = ({
   const [description, setDescription] = useState("");
   const [emptyDescription, setEmptyDescription] = useState(false);
 
-  const totalComments = localData.productRequests.flatMap((request) => {
+  const totalComments = allFeedbacks.flatMap((request: FeedbackType) => {
     return request.comments || [];
   });
-  const currentCommentId = totalComments.length;
-  const newCommentId = currentCommentId + 1;
+  const newFeedbackId = totalComments.length + 1;
 
   const newFeedback: FeedbackType = {
-    id: newCommentId,
+    id: newFeedbackId,
     title: title,
     category: selectedCategory,
     upvotes: 0,
@@ -47,27 +36,17 @@ const CreateFeedbackPage: React.FC<CreateFeedbackPageProps> = ({
     comments: [],
   };
 
-  const addNewFeedback = (newFeedback: FeedbackType) => {
-    setLocalData((prevData) => {
-      const updatedRequests = [...prevData.productRequests, newFeedback];
-
-      return {
-        ...prevData,
-        productRequests: updatedRequests,
-      };
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!title) {
-      setEmptyTitle(true);
-    }
-    if (!description) {
-      setEmptyDescription(true);
-    }
-    if (title && description) {
-      addNewFeedback(newFeedback);
+
+    const isTitleEmpty = !title;
+    const isDescriptionEmpty = !description;
+
+    setEmptyTitle(isTitleEmpty);
+    setEmptyDescription(isDescriptionEmpty);
+
+    if (!isTitleEmpty && !isDescriptionEmpty) {
+      createFeedback(newFeedback);
       navigate("/suggestions");
     }
   };
@@ -85,12 +64,15 @@ const CreateFeedbackPage: React.FC<CreateFeedbackPageProps> = ({
           <h1 className="mt-[20px] text-h3 text-el-font_def">
             Create New Feedback
           </h1>
-          <TitleInput setTitle={setTitle} />
+          <TitleInput setTitle={setTitle} emptySubmit={emptyTitle} />
           <CategoryInput
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
           />
-          <DetailInput setDescription={setDescription} />
+          <DetailInput
+            setDescription={setDescription}
+            emptySubmit={emptyDescription}
+          />
           <div className="mt-[16px] flex flex-col gap-[16px]">
             <AddButton commentType="feedback" />
             <ConfirmButton type="cancel" />
