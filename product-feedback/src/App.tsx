@@ -5,6 +5,7 @@ import FeedbackDetailPage from "./components/FeedbackDetailPage.tsx/FeedbackDeta
 import ScrollToTop from "./ScrollToTop";
 import CreateFeedbackPage from "./components/CreateFeedbackPage.tsx/CreateFeedbackPage";
 import { useState } from "react";
+import { FeedbacksProvider } from "./contexts/FeedbackContext";
 
 function App() {
   const [localData, setLocalData] = useState(data);
@@ -47,7 +48,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <FeedbacksProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </FeedbacksProvider>
     </>
   );
 }
