@@ -8,7 +8,10 @@ import { FeedbackType } from "../../../@types/type";
 interface FeedbackProps {
   feedback: FeedbackType;
   feedbackDetailPage: boolean;
-  addVote: (feedbackId: number) => void;
+  addVote: (
+    feedbackId: number,
+    hasVoted: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => void;
 }
 
 const Feedback: React.FC<FeedbackProps> = ({

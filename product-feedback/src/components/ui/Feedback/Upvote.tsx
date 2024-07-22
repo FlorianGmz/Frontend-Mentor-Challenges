@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface UpvoteProps {
   upvotes: number;
-  addVote: (feedbackId: number) => void;
+  addVote: (
+    feedbackId: number,
+    hasVoted: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => void;
   feedbackId: number;
 }
 
 const Upvote: React.FC<UpvoteProps> = ({ upvotes, addVote, feedbackId }) => {
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    addVote(feedbackId);
-    const currentButton = event.currentTarget as HTMLButtonElement;
-    currentButton.disabled = true;
+  const [voted, setVoted] = useState(false);
+  console.log(voted);
+
+  const handleClick = () => {
+    addVote(feedbackId, setVoted);
   };
 
   return (
     <button
       type="button"
+      disabled={voted}
       className="focus:text-bt-white_de group flex h-[32px] w-[69px] items-center justify-around rounded-xl bg-el_def px-[13px] py-[6px] transition-colors hover:bg-el_hover disabled:bg-el_active md:h-[53px] md:w-[40px] md:flex-col md:px-[9px]"
       onClick={handleClick}
     >

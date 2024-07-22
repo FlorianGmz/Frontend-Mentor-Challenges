@@ -102,7 +102,10 @@ const FeedbackDetailPage: React.FC<FeedbackDetailPageProps> = ({
     });
   };
 
-  const addVote = (feedbackId: number) => {
+  const addVote = (
+    feedbackId: number,
+    hasVoted: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
     setLocalData((prevData) => {
       const newVote = prevData.productRequests.map((request) => {
         if (request.id === feedbackId) {
@@ -118,6 +121,7 @@ const FeedbackDetailPage: React.FC<FeedbackDetailPageProps> = ({
         productRequests: newVote,
       };
     });
+    hasVoted(true);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

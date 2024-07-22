@@ -55,7 +55,10 @@ const SuggestionsPage: React.FC<SuggestionsPageProps> = ({
     return 0;
   }
 
-  const addVote = (feedbackId: number) => {
+  const addVote = (
+    feedbackId: number,
+    hasVoted: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
     setLocalData((prevData) => {
       const newVote = prevData.productRequests.map((request) => {
         if (request.id === feedbackId) {
@@ -71,7 +74,9 @@ const SuggestionsPage: React.FC<SuggestionsPageProps> = ({
         productRequests: newVote,
       };
     });
+    hasVoted(true);
   };
+
   filteredSuggestions.sort(sortSuggestions);
 
   return (
