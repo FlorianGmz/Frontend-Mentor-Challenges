@@ -43,8 +43,6 @@ const FeedbackDetailPage: React.FC<FeedbackDetailPageProps> = ({
     getFeedback(id);
   }, [allFeedbacks, id]);
 
-  console.log(allFeedbacks);
-
   const totalComments = allFeedbacks.flatMap((request: FeedbackType) => {
     return request.comments || [];
   });

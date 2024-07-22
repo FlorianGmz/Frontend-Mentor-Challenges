@@ -8,7 +8,6 @@ import { useFeedbacks } from "../../contexts/FeedbackContext";
 
 const SuggestionsPage = () => {
   const { currentUser, allFeedbacks } = useFeedbacks();
-  console.log(currentUser, allFeedbacks);
 
   const [selectedCategory, setSelectedCategory] = useState("all");
 

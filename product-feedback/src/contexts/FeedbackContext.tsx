@@ -6,7 +6,7 @@ const FeedbacksContext = createContext();
 
 interface initialStateType {
   currentUser: User;
-  userHasVoted: boolean;
+  votedFeedbackId: [];
   allFeedbacks: FeedbackType[];
   currentFeedback: FeedbackType | null;
 }
@@ -15,7 +15,7 @@ const localData = data;
 
 const initialState: initialStateType = {
   currentUser: localData.currentUser,
-  userHasVoted: false,
+  votedFeedbackId: [],
   allFeedbacks: localData.productRequests,
   currentFeedback: null,
 };
@@ -31,7 +31,11 @@ function reducer(state: initialStateType, action) {
     case "feedback/create":
       return { ...state, currentFeedback: action.payload };
     case "feedback/addVote":
-      return { ...state, userHasVoted: true, allFeedbacks: action.payload };
+      return {
+        ...state,
+        votedFeedbackId: action.votedFeedbackId,
+        allFeedbacks: action.payload,
+      };
 
     default:
       throw new Error("Unknown action type");
@@ -39,10 +43,10 @@ function reducer(state: initialStateType, action) {
 }
 
 function FeedbacksProvider({ children }: { children: ReactNode }) {
-  const [{ currentUser, allFeedbacks, currentFeedback }, dispatch] = useReducer(
-    reducer,
-    initialState,
-  );
+  const [
+    { currentUser, allFeedbacks, currentFeedback, votedFeedbackId },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   function getFeedback(id: number) {
     const feedback = allFeedbacks.find(
@@ -53,7 +57,7 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
 
   function addVote(id: number) {
     const newVote = allFeedbacks.map((request: FeedbackType) => {
-      if (Number(id) === currentFeedback.id) {
+      if (Number(id) === request.id) {
         return {
           ...request,
           upvotes: (request.upvotes += 1),
@@ -61,7 +65,11 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
       }
       return request;
     });
-    dispatch({ type: "feedback/upvote", payload: newVote });
+    dispatch({
+      type: "feedback/addVote",
+      payload: newVote,
+      votedFeedbackId: [...votedFeedbackId, id],
+    });
   }
 
   function addComment(newComment: Comment, id: string) {
@@ -109,6 +117,7 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
         currentUser,
         allFeedbacks,
         currentFeedback,
+        votedFeedbackId,
         dispatch,
         addVote,
         getFeedback,
