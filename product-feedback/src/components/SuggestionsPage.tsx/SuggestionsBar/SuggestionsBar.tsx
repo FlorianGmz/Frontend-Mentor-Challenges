@@ -34,7 +34,7 @@ const SuggestionsBar: React.FC<SuggestionsBarProps> = ({
         />
       </div>
       <NavButton
-        to="/feedback/add"
+        to="/feedback/create"
         bgColor="bt-purple_def"
         bgHoverColor="bt-purple_hover"
       />

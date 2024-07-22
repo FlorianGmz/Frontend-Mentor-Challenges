@@ -1,11 +1,23 @@
 import SuggestionsBar from "./SuggestionsBar/SuggestionsBar";
 import Feedback from "../ui/Feedback/Feedback";
 import React, { useState } from "react";
-import { AppData, FeedbackType } from "../../@types/type";
+import { FeedbackType, User } from "../../@types/type";
 import NoFeedback from "./EmptySuggestions.tsx/EmptySuggestion";
 import SideSection from "./SideSection/SideSection";
+interface SuggestionsPageProps {
+  localData: { currentUser: User; productRequests: FeedbackType[] };
+  setLocalData: React.Dispatch<
+    React.SetStateAction<{
+      currentUser: User;
+      productRequests: FeedbackType[];
+    }>
+  >;
+}
 
-const SuggestionsPage: React.FC<AppData> = ({ data }) => {
+const SuggestionsPage: React.FC<SuggestionsPageProps> = ({
+  localData,
+  setLocalData,
+}) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const [selectedOption, setSelectedOption] = useState({
@@ -13,14 +25,15 @@ const SuggestionsPage: React.FC<AppData> = ({ data }) => {
     value: "most-upvotes",
   });
 
-  const feedbackSuggestions = data.productRequests.filter((suggestion) => {
+  const feedbackSuggestions = localData.productRequests.filter((suggestion) => {
     return suggestion.status === "suggestion";
   });
 
-  const filteredSuggestions = feedbackSuggestions.filter((suggestion) =>
-    selectedCategory === "all"
-      ? feedbackSuggestions
-      : suggestion.category === selectedCategory,
+  const filteredSuggestions = feedbackSuggestions.filter(
+    (suggestion: FeedbackType) =>
+      selectedCategory === "all"
+        ? feedbackSuggestions
+        : suggestion.category === selectedCategory,
   );
 
   function sortSuggestions(a: FeedbackType, b: FeedbackType) {
@@ -41,6 +54,28 @@ const SuggestionsPage: React.FC<AppData> = ({ data }) => {
     }
     return 0;
   }
+
+  const addVote = (
+    feedbackId: number,
+    hasVoted: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
+    setLocalData((prevData) => {
+      const newVote = prevData.productRequests.map((request) => {
+        if (request.id === feedbackId) {
+          return {
+            ...request,
+            upvotes: (request.upvotes += 1),
+          };
+        }
+        return request;
+      });
+      return {
+        ...prevData,
+        productRequests: newVote,
+      };
+    });
+    hasVoted(true);
+  };
 
   filteredSuggestions.sort(sortSuggestions);
 
@@ -63,6 +98,7 @@ const SuggestionsPage: React.FC<AppData> = ({ data }) => {
                 key={feedback.id}
                 feedback={feedback}
                 feedbackDetailPage={false}
+                addVote={addVote}
               />
             ))
           ) : (
