@@ -1,21 +1,18 @@
-import data from "./data/data.json";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SuggestionsPage from "./components/SuggestionsPage.tsx/SuggestionsPage";
 import FeedbackDetailPage from "./components/FeedbackDetailPage.tsx/FeedbackDetailPage";
 import ScrollToTop from "./ScrollToTop";
 import CreateFeedbackPage from "./components/CreateFeedbackPage.tsx/CreateFeedbackPage";
-import { useState } from "react";
+import { FeedbacksProvider } from "./contexts/FeedbackContext";
 
 function App() {
-  const [localData, setLocalData] = useState(data);
-
   const router = createBrowserRouter([
     {
       path: "/suggestions",
       element: (
         <>
           <ScrollToTop />
-          <SuggestionsPage localData={localData} setLocalData={setLocalData} />
+          <SuggestionsPage />
         </>
       ),
     },
@@ -24,10 +21,7 @@ function App() {
       element: (
         <>
           <ScrollToTop />
-          <FeedbackDetailPage
-            localData={localData}
-            setLocalData={setLocalData}
-          />
+          <FeedbackDetailPage />
         </>
       ),
     },
@@ -36,10 +30,7 @@ function App() {
       element: (
         <>
           <ScrollToTop />
-          <CreateFeedbackPage
-            localData={localData}
-            setLocalData={setLocalData}
-          />
+          <CreateFeedbackPage />
         </>
       ),
     },
@@ -47,7 +38,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <FeedbacksProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </FeedbacksProvider>
     </>
   );
 }

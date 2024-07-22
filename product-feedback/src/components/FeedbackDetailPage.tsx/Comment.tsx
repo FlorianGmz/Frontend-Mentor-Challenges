@@ -1,24 +1,25 @@
 import React, { useState } from "react";
-import { Comment as CommentType, Reply as ReplyType } from "../../@types/type";
+import { Comment as CommentType } from "../../@types/type";
 import Reply from "./Reply";
 import AddForm from "./AddForm/AddForm";
 import useFormState from "../../hooks/UseFormState";
-import data from "../../data/data.json";
 import CommentCard from "./CommentCard";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
 
 interface CommentProps {
   commentData: CommentType;
   index: number;
-  addNewReply: (newReply: ReplyType, commentId: number) => void;
+  feedbackId: number;
 }
 
 const Comment: React.FC<CommentProps> = ({
   commentData,
   index,
-  addNewReply,
+  feedbackId,
 }) => {
   const { user, content, replies, id } = commentData;
-  const currentUser = data.currentUser;
+
+  const { currentUser, addReply } = useFeedbacks();
 
   const [postReply, setPostReply] = useState(false);
 
@@ -39,7 +40,7 @@ const Comment: React.FC<CommentProps> = ({
         replyingTo: user.username,
         user: currentUser,
       };
-      addNewReply(newReply, id);
+      addReply(newReply, id, feedbackId);
       setComment("");
       setCharCount(250);
       setPostReply(false);
@@ -80,9 +81,10 @@ const Comment: React.FC<CommentProps> = ({
         <Reply
           key={index}
           reply={reply}
-          addNewReply={addNewReply}
+          addReply={addReply}
           index={index}
           commentId={id}
+          feedbackId={feedbackId}
         />
       ))}
     </section>

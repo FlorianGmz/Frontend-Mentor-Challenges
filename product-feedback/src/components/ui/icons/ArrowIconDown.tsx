@@ -4,7 +4,7 @@ interface ArrowIconDownProps {
   color: string;
 }
 
-const ArrowIconDown: React.FC<ArrowIconDownProps> = ({ color = "#FFFFFF" }) => {
+const ArrowIconDown: React.FC<ArrowIconDownProps> = ({ color }) => {
   return (
     <div>
       <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">

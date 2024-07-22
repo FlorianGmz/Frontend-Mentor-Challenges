@@ -2,11 +2,13 @@ import React from "react";
 
 interface DetailInputProps {
   setDescription: React.Dispatch<React.SetStateAction<string>>;
+  emptySubmit: boolean;
 }
 
-const DetailInput: React.FC<DetailInputProps> = ({ setDescription }) => {
-  const emptySubmit = false;
-
+const DetailInput: React.FC<DetailInputProps> = ({
+  setDescription,
+  emptySubmit,
+}) => {
   return (
     <div className="relative">
       <h3 className="text-[13px] font-bold text-el-font_def">

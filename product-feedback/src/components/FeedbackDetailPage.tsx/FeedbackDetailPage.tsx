@@ -1,32 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Feedback from "../ui/Feedback/Feedback";
 import Header from "./Header";
-import {
-  Comment as CommentType,
-  FeedbackType,
-  Reply,
-  User,
-} from "../../@types/type";
+import { Comment as CommentType, FeedbackType } from "../../@types/type";
 import AddForm from "./AddForm/AddForm";
 import useFormState from "../../hooks/UseFormState";
 import Comment from "./Comment";
-import Upvote from "../ui/Feedback/Upvote";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
 
-interface FeedbackDetailPageProps {
-  localData: { currentUser: User; productRequests: FeedbackType[] };
-  setLocalData: React.Dispatch<
-    React.SetStateAction<{
-      currentUser: User;
-      productRequests: FeedbackType[];
-    }>
-  >;
-}
-
-const FeedbackDetailPage: React.FC<FeedbackDetailPageProps> = ({
-  localData,
-  setLocalData,
-}) => {
+const FeedbackDetailPage = () => {
   const {
     comment,
     charCount,
@@ -36,93 +18,26 @@ const FeedbackDetailPage: React.FC<FeedbackDetailPageProps> = ({
     setEmptySubmit,
   } = useFormState();
 
+  const {
+    currentFeedback,
+    allFeedbacks,
+    currentUser,
+    getFeedback,
+    addComment,
+  } = useFeedbacks();
+
   const { id } = useParams<{ id: string }>();
-  const currentId = Number(id);
 
-  const currentFeedback = localData?.productRequests?.find(
-    (request) => request.id === currentId,
-  );
-  console.log(currentFeedback);
-  const currentUser = localData.currentUser;
+  useEffect(() => {
+    getFeedback(id);
+  }, [allFeedbacks, id]);
 
-  const totalComments = localData?.productRequests?.flatMap((request) => {
+  const totalComments = allFeedbacks.flatMap((request: FeedbackType) => {
     return request.comments || [];
   });
 
   const currentCommentId = totalComments?.length;
   const newCommentId = currentCommentId + 1;
-
-  const addNewComment = (newComment: CommentType) => {
-    setLocalData((prevData) => {
-      const updatedRequests = prevData.productRequests.map((request) => {
-        if (request.id === currentId) {
-          return {
-            ...request,
-            comments: request.comments
-              ? [...request.comments, newComment]
-              : [newComment],
-          };
-        }
-        return request;
-      });
-
-      return {
-        ...prevData,
-        productRequests: updatedRequests,
-      };
-    });
-  };
-
-  const addNewReply = (newReply: Reply, commentId: number) => {
-    setLocalData((prevData) => {
-      const updatedRequests = prevData.productRequests.map((request) => {
-        if (request.id === currentId) {
-          return {
-            ...request,
-            comments: request.comments?.map((comment) => {
-              if (comment.id === commentId) {
-                return {
-                  ...comment,
-                  replies: comment.replies
-                    ? [...comment.replies, newReply]
-                    : [newReply],
-                };
-              }
-              return comment;
-            }),
-          };
-        }
-        return request;
-      });
-
-      return {
-        ...prevData,
-        productRequests: updatedRequests,
-      };
-    });
-  };
-
-  const addVote = (
-    feedbackId: number,
-    hasVoted: React.Dispatch<React.SetStateAction<boolean>>,
-  ) => {
-    setLocalData((prevData) => {
-      const newVote = prevData.productRequests.map((request) => {
-        if (request.id === feedbackId) {
-          return {
-            ...request,
-            upvotes: (request.upvotes += 1),
-          };
-        }
-        return request;
-      });
-      return {
-        ...prevData,
-        productRequests: newVote,
-      };
-    });
-    hasVoted(true);
-  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -134,7 +49,7 @@ const FeedbackDetailPage: React.FC<FeedbackDetailPageProps> = ({
         user: currentUser,
         replies: [],
       };
-      addNewComment(newComment);
+      addComment(newComment, id);
       setComment("");
       setCharCount(250);
     } else {
@@ -155,24 +70,22 @@ const FeedbackDetailPage: React.FC<FeedbackDetailPageProps> = ({
     <div className="flex w-full flex-col gap-[24px] py-[24px]">
       <Header />
       {currentFeedback && (
-        <Feedback
-          feedback={currentFeedback}
-          feedbackDetailPage={true}
-          addVote={addVote}
-        />
+        <Feedback feedback={currentFeedback} feedbackDetailPage={true} />
       )}
       <div className="mx-auto w-[327px] rounded-xl bg-bt-white_def px-[32px] py-[24px] md:w-[689px] xl:w-[730px]">
         <h3 className="text-h3 text-el-font_def">
           {numberOfComments >= 1 ? `${numberOfComments}` : "No"} Comments
         </h3>
-        {currentFeedback?.comments?.map((comment, index) => (
-          <Comment
-            key={comment.id}
-            index={index}
-            commentData={comment}
-            addNewReply={addNewReply}
-          />
-        ))}
+        {currentFeedback?.comments?.map(
+          (comment: CommentType, index: number) => (
+            <Comment
+              key={comment.id}
+              index={index}
+              commentData={comment}
+              feedbackId={currentFeedback.id}
+            />
+          ),
+        )}
       </div>
       <form onSubmit={handleSubmit}>
         <AddForm

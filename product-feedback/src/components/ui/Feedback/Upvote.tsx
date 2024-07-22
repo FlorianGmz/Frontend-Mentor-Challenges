@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFeedbacks } from "../../../contexts/FeedbackContext";
 
 interface UpvoteProps {
   upvotes: number;
-  addVote: (
-    feedbackId: number,
-    hasVoted: React.Dispatch<React.SetStateAction<boolean>>,
-  ) => void;
   feedbackId: number;
 }
 
-const Upvote: React.FC<UpvoteProps> = ({ upvotes, addVote, feedbackId }) => {
-  const [voted, setVoted] = useState(false);
-  console.log(voted);
+const Upvote: React.FC<UpvoteProps> = ({ upvotes, feedbackId }) => {
+  const { addVote, votedFeedbackId } = useFeedbacks();
 
   const handleClick = () => {
-    addVote(feedbackId, setVoted);
+    addVote(feedbackId);
   };
+
+  const voted = votedFeedbackId.some((vote: number) => vote === feedbackId);
 
   return (
     <button
