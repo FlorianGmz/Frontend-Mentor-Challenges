@@ -5,6 +5,7 @@ import ScrollToTop from "./ScrollToTop";
 import CreateFeedbackPage from "./components/CreateFeedbackPage.tsx/CreateFeedbackPage";
 import { FeedbacksProvider } from "./contexts/FeedbackContext";
 import { Toaster } from "react-hot-toast";
+import FeedbackEditPage from "./components/FeedbackEditPage/FeedbackEditPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +33,15 @@ function App() {
         <>
           <ScrollToTop />
           <CreateFeedbackPage />
+        </>
+      ),
+    },
+    {
+      path: "/feedback/:id/edit",
+      element: (
+        <>
+          <ScrollToTop />
+          <FeedbackEditPage />
         </>
       ),
     },

@@ -1,11 +1,16 @@
 import React from "react";
 
 interface TitleInputProps {
+  defaultValue: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   emptySubmit: boolean;
 }
 
-const TitleInput: React.FC<TitleInputProps> = ({ setTitle, emptySubmit }) => {
+const TitleInput: React.FC<TitleInputProps> = ({
+  defaultValue,
+  setTitle,
+  emptySubmit,
+}) => {
   return (
     <div className="relative">
       <h3 className="text-[13px] font-bold text-el-font_def md:text-h4">
@@ -17,6 +22,7 @@ const TitleInput: React.FC<TitleInputProps> = ({ setTitle, emptySubmit }) => {
       <input
         onChange={(e) => setTitle(e.target.value)}
         type="text"
+        defaultValue={defaultValue}
         className={`${emptySubmit ? "outline outline-1 outline-bt-red_def" : ""} mt-[16px] h-[48px] w-full rounded-lg bg-body-bg px-[24px] py-[13px] text-[13px] text-el-font_def focus:outline focus:outline-1 focus:outline-bt-blue_def md:text-[14px]`}
       />
       {emptySubmit && (

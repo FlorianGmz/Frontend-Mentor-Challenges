@@ -9,7 +9,7 @@ import AddButton from "../ui/AddButton";
 import ConfirmButton from "../ui/ConfirmButton";
 import { useNavigate } from "react-router-dom";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const CreateFeedbackPage = () => {
   const navigate = useNavigate();
@@ -66,7 +66,11 @@ const CreateFeedbackPage = () => {
           <h1 className="mt-[20px] text-h3 text-el-font_def md:my-[16px] md:text-h1">
             Create New Feedback
           </h1>
-          <TitleInput setTitle={setTitle} emptySubmit={emptyTitle} />
+          <TitleInput
+            defaultValue=""
+            setTitle={setTitle}
+            emptySubmit={emptyTitle}
+          />
           <CategoryInput
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}

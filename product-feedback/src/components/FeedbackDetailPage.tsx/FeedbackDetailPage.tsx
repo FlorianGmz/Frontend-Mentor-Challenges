@@ -68,7 +68,7 @@ const FeedbackDetailPage = () => {
 
   return (
     <div className="flex w-full flex-col gap-[24px] py-[24px]">
-      <Header />
+      <Header id={id} />
       {currentFeedback && (
         <Feedback feedback={currentFeedback} feedbackDetailPage={true} />
       )}
