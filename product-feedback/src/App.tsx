@@ -4,6 +4,7 @@ import FeedbackDetailPage from "./components/FeedbackDetailPage.tsx/FeedbackDeta
 import ScrollToTop from "./ScrollToTop";
 import CreateFeedbackPage from "./components/CreateFeedbackPage.tsx/CreateFeedbackPage";
 import { FeedbacksProvider } from "./contexts/FeedbackContext";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const router = createBrowserRouter([
@@ -40,6 +41,7 @@ function App() {
     <>
       <FeedbacksProvider>
         <RouterProvider router={router}></RouterProvider>
+        <Toaster position="top-center" />
       </FeedbacksProvider>
     </>
   );

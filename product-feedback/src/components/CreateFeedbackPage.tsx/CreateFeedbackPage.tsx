@@ -9,6 +9,7 @@ import AddButton from "../ui/AddButton";
 import ConfirmButton from "../ui/ConfirmButton";
 import { useNavigate } from "react-router-dom";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const CreateFeedbackPage = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const CreateFeedbackPage = () => {
     if (!isTitleEmpty && !isDescriptionEmpty) {
       createFeedback(newFeedback);
       navigate("/suggestions");
+      toast.success("Feedback successfully created!");
     }
   };
 
@@ -57,11 +59,11 @@ const CreateFeedbackPage = () => {
         <div className="mx-auto w-[327px] py-[24px] md:w-[540px] md:py-[50px]">
           <GoBackLink />{" "}
         </div>
-        <div className="mx-auto mt-[20px] flex w-[327px] flex-col gap-[24px] rounded-xl bg-bt-white_def p-[24px] md:w-[540px] md:p-[32px]">
+        <div className="mx-auto mt-[20px] flex w-[327px] flex-col gap-[24px] rounded-xl bg-bt-white_def p-[24px] md:w-[540px] md:p-[40px]">
           <div className="absolute top-[60px] scale-75 md:top-[110px] md:scale-100">
             <IconNewFeedback />
           </div>
-          <h1 className="mt-[20px] text-h3 text-el-font_def md:text-h1">
+          <h1 className="mt-[20px] text-h3 text-el-font_def md:my-[16px] md:text-h1">
             Create New Feedback
           </h1>
           <TitleInput setTitle={setTitle} emptySubmit={emptyTitle} />
@@ -73,7 +75,7 @@ const CreateFeedbackPage = () => {
             setDescription={setDescription}
             emptySubmit={emptyDescription}
           />
-          <div className="mt-[16px] flex flex-col gap-[16px] md:flex-row-reverse">
+          <div className="mt-[8px] flex flex-col gap-[16px] md:flex-row-reverse">
             <AddButton commentType="feedback" />
             <ConfirmButton type="cancel" />
           </div>
