@@ -4,16 +4,19 @@ interface CategoryProps {
   categoryName: string;
   selectedCategory: string;
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+  setSidebarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Category: React.FC<CategoryProps> = ({
   categoryName,
   selectedCategory,
   setSelectedCategory,
+  setSidebarIsOpen,
 }) => {
   const handleClick = () => {
     setSelectedCategory("");
     setSelectedCategory(categoryName);
+    setSidebarIsOpen(false);
   };
 
   const isSelected = categoryName === selectedCategory;
@@ -23,7 +26,7 @@ const Category: React.FC<CategoryProps> = ({
 
   return (
     <div
-      onClick={() => handleClick()}
+      onClick={handleClick}
       className={`cursor-pointer items-start rounded-xl ${bgColor} px-[16px] py-[5px] text-body-3 capitalize ${textColor} transition-colors ${hoverColor}`}
     >
       {categoryName === "ui" || categoryName === "ux"

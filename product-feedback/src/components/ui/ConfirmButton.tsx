@@ -13,7 +13,7 @@ const ConfirmButton: React.FC<ConfirmButtonProps> = ({ type }) => {
   return (
     <div
       onClick={handleClick}
-      className="h-[40px] w-[279px] rounded-xl bg-el-font_def py-[11px] text-center text-[13px] font-bold capitalize text-el_def"
+      className="md-text[14px] w-[279px] rounded-xl bg-el-font_def px-[16px] py-[11px] text-center text-[13px] font-bold capitalize text-el_def md:w-auto md:px-[24px] md:py-[12px]"
     >
       {type}
     </div>

@@ -54,14 +54,14 @@ const CreateFeedbackPage = () => {
   return (
     <div className="flex flex-col">
       <form onSubmit={handleSubmit}>
-        <div className="mx-auto w-[327px] py-[24px]">
+        <div className="mx-auto w-[327px] py-[24px] md:w-[540px] md:py-[50px]">
           <GoBackLink />{" "}
         </div>
-        <div className="mx-auto mt-[20px] flex w-[327px] flex-col gap-[24px] rounded-xl bg-bt-white_def p-[24px]">
-          <div className="absolute top-[60px] scale-75">
+        <div className="mx-auto mt-[20px] flex w-[327px] flex-col gap-[24px] rounded-xl bg-bt-white_def p-[24px] md:w-[540px] md:p-[32px]">
+          <div className="absolute top-[60px] scale-75 md:top-[110px] md:scale-100">
             <IconNewFeedback />
           </div>
-          <h1 className="mt-[20px] text-h3 text-el-font_def">
+          <h1 className="mt-[20px] text-h3 text-el-font_def md:text-h1">
             Create New Feedback
           </h1>
           <TitleInput setTitle={setTitle} emptySubmit={emptyTitle} />
@@ -73,7 +73,7 @@ const CreateFeedbackPage = () => {
             setDescription={setDescription}
             emptySubmit={emptyDescription}
           />
-          <div className="mt-[16px] flex flex-col gap-[16px]">
+          <div className="mt-[16px] flex flex-col gap-[16px] md:flex-row-reverse">
             <AddButton commentType="feedback" />
             <ConfirmButton type="cancel" />
           </div>
