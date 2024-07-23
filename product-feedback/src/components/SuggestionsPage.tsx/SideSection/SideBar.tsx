@@ -13,7 +13,7 @@ const SideBar: React.FC<SideBarProps> = ({
 }) => {
   return (
     <div className="absolute left-0 top-[72px] z-10 flex h-screen w-screen justify-end bg-[#000000] bg-opacity-60">
-      <div className="flex w-auto flex-col items-center gap-[24px] bg-body-bg p-[24px] opacity-100">
+      <div className="flex w-auto animate-slideIn flex-col items-center gap-[24px] bg-body-bg p-[24px] opacity-100">
         <CategoryPicker
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}

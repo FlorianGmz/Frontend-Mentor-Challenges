@@ -10,7 +10,7 @@ const AddButton: React.FC<AddButtonProps> = ({ commentType }) => {
   return (
     <button
       type="submit"
-      className={`md:text[14px] flex cursor-pointer items-center justify-center gap-1 rounded-xl bg-bt-purple_def px-[16px] py-[11px] text-[13px] font-bold text-el_def transition-colors hover:bg-bt-purple_hover md:px-[24px] md:py-[12px] ${commentPost ? "xl:w-[142px]" : "xl:w-[117px]"} xl:justify-center`}
+      className={`flex cursor-pointer items-center justify-center gap-1 rounded-xl bg-bt-purple_def px-[16px] py-[11px] text-[13px] font-bold text-el_def transition-colors active:bg-bt-purple_hover md:px-[24px] md:py-[12px] md:text-[14px] xl:hover:bg-bt-purple_hover ${commentPost ? "xl:w-[142px]" : "xl:w-[117px]"} xl:justify-center`}
     >
       <span className="capitalize">{`${feedbackPost ? "Add" : "Post"} ${commentType}`}</span>
     </button>

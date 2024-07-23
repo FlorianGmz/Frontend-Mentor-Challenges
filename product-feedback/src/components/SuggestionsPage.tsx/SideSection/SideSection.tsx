@@ -14,7 +14,7 @@ const SideSection: React.FC<SideSectionProps> = ({
   setSelectedCategory,
 }) => {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
-
+  console.log(sidebarIsOpen);
   return (
     <div className="flex flex-col md:mx-auto md:my-[40px] md:w-[689px] md:flex-row md:gap-[10px] xl:mx-0 xl:my-0 xl:h-[529px] xl:w-[255px] xl:flex-col xl:gap-[24px]">
       <FrontendMentorHeader
@@ -31,6 +31,7 @@ const SideSection: React.FC<SideSectionProps> = ({
         <CategoryPicker
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
+          setSidebarIsOpen={setSidebarIsOpen}
         />
       </div>
       <div className="hidden md:block">

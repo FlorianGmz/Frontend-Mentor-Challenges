@@ -5,11 +5,13 @@ import React from "react";
 interface CategoryPickerProps {
   selectedCategory: string;
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+  setSidebarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CategoryPicker: React.FC<CategoryPickerProps> = ({
   selectedCategory,
   setSelectedCategory,
+  setSidebarIsOpen,
 }) => {
   const allDataCategories = data.productRequests.map(
     (request) => request.category,
@@ -27,6 +29,7 @@ const CategoryPicker: React.FC<CategoryPickerProps> = ({
           categoryName={category}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
+          setSidebarIsOpen={setSidebarIsOpen}
         />
       ))}
     </div>

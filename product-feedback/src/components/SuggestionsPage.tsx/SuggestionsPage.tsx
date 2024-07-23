@@ -1,6 +1,6 @@
 import SuggestionsBar from "./SuggestionsBar/SuggestionsBar";
 import Feedback from "../ui/Feedback/Feedback";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FeedbackType } from "../../@types/type";
 import NoFeedback from "./EmptySuggestions.tsx/EmptySuggestion";
 import SideSection from "./SideSection/SideSection";
@@ -36,9 +36,8 @@ const SuggestionsPage = () => {
       return a.upvotes - b.upvotes;
     } else if (selectedOption.value === "most-comments") {
       return (
-        addVote,
         ((b as FeedbackType).comments?.length ?? 0) -
-          ((a as FeedbackType).comments?.length ?? 0)
+        ((a as FeedbackType).comments?.length ?? 0)
       );
     } else if (selectedOption.value === "least-comments") {
       return (
@@ -65,7 +64,7 @@ const SuggestionsPage = () => {
         />
         <section className="mb-[70px] mt-[32px] flex flex-col gap-[16px] md:mt-[24px] xl:gap-[20px]">
           {filteredSuggestions.length >= 1 ? (
-            filteredSuggestions.map((feedback) => (
+            filteredSuggestions.map((feedback: FeedbackType) => (
               <Feedback
                 key={feedback.id}
                 feedback={feedback}
