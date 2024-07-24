@@ -15,7 +15,8 @@ const FeedbackEditPage = () => {
 
   const { getFeedback, allFeedbacks, currentFeedback, editFeedback } =
     useFeedbacks();
-  const { title, category, status, description, comments } = currentFeedback;
+  const { title, category, status, description, comments, upvotes } =
+    currentFeedback;
 
   useEffect(() => {
     getFeedback(id);
@@ -30,10 +31,11 @@ const FeedbackEditPage = () => {
   const [emptyDescription, setEmptyDescription] = useState(false);
 
   const editedFeedback = {
-    id: id,
+    id: Number(id),
     title: feedbackTitle,
     category: selectedCategory,
     status: selectedStatus,
+    upvotes: upvotes,
     description: feedbackDescription,
     comments: comments ? comments : [],
   };
