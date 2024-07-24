@@ -91,7 +91,7 @@ const FeedbackDetailPage = () => {
         <AddForm
           charCount={charCount}
           setCharCount={setCharCount}
-          commentType="comment"
+          type="comment"
           comment={comment}
           setComment={setComment}
           emptySubmit={emptySubmit}

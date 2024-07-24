@@ -75,7 +75,7 @@ const Reply: React.FC<ReplyProps> = ({
               <AddForm
                 charCount={charCount}
                 setCharCount={setCharCount}
-                commentType="reply"
+                type="reply"
                 comment={comment}
                 setComment={setComment}
                 emptySubmit={emptySubmit}

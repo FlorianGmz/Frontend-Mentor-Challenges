@@ -36,6 +36,8 @@ function reducer(state: initialStateType, action) {
         votedFeedbackId: action.votedFeedbackId,
         allFeedbacks: action.payload,
       };
+    case "feedback/edit":
+      return { ...state, allFeedbacks: action.payload };
 
     default:
       throw new Error("Unknown action type");
@@ -118,6 +120,19 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
     });
   }
 
+  function editFeedback(feedback: FeedbackType) {
+    const editedFeedbacks = allFeedbacks.map((request: FeedbackType) => {
+      if (request.id === feedback.id) {
+        return feedback;
+      }
+      return request;
+    });
+    dispatch({
+      type: "feedback/edit",
+      payload: editedFeedbacks,
+    });
+  }
+
   return (
     <FeedbacksContext.Provider
       value={{
@@ -131,6 +146,7 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
         addComment,
         addReply,
         createFeedback,
+        editFeedback,
       }}
     >
       {children}

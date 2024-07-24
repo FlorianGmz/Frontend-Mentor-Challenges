@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ArrowIconUp from "../ui/icons/ArrowIconUp";
 import ArrowIconDown from "../ui/icons/ArrowIconDown";
-import DropdownCategory from "../CreateFeedbackPage.tsx/DropdownCategory";
+import DropdownStatus from "./DropdownStatus";
 
 interface StatusInputProps {
   selectedStatus: string;
@@ -42,11 +42,11 @@ const StatusInput: React.FC<StatusInputProps> = ({
       </div>
       {openMenu && (
         <div className="absolute">
-          <DropdownCategory
+          <DropdownStatus
             setOpenMenu={setOpenMenu}
             setFocus={setFocus}
-            selectedCategory={selectedStatus}
-            setSelectedCategory={setSelectedStatus}
+            selectedStatus={selectedStatus}
+            setSelectedStatus={setSelectedStatus}
           />
         </div>
       )}

@@ -5,11 +5,10 @@ import IconNewFeedback from "../ui/icons/IconNewFeedback";
 import TitleInput from "./TitleInput";
 import CategoryInput from "./CategoryInput";
 import DetailInput from "./DetailInput";
-import AddButton from "../ui/AddButton";
-import ConfirmButton from "../ui/ConfirmButton";
 import { useNavigate } from "react-router-dom";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import toast from "react-hot-toast";
+import FormButton from "../ui/FormButton";
 
 const CreateFeedbackPage = () => {
   const navigate = useNavigate();
@@ -76,12 +75,13 @@ const CreateFeedbackPage = () => {
             setSelectedCategory={setSelectedCategory}
           />
           <DetailInput
+            defaultValue=""
             setDescription={setDescription}
             emptySubmit={emptyDescription}
           />
           <div className="mt-[8px] flex flex-col gap-[16px] md:flex-row-reverse">
-            <AddButton commentType="feedback" />
-            <ConfirmButton type="cancel" />
+            <FormButton type="feedback" />
+            <FormButton type="cancel" />
           </div>
         </div>
       </form>

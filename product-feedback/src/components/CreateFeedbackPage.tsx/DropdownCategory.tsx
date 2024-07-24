@@ -1,6 +1,7 @@
 import React from "react";
-import data from "../../data/data.json";
 import CheckIcon from "../ui/icons/CheckIcon";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
+import { FeedbackType } from "../../@types/type";
 
 interface DropdownCategoryProps {
   selectedCategory: string;
@@ -15,8 +16,10 @@ const DropdownCategory: React.FC<DropdownCategoryProps> = ({
   setOpenMenu,
   setFocus,
 }) => {
-  const allDataCategories = data.productRequests.map(
-    (request) => request.category,
+  const { allFeedbacks } = useFeedbacks();
+
+  const allDataCategories = allFeedbacks.map(
+    (request: FeedbackType) => request.category,
   );
   const nonDataCategories = ["ui", "ux"];
   const categories = [...nonDataCategories, ...allDataCategories];
