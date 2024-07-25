@@ -1,6 +1,7 @@
 import React from "react";
-import data from "../../data/data.json";
 import CheckIcon from "../ui/icons/CheckIcon";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
+import { FeedbackType } from "../../@types/type";
 
 interface DropdownCategoryProps {
   selectedCategory: string;
@@ -15,8 +16,10 @@ const DropdownCategory: React.FC<DropdownCategoryProps> = ({
   setOpenMenu,
   setFocus,
 }) => {
-  const allDataCategories = data.productRequests.map(
-    (request) => request.category,
+  const { allFeedbacks } = useFeedbacks();
+
+  const allDataCategories = allFeedbacks.map(
+    (request: FeedbackType) => request.category,
   );
   const nonDataCategories = ["ui", "ux"];
   const categories = [...nonDataCategories, ...allDataCategories];
@@ -30,8 +33,8 @@ const DropdownCategory: React.FC<DropdownCategoryProps> = ({
   };
 
   return (
-    <div className="relative top-2 z-10 mb-28 cursor-pointer rounded-xl shadow-2xl xl:top-[140px]">
-      <div className="flex h-auto w-[279px] flex-col justify-between rounded-xl bg-bt-white_def text-[13px] text-feedback-description md:w-[476px] md:text-[14px]">
+    <div className="relative top-2 z-10 mb-28 cursor-pointer rounded-xl shadow-2xl">
+      <div className="flex h-auto w-[279px] flex-col justify-between rounded-xl bg-bt-white_def text-[13px] text-feedback-description md:w-[460px] md:text-[14px]">
         {filteredCategories.map((category, index) => (
           <React.Fragment key={category}>
             <div

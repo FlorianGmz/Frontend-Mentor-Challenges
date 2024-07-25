@@ -69,7 +69,7 @@ const Comment: React.FC<CommentProps> = ({
             <AddForm
               charCount={charCount}
               setCharCount={setCharCount}
-              commentType="reply"
+              type="reply"
               comment={comment}
               setComment={setComment}
               emptySubmit={emptySubmit}

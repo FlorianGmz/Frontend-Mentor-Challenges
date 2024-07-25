@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ArrowIconDown from "../../ui/icons/ArrowIconDown";
-import DropdownMenu from "./DropdownMenu";
+import DropdownSortMenu from "./DropdownSortMenu";
 import ArrowIconUp from "../../ui/icons/ArrowIconUp";
 
 interface SortingElementProps {
@@ -46,7 +46,7 @@ const SortingElement: React.FC<SortingElementProps> = ({
         <ArrowIconDown color="#FFFFFF" />
       )}
       {toggleDropDownMenu && (
-        <DropdownMenu
+        <DropdownSortMenu
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
         />

@@ -1,4 +1,4 @@
-import AddButton from "../../ui/AddButton";
+import FormButton from "../../ui/FormButton";
 import CharCount from "./CharCount";
 import TextAreaDesktop from "./TextAreaDesktop";
 import TextAreaResponsive from "./TextAreaResponsive";
@@ -6,7 +6,7 @@ import TextAreaResponsive from "./TextAreaResponsive";
 interface AddFormProps {
   charCount: number;
   setCharCount: React.Dispatch<React.SetStateAction<number>>;
-  commentType: string;
+  type: string;
   comment: string;
   setComment: React.Dispatch<React.SetStateAction<string>>;
   emptySubmit: boolean;
@@ -15,14 +15,14 @@ interface AddFormProps {
 const AddForm: React.FC<AddFormProps> = ({
   charCount,
   setCharCount,
-  commentType,
+  type,
   comment,
   setComment,
   emptySubmit,
 }) => {
   const maxChars = 250;
 
-  const commentPost = commentType === "comment";
+  const commentPost = type === "comment";
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
@@ -35,7 +35,7 @@ const AddForm: React.FC<AddFormProps> = ({
     >
       {commentPost && (
         <h1 className="mb-[24px] text-h3 capitalize text-el-font_def md:mb-[16px]">
-          add {commentType}
+          add {type}
         </h1>
       )}
 
@@ -49,7 +49,7 @@ const AddForm: React.FC<AddFormProps> = ({
           maxChars={maxChars}
         />
         <div className={`${!commentPost ? "hidden xl:block" : "hidden"}`}>
-          <AddButton commentType="reply" />
+          <FormButton type="reply" feedbackId="" />
         </div>
       </div>
       {/*  */}
@@ -68,7 +68,7 @@ const AddForm: React.FC<AddFormProps> = ({
         className={`flex items-center justify-between ${!commentPost && "xl:hidden"}`}
       >
         <CharCount commentPost={commentPost} charCount={charCount} />
-        <AddButton commentType={commentType} />
+        <FormButton type={type} feedbackId="" />
       </div>
     </div>
   );
