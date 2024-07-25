@@ -3,12 +3,12 @@ import GoBackLink from "../ui/GoBackLink";
 import NavButton from "../ui/NavButton";
 
 interface HeaderProps {
-  id: string;
+  id: string | undefined;
 }
 
 const Header: React.FC<HeaderProps> = ({ id }) => {
   return (
-    <div className="mx-auto flex h-[40px] w-[327px] items-center justify-between md:h-[44px] md:w-[689px] xl:w-[730px]">
+    <div className="mx-auto flex h-[40px] w-full items-center justify-between md:h-[44px] md:w-[689px] xl:w-[730px]">
       <GoBackLink />
       <NavButton
         to={`/feedback/${id}/edit`}

@@ -31,7 +31,7 @@ const AddForm: React.FC<AddFormProps> = ({
 
   return (
     <div
-      className={`mx-auto flex h-auto flex-col ${commentPost ? "mb-[50px] w-[327px] p-[24px] md:h-[246px] md:w-[689px] xl:w-[730px]" : ""} rounded-xl bg-bt-white_def`}
+      className={`mx-auto flex h-auto flex-col ${commentPost ? "mb-[50px] w-full p-[24px] md:h-[246px] md:w-[689px] xl:w-[730px]" : ""} rounded-xl bg-bt-white_def`}
     >
       {commentPost && (
         <h1 className="mb-[24px] text-h3 capitalize text-el-font_def md:mb-[16px]">
