@@ -80,8 +80,8 @@ const CreateFeedbackPage = () => {
             emptySubmit={emptyDescription}
           />
           <div className="mt-[8px] flex flex-col gap-[16px] md:flex-row-reverse">
-            <FormButton type="feedback" />
-            <FormButton type="cancel" />
+            <FormButton type="feedback" feedbackId="" />
+            <FormButton type="cancel" feedbackId="" />
           </div>
         </div>
       </form>

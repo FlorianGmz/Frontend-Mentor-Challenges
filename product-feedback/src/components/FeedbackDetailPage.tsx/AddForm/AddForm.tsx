@@ -49,7 +49,7 @@ const AddForm: React.FC<AddFormProps> = ({
           maxChars={maxChars}
         />
         <div className={`${!commentPost ? "hidden xl:block" : "hidden"}`}>
-          <FormButton type="reply" />
+          <FormButton type="reply" feedbackId="" />
         </div>
       </div>
       {/*  */}
@@ -68,7 +68,7 @@ const AddForm: React.FC<AddFormProps> = ({
         className={`flex items-center justify-between ${!commentPost && "xl:hidden"}`}
       >
         <CharCount commentPost={commentPost} charCount={charCount} />
-        <FormButton type={type} />
+        <FormButton type={type} feedbackId="" />
       </div>
     </div>
   );

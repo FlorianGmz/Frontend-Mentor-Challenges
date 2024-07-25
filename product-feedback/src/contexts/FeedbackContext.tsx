@@ -38,6 +38,8 @@ function reducer(state: initialStateType, action) {
       };
     case "feedback/edit":
       return { ...state, allFeedbacks: action.payload };
+    case "feedback/delete":
+      return { ...state, allFeedbacks: action.payload };
 
     default:
       throw new Error("Unknown action type");
@@ -125,13 +127,19 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
       if (request.id === feedback.id) {
         return feedback;
       }
-      console.log(request);
       return request;
     });
     dispatch({
       type: "feedback/edit",
       payload: editedFeedbacks,
     });
+  }
+
+  function deleteFeedback(id: number) {
+    const filteredFeedbacks = allFeedbacks.filter((feedback: FeedbackType) => {
+      return feedback.id !== id;
+    });
+    dispatch({ type: "feedback/delete", payload: filteredFeedbacks });
   }
 
   return (
@@ -148,6 +156,7 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
         addReply,
         createFeedback,
         editFeedback,
+        deleteFeedback,
       }}
     >
       {children}

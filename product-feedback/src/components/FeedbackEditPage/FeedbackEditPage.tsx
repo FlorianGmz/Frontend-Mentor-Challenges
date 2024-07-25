@@ -22,7 +22,6 @@ const FeedbackEditPage = () => {
     getFeedback(id);
   }, [allFeedbacks]);
 
-  console.log(allFeedbacks);
   const [feedbackTitle, setTitle] = useState(title);
   const [emptyTitle, setEmptyTitle] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(category);
@@ -88,20 +87,20 @@ const FeedbackEditPage = () => {
 
           {/* This div is rendered only on smartphone viewport */}
           <div className="mt-[8px] flex flex-col gap-[16px] md:hidden md:flex-row-reverse">
-            <FormButton type="edit" />
-            <FormButton type="cancel" />
-            <FormButton type="delete" />
+            <FormButton type="edit" feedbackId="" />
+            <FormButton type="cancel" feedbackId="" />
+            <FormButton type="delete" feedbackId={id} />
           </div>
           {/*  */}
 
           {/* This div is rendered only on tablet and desktop viewport */}
           <div className="hidden md:mt-[8px] md:flex md:flex-row-reverse md:justify-between md:gap-[16px]">
             <div className="md:flex md:flex-row-reverse md:justify-end md:gap-[16px]">
-              <FormButton type="edit" />
-              <FormButton type="cancel" />
+              <FormButton type="edit" feedbackId="" />
+              <FormButton type="cancel" feedbackId="" />
             </div>
             <div>
-              <FormButton type="delete" />
+              <FormButton type="delete" feedbackId={id} />
             </div>
           </div>
           {/*  */}
