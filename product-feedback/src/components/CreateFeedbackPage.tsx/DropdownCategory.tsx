@@ -33,8 +33,8 @@ const DropdownCategory: React.FC<DropdownCategoryProps> = ({
   };
 
   return (
-    <div className="relative top-2 z-10 mb-28 cursor-pointer rounded-xl shadow-2xl xl:top-[140px]">
-      <div className="flex h-auto w-[279px] flex-col justify-between rounded-xl bg-bt-white_def text-[13px] text-feedback-description md:w-[476px] md:text-[14px]">
+    <div className="relative top-2 z-10 mb-28 cursor-pointer rounded-xl shadow-2xl">
+      <div className="flex h-auto w-[279px] flex-col justify-between rounded-xl bg-bt-white_def text-[13px] text-feedback-description md:w-[460px] md:text-[14px]">
         {filteredCategories.map((category, index) => (
           <React.Fragment key={category}>
             <div
