@@ -26,9 +26,7 @@ const TitleInput: React.FC<TitleInputProps> = ({
         className={`${emptySubmit ? "outline outline-1 outline-bt-red_def" : ""} mt-[16px] h-[48px] w-full rounded-lg bg-body-bg px-[24px] py-[13px] text-[13px] text-el-font_def focus:outline focus:outline-1 focus:outline-bt-blue_def md:text-[14px]`}
       />
       {emptySubmit && (
-        <p
-          className={`absolute bottom-[-25px] text-[14px] text-bt-red_def xl:bottom-1`}
-        >
+        <p className={`absolute bottom-[-25px] text-[14px] text-bt-red_def`}>
           Can't be empty
         </p>
       )}

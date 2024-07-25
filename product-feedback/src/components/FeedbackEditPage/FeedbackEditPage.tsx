@@ -40,11 +40,18 @@ const FeedbackEditPage = () => {
     comments: comments ? comments : [],
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(editedFeedback);
-    editFeedback(editedFeedback);
-    navigate(-1);
+    const isTitleEmpty = !feedbackTitle;
+    const isDescriptionEmpty = !feedbackDescription;
+
+    setEmptyTitle(isTitleEmpty);
+    setEmptyDescription(isDescriptionEmpty);
+
+    if (!isTitleEmpty && !isDescriptionEmpty) {
+      editFeedback(editedFeedback);
+      navigate(-1);
+    }
   };
 
   return (
@@ -78,11 +85,26 @@ const FeedbackEditPage = () => {
             setDescription={setDescription}
             emptySubmit={emptyDescription}
           />
-          <div className="mt-[8px] flex flex-col gap-[16px] md:flex-row-reverse">
+
+          {/* This div is rendered only on smartphone viewport */}
+          <div className="mt-[8px] flex flex-col gap-[16px] md:hidden md:flex-row-reverse">
             <FormButton type="edit" />
             <FormButton type="cancel" />
             <FormButton type="delete" />
           </div>
+          {/*  */}
+
+          {/* This div is rendered only on tablet and desktop viewport */}
+          <div className="hidden md:mt-[8px] md:flex md:flex-row-reverse md:justify-between md:gap-[16px]">
+            <div className="md:flex md:flex-row-reverse md:justify-end md:gap-[16px]">
+              <FormButton type="edit" />
+              <FormButton type="cancel" />
+            </div>
+            <div>
+              <FormButton type="delete" />
+            </div>
+          </div>
+          {/*  */}
         </div>
       </form>
     </div>

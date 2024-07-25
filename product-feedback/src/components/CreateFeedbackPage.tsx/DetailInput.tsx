@@ -25,9 +25,7 @@ const DetailInput: React.FC<DetailInputProps> = ({
         className={`${emptySubmit ? "outline outline-1 outline-bt-red_def" : ""} mt-[16px] h-[120px] w-full rounded-lg bg-body-bg px-[24px] py-[13px] text-[13px] text-el-font_def focus:outline focus:outline-1 focus:outline-bt-blue_def md:text-[14px]`}
       />
       {emptySubmit && (
-        <p className={`absolute text-[14px] text-bt-red_def xl:bottom-1`}>
-          Can't be empty
-        </p>
+        <p className={`absolute text-[14px] text-bt-red_def`}>Can't be empty</p>
       )}
     </div>
   );
