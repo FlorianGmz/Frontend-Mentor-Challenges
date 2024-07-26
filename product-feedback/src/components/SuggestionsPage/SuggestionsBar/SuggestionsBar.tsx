@@ -33,11 +33,7 @@ const SuggestionsBar: React.FC<SuggestionsBarProps> = ({
           setSelectedOption={setSelectedOption}
         />
       </div>
-      <NavButton
-        to="/feedback/create"
-        bgColor="bt-purple_def"
-        bgHoverColor="bt-purple_hover"
-      />
+      <NavButton to="/feedback/create" type="create" />
     </div>
   );
 };

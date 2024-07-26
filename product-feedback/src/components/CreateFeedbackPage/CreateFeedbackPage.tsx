@@ -56,7 +56,7 @@ const CreateFeedbackPage = () => {
     <div className="flex flex-col">
       <form onSubmit={handleSubmit}>
         <div className="mx-auto w-[327px] py-[24px] md:w-[540px] md:py-[50px]">
-          <GoBackLink />{" "}
+          <GoBackLink page="create" />{" "}
         </div>
         <div className="mx-auto mt-[20px] flex w-[327px] flex-col gap-[24px] rounded-xl bg-bt-white_def p-[24px] md:w-[540px] md:p-[40px]">
           <div className="absolute top-[60px] scale-75 md:top-[110px] md:scale-100">

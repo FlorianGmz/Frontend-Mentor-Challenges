@@ -4,29 +4,20 @@ import IconPlus from "./icons/IconPlus";
 
 interface NavButtonProps {
   to: string;
-  bgColor: "bt-blue_def" | "bt-purple_def";
-  bgHoverColor: "bt-blue_hover" | "bt-purple_hover";
+  type: string;
 }
 
-const NavButton: React.FC<NavButtonProps> = ({ to, bgColor, bgHoverColor }) => {
-  const isAddButton = to === "/feedback/create";
+const NavButton: React.FC<NavButtonProps> = ({ to, type }) => {
+  const isCreateButton = type === "create";
+  const isEditButton = type === "edit";
 
-  const bgClasses = {
-    "bt-blue_def": "bg-bt-blue_def",
-    "bt-purple_def": "bg-bt-purple_def",
-  };
-
-  const hoverClasses = {
-    "bt-blue_hover": "hover:bg-bt-blue_hover",
-    "bt-purple_hover": "hover:bg-bt-purple_hover",
-  };
   return (
     <NavLink
       to={to}
-      className={`flex cursor-pointer items-center gap-1 rounded-xl ${bgClasses[bgColor]} md:text[14px] px-[16px] py-[11px] text-[13px] font-bold text-el_def transition-colors md:px-[24px] md:py-[12px] ${hoverClasses[bgHoverColor]}`}
+      className={`flex cursor-pointer items-center gap-1 rounded-xl ${isCreateButton ? "bg-bt-purple_def hover:bg-bt-purple_hover" : ""} ${isEditButton ? "bg-bt-blue_def hover:bg-bt-blue_hover" : ""}md:text[14px] px-[16px] py-[11px] text-[13px] font-bold text-el_def transition-colors md:px-[24px] md:py-[12px]`}
     >
-      {isAddButton && <IconPlus />}
-      <span>{isAddButton ? "Add" : "Edit"} Feedback</span>
+      {isCreateButton && <IconPlus />}
+      <span>{isCreateButton ? "Add" : "Edit"} Feedback</span>
     </NavLink>
   );
 };
