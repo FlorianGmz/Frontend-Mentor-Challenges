@@ -9,7 +9,6 @@ interface initialStateType {
   votedFeedbackId: [];
   allFeedbacks: FeedbackType[];
   currentFeedback: FeedbackType | null;
-  roadmapStatus: [];
 }
 
 const localData = data;
@@ -19,7 +18,6 @@ const initialState: initialStateType = {
   votedFeedbackId: [],
   allFeedbacks: localData.productRequests,
   currentFeedback: null,
-  roadmapStatus: [],
 };
 
 function reducer(state: initialStateType, action) {

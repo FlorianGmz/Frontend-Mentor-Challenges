@@ -3,12 +3,12 @@ import { FeedbackType } from "../../@types/type";
 
 interface NavbarStatusProps {
   status: string;
-  feedback: FeedbackType[];
+  feedbacks: FeedbackType[];
 }
-const NavbarStatus: React.FC<NavbarStatusProps> = ({ status, feedback }) => {
+const NavbarStatus: React.FC<NavbarStatusProps> = ({ status, feedbacks }) => {
   return (
     <p className="text-[13px] font-bold capitalize text-el-font_def">
-      {status}({feedback.length})
+      {status}({feedbacks.length})
     </p>
   );
 };
