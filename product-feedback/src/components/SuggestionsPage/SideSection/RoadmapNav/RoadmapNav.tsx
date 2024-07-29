@@ -1,24 +1,21 @@
 import { NavLink } from "react-router-dom";
 import RoadmapStatus from "./RoadmapStatus";
+import { useFeedbacks } from "../../../../contexts/FeedbackContext";
+import { FeedbackType } from "../../../../@types/type";
 
 const RoadmapNav = () => {
-  const roadmapStatus = [
-    {
-      id: 1,
-      color: "#F49F85",
-      statusName: { label: "Planned", value: "planned" },
-    },
-    {
-      id: 2,
-      color: "#AD1FEA",
-      statusName: { label: "In-Progress", value: "in-progress" },
-    },
-    {
-      id: 3,
-      color: "#62BCFA",
-      statusName: { label: "Live", value: "live" },
-    },
-  ];
+  const { allFeedbacks } = useFeedbacks();
+
+  const filterFeedbackByStatus = (status: FeedbackType["status"]) => {
+    return allFeedbacks.filter(
+      (feedback: FeedbackType) => feedback.status === status,
+    );
+  };
+
+  const plannedFeedback = filterFeedbackByStatus("planned");
+  const inProgressFeedback = filterFeedbackByStatus("in-progress");
+  const liveFeedback = filterFeedbackByStatus("live");
+
   return (
     <div className="flex h-[178px] w-[223px] flex-col justify-between rounded-xl bg-bt-white_def px-[24px] py-[19px] md:h-[178px] xl:w-[255px]">
       <div className="flex items-center justify-between">
@@ -31,13 +28,9 @@ const RoadmapNav = () => {
         </NavLink>
       </div>
       <div className="flex flex-col gap-[8px]">
-        {roadmapStatus.map((status) => (
-          <RoadmapStatus
-            key={status.id}
-            color={status.color}
-            statusName={status.statusName}
-          />
-        ))}
+        <RoadmapStatus feedback={plannedFeedback} status="planned" />
+        <RoadmapStatus feedback={inProgressFeedback} status="in-progress" />
+        <RoadmapStatus feedback={liveFeedback} status="live" />
       </div>
     </div>
   );
