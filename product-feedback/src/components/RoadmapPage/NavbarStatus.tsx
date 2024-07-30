@@ -31,7 +31,15 @@ const NavbarStatus: React.FC<NavbarStatusProps> = ({
       </div>
       {isActive && (
         <span
-          className={`${status === "planned" ? "bg-status-planned" : ""}${status === "in-progress" ? "bg-status-inProgress" : ""}${status === "live" ? "bg-status-live" : ""} h-[4px] w-full`}
+          className={`h-[4px] w-full ${
+            status === "planned"
+              ? "bg-status-planned"
+              : status === "in-progress"
+                ? "bg-status-inProgress"
+                : status === "live"
+                  ? "bg-status-live"
+                  : ""
+          }`}
         />
       )}
     </div>
