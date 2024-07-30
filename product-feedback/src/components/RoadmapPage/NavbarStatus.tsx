@@ -26,7 +26,7 @@ const NavbarStatus: React.FC<NavbarStatusProps> = ({
         <p
           className={`text-[13px] font-bold capitalize text-el-font_def ${isActive ? "opacity-100" : "opacity-50"} transition-all`}
         >
-          {status}({feedbacks.length})
+          {status} ({feedbacks.length})
         </p>
       </div>
       {isActive && (

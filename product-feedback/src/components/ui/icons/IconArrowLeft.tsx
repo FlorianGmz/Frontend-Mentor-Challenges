@@ -6,8 +6,6 @@ interface IconArrowLeftProps {
 
 const IconArrowLeft: React.FC<IconArrowLeftProps> = ({ page }) => {
   const isRoadmapPage = page === "roadmap";
-  console.log(page);
-  console.log(isRoadmapPage);
   return (
     <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
       <path

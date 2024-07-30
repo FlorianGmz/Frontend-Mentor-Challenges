@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { FeedbackType } from "../../@types/type";
 import NavbarStatus from "./NavbarStatus";
 
 interface RoadmapNavbarProps {
   categorizedFeedbacks: {
     planned: FeedbackType[] | [];
-    inProgress: FeedbackType[] | [];
+    "in-progress": FeedbackType[] | [];
     live: FeedbackType[] | [];
   };
   selectedStatus: string;
@@ -22,19 +22,19 @@ const RoadmapNavbar: React.FC<RoadmapNavbarProps> = ({
       <div className="flex h-[56px] w-full justify-around bg-body-bg">
         <NavbarStatus
           status="planned"
-          feedbacks={categorizedFeedbacks.planned}
+          feedbacks={categorizedFeedbacks["planned"]}
           selectedStatus={selectedStatus}
           setSelectedStatus={setSelectedStatus}
         />
         <NavbarStatus
           status="in-progress"
-          feedbacks={categorizedFeedbacks.inProgress}
+          feedbacks={categorizedFeedbacks["in-progress"]}
           selectedStatus={selectedStatus}
           setSelectedStatus={setSelectedStatus}
         />
         <NavbarStatus
           status="live"
-          feedbacks={categorizedFeedbacks.live}
+          feedbacks={categorizedFeedbacks["live"]}
           selectedStatus={selectedStatus}
           setSelectedStatus={setSelectedStatus}
         />

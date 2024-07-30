@@ -14,7 +14,7 @@ const RoadmapPage = () => {
       allFeedbacks.filter(
         (feedback: FeedbackType) => feedback.status === "planned",
       ) || [],
-    inProgress:
+    "in-progress":
       allFeedbacks.filter(
         (feedback: FeedbackType) => feedback.status === "in-progress",
       ) || [],
@@ -32,6 +32,11 @@ const RoadmapPage = () => {
         selectedStatus={selectedStatus}
         setSelectedStatus={setSelectedStatus}
       />
+      <div className="px-[24px] py-[26px]">
+        <h1 className="text-h3 capitalize text-el-font_def">
+          {selectedStatus} ({categorizedFeedbacks[selectedStatus].length})
+        </h1>
+      </div>
     </div>
   );
 };
