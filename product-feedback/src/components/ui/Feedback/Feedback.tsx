@@ -30,7 +30,7 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback, page }) => {
 
   return (
     <div
-      className={`group relative flex ${roadmapPage ? "h-[233px] gap-[16px] md:h-[270px] md:w-[223px] md:px-[16px] md:py-[20px]" : "gap-[12px]md:w-[689px] mx-auto h-[200px] md:mx-auto md:h-[151px] md:flex-row md:items-center md:justify-between md:px-[32px] md:py-[28px]"} w-full cursor-pointer flex-col rounded-xl bg-bt-white_def p-[24px] ${detailPage ? "xl:w-[730px]" : "xl:w-[825px]"}`}
+      className={`group relative flex ${roadmapPage ? "h-[233px] gap-[16px] md:h-[270px] md:w-[223px] md:px-[16px] md:py-[20px] xl:w-[350px] xl:p-[24px]" : "gap-[12px]md:w-[689px] mx-auto h-[200px] md:mx-auto md:h-[151px] md:flex-row md:items-center md:justify-between md:px-[32px] md:py-[28px]"} w-full cursor-pointer flex-col rounded-xl bg-bt-white_def p-[24px] ${detailPage ? "xl:w-[730px]" : "xl:w-[825px]"}`}
     >
       {roadmapPage && (
         <>

@@ -43,7 +43,7 @@ const RoadmapPage = () => {
         />
       </div>
       {/*  */}
-      <div className="hidden w-full md:flex md:flex-row md:justify-center md:gap-[10px]">
+      <div className="mx-auto hidden md:flex md:w-full md:flex-row md:justify-center md:gap-[10px] xl:w-[1110px] xl:gap-[30px]">
         <RoadmapFeedbacksSection
           categorizedFeedbacks={categorizedFeedbacks}
           selectedStatus={"planned"}

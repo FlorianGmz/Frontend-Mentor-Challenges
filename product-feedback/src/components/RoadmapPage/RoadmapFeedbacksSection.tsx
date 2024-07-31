@@ -16,12 +16,12 @@ const RoadmapFeedbacksSection: React.FC<RoadmapFeedbacksSectionProps> = ({
   selectedStatus,
 }) => {
   return (
-    <div className="flex flex-col gap-[24px] p-[24px] md:w-[223px] md:px-0 md:pb-[24px] md:pt-[32px]">
+    <div className="flex flex-col gap-[24px] p-[24px] md:w-[223px] md:px-0 md:pb-[24px] md:pt-[32px] xl:w-[350px]">
       <div className="flex flex-col gap-[4px]">
-        <h1 className="text-h3 capitalize text-el-font_def md:text-h4">
+        <h1 className="text-h3 capitalize text-el-font_def md:text-h4 xl:text-h3">
           {selectedStatus} ({categorizedFeedbacks[selectedStatus].length})
         </h1>
-        <p className="text-[13px] text-feedback-description md:text-[14px]">
+        <p className="text-[13px] text-feedback-description md:text-[14px] xl:text-[16px]">
           {selectedStatus === "planned"
             ? "Ideas prioritized for research"
             : selectedStatus === "in-progress"
