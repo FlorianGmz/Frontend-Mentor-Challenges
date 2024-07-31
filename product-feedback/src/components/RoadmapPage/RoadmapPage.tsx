@@ -3,7 +3,7 @@ import RoadmapHeader from "./RoadmapHeader";
 import RoadmapNavbar from "./RoadmapNavbar";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import { FeedbackType } from "../../@types/type";
-import StatusCard from "./StatusCard";
+import Feedback from "../ui/Feedback/Feedback";
 
 const RoadmapPage = () => {
   const [selectedStatus, setSelectedStatus] = useState("in-progress");
@@ -28,11 +28,17 @@ const RoadmapPage = () => {
   return (
     <div>
       <RoadmapHeader />
-      <RoadmapNavbar
-        categorizedFeedbacks={categorizedFeedbacks}
-        selectedStatus={selectedStatus}
-        setSelectedStatus={setSelectedStatus}
-      />
+
+      {/* The navbar is only displayed on smartphone */}
+      <div className="md:hidden">
+        <RoadmapNavbar
+          categorizedFeedbacks={categorizedFeedbacks}
+          selectedStatus={selectedStatus}
+          setSelectedStatus={setSelectedStatus}
+        />
+      </div>
+      {/*  */}
+
       <div className="flex flex-col gap-[24px] p-[24px]">
         <div className="flex flex-col gap-[4px]">
           <h1 className="text-h3 capitalize text-el-font_def">
@@ -45,7 +51,7 @@ const RoadmapPage = () => {
         <div className="flex flex-col gap-[16px]">
           {categorizedFeedbacks[selectedStatus].map(
             (feedback: FeedbackType) => (
-              <StatusCard feedback={feedback} feedbackDetailPage={false} />
+              <Feedback feedback={feedback} page="roadmap" />
             ),
           )}
         </div>

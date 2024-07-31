@@ -3,7 +3,7 @@ import StatusCircle from "./StatusCircle";
 import React from "react";
 
 interface RoadmapStatusProps {
-  feedback: FeedbackType[];
+  feedback: FeedbackType[] | FeedbackType;
   status: "planned" | "in-progress" | "live";
 }
 
@@ -24,7 +24,9 @@ const RoadmapStatus: React.FC<RoadmapStatusProps> = ({ feedback, status }) => {
           {status}
         </p>
       </div>
-      <p className="items-center text-comment-count">{feedback.length}</p>
+      <p className="items-center text-comment-count">
+        {Array.isArray(feedback) ? feedback.length : ""}
+      </p>
     </div>
   );
 };

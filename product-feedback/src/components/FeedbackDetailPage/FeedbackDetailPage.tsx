@@ -69,9 +69,7 @@ const FeedbackDetailPage = () => {
   return (
     <div className="flex w-full flex-col gap-[24px] px-[24px] py-[24px] md:px-0">
       <Header id={id} />
-      {currentFeedback && (
-        <Feedback feedback={currentFeedback} feedbackDetailPage={true} />
-      )}
+      {currentFeedback && <Feedback feedback={currentFeedback} page="detail" />}
       <div className="mx-auto w-full rounded-xl bg-bt-white_def px-[32px] py-[24px] md:w-[689px] xl:w-[730px]">
         <h3 className="text-h3 text-el-font_def">
           {numberOfComments >= 1 ? `${numberOfComments}` : "No"} Comments

@@ -11,7 +11,11 @@ const GoBackLink: React.FC<GoBackLinkProps> = ({ page }) => {
 
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(-1);
+    if (isRoadmapPage) {
+      navigate("/suggestions");
+    } else {
+      navigate(-1);
+    }
   };
 
   return (
