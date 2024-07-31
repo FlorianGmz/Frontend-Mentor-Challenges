@@ -4,6 +4,7 @@ import RoadmapNavbar from "./RoadmapNavbar";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import { FeedbackType } from "../../@types/type";
 import Feedback from "../ui/Feedback/Feedback";
+import RoadmapFeedbacksSection from "./RoadmapFeedbacksSection";
 
 const RoadmapPage = () => {
   const [selectedStatus, setSelectedStatus] = useState("in-progress");
@@ -24,37 +25,37 @@ const RoadmapPage = () => {
         (feedback: FeedbackType) => feedback.status === "live",
       ) || [],
   };
-
+  console.log(categorizedFeedbacks);
   return (
     <div>
       <RoadmapHeader />
 
-      {/* The navbar is only displayed on smartphone */}
+      {/* This layout is displayed only on smartphone */}
       <div className="md:hidden">
         <RoadmapNavbar
           categorizedFeedbacks={categorizedFeedbacks}
           selectedStatus={selectedStatus}
           setSelectedStatus={setSelectedStatus}
         />
+        <RoadmapFeedbacksSection
+          categorizedFeedbacks={categorizedFeedbacks}
+          selectedStatus={selectedStatus}
+        />
       </div>
       {/*  */}
-
-      <div className="flex flex-col gap-[24px] p-[24px]">
-        <div className="flex flex-col gap-[4px]">
-          <h1 className="text-h3 capitalize text-el-font_def">
-            {selectedStatus} ({categorizedFeedbacks[selectedStatus].length})
-          </h1>
-          <p className="text-[13px] text-feedback-description">
-            Features currently being developed
-          </p>
-        </div>
-        <div className="flex flex-col gap-[16px]">
-          {categorizedFeedbacks[selectedStatus].map(
-            (feedback: FeedbackType) => (
-              <Feedback feedback={feedback} page="roadmap" />
-            ),
-          )}
-        </div>
+      <div className="hidden w-full md:flex md:flex-row md:justify-center md:gap-[10px]">
+        <RoadmapFeedbacksSection
+          categorizedFeedbacks={categorizedFeedbacks}
+          selectedStatus={"planned"}
+        />
+        <RoadmapFeedbacksSection
+          categorizedFeedbacks={categorizedFeedbacks}
+          selectedStatus={"in-progress"}
+        />
+        <RoadmapFeedbacksSection
+          categorizedFeedbacks={categorizedFeedbacks}
+          selectedStatus={"live"}
+        />
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback, page }) => {
 
   return (
     <div
-      className={`group relative mx-auto flex ${roadmapPage ? "h-[233px] gap-[16px]" : "h-[200px] gap-[12px]"} w-full cursor-pointer flex-col rounded-xl bg-bt-white_def p-[24px] md:mx-auto md:h-[151px] md:w-[689px] md:flex-row md:items-center md:justify-between md:px-[32px] md:py-[28px] ${detailPage ? "xl:w-[730px]" : "xl:w-[825px]"}`}
+      className={`group relative flex ${roadmapPage ? "h-[233px] gap-[16px] md:h-[270px] md:w-[223px] md:px-[16px] md:py-[20px]" : "gap-[12px]md:w-[689px] mx-auto h-[200px] md:mx-auto md:h-[151px] md:flex-row md:items-center md:justify-between md:px-[32px] md:py-[28px]"} w-full cursor-pointer flex-col rounded-xl bg-bt-white_def p-[24px] ${detailPage ? "xl:w-[730px]" : "xl:w-[825px]"}`}
     >
       {roadmapPage && (
         <>
@@ -46,13 +46,15 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback, page }) => {
             }`}
           />
           <div>
-            <RoadmapStatus feedback={feedback} status={status} />
+            <RoadmapStatus feedback={feedback} status={status} page="roadmap" />
           </div>
         </>
       )}
       {/* Visible on tablet and desktop viewport */}
-      <div className="hidden md:mr-[40px] md:block md:self-start">
-        <Upvote upvotes={upvotes} feedbackId={id} />
+      <div
+        className={` ${roadmapPage ? "hidden" : "hidden md:mr-[40px] md:block md:self-start"}`}
+      >
+        <Upvote upvotes={upvotes} feedbackId={id} page="roadmap" />
       </div>
       {/*  */}
 
@@ -60,18 +62,23 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback, page }) => {
         className="flex flex-auto flex-col items-start justify-between md:self-stretch"
         to={`/feedback/${id}`}
       >
-        <Request category={category} title={title} description={description} />
+        <Request
+          category={category}
+          title={title}
+          description={description}
+          page="roadmap"
+        />
       </NavLink>
 
       {/* Visible on smartphone viewport */}
-      <div className="flex justify-between md:hidden">
-        <Upvote upvotes={upvotes} feedbackId={id} />
+      <div className={`flex justify-between ${roadmapPage ? "" : "md:hidden"}`}>
+        <Upvote upvotes={upvotes} feedbackId={id} page="roadmap" />
         <CommentCount numberOfComments={numberOfComments} />
       </div>
       {/*  */}
 
       {/* Visible on tablet and desktop viewport */}
-      <div className="hidden md:block">
+      <div className={`hidden ${roadmapPage ? "md:hidden" : "md:block"}`}>
         <CommentCount numberOfComments={numberOfComments} />
       </div>
       {/*  */}
