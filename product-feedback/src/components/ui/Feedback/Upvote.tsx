@@ -22,7 +22,7 @@ const Upvote: React.FC<UpvoteProps> = ({ upvotes, feedbackId, page }) => {
     <button
       type="button"
       disabled={voted}
-      className={`focus:text-bt-white_de ${roadmapPage ? "md:flex-row" : "md:h-[53px] md:w-[40px] md:flex-col md:px-[9px]"}group flex h-[32px] w-[69px] items-center justify-around rounded-xl bg-el_def px-[13px] py-[6px] transition-colors hover:bg-el_hover disabled:bg-el_active`}
+      className={`focus:text-bt-white_def ${roadmapPage ? "md:w-[69px] md:flex-row" : "md:h-[53px] md:w-[40px] md:flex-col md:px-[9px]"} group flex h-[32px] items-center justify-around rounded-xl bg-el_def px-[13px] py-[6px] transition-colors hover:bg-el_hover disabled:bg-el_active`}
       onClick={handleClick}
     >
       <svg
