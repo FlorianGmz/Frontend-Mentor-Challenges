@@ -70,7 +70,7 @@ const SuggestionsPage = () => {
               <Feedback
                 key={feedback.id}
                 feedback={feedback}
-                feedbackDetailPage={false}
+                page="suggestions"
               />
             ))
           ) : (

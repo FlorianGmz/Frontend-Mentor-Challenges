@@ -29,8 +29,17 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback, page }) => {
   }
 
   return (
+    // <div
+    //   className={`group relative flex ${roadmapPage ? "h-[233px] gap-[16px] md:h-[270px] md:w-[223px] md:px-[16px] md:py-[20px] xl:w-[350px] xl:p-[24px]" : "mx-auto h-[200px] gap-[12px] md:mx-auto md:h-[151px] md:w-[689px] md:flex-row md:items-center md:justify-between md:px-[32px] md:py-[28px]"} w-full cursor-pointer flex-col rounded-xl bg-bt-white_def p-[24px] ${detailPage ? "xl:w-[730px]" : "xl:w-[825px]"}`}
+    // >
     <div
-      className={`group relative flex ${roadmapPage ? "h-[233px] gap-[16px] md:h-[270px] md:w-[223px] md:px-[16px] md:py-[20px] xl:w-[350px] xl:p-[24px]" : "mx-auto h-[200px] gap-[12px] md:mx-auto md:h-[151px] md:w-[689px] md:flex-row md:items-center md:justify-between md:px-[32px] md:py-[28px]"} w-full cursor-pointer flex-col rounded-xl bg-bt-white_def p-[24px] ${detailPage ? "xl:w-[730px]" : "xl:w-[825px]"}`}
+      className={`group relative mx-auto flex h-[200px] w-full cursor-pointer flex-col gap-[12px] rounded-xl bg-bt-white_def p-[24px] md:h-[151px] md:flex-row md:items-center md:justify-between md:px-[32px] md:py-[28px] ${
+        roadmapPage
+          ? "h-[233px] gap-[16px] md:h-[270px] md:w-[223px] md:flex-col md:items-start md:px-[16px] md:py-[20px] xl:w-[350px] xl:p-[24px]"
+          : detailPage
+            ? "md:w-[689px] xl:w-[730px]"
+            : "md:w-[689px] xl:w-[825px]"
+      }`}
     >
       {roadmapPage && (
         <>
@@ -52,7 +61,7 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback, page }) => {
       )}
       {/* Visible on tablet and desktop viewport */}
       <div
-        className={` ${roadmapPage ? "hidden" : "hidden md:mr-[40px] md:block md:self-start"}`}
+        className={`hidden ${roadmapPage ? "" : "md:mr-[40px] md:block md:self-start"}`}
       >
         <Upvote upvotes={upvotes} feedbackId={id} page="roadmap" />
       </div>
@@ -78,7 +87,7 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback, page }) => {
       {/*  */}
 
       {/* Visible on tablet and desktop viewport */}
-      <div className={`hidden ${roadmapPage ? "md:hidden" : "md:block"}`}>
+      <div className={`hidden ${roadmapPage ? "" : "md:block"}`}>
         <CommentCount numberOfComments={numberOfComments} />
       </div>
       {/*  */}

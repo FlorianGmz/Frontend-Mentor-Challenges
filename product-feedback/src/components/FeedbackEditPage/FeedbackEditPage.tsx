@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import StatusInput from "./StatusInput";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import FormButton from "../ui/FormButton";
+import toast from "react-hot-toast";
 
 const FeedbackEditPage = () => {
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ const FeedbackEditPage = () => {
     if (!isTitleEmpty && !isDescriptionEmpty) {
       editFeedback(editedFeedback);
       navigate(-1);
+      toast.success("Feedback successfully edited!");
     }
   };
 
