@@ -48,7 +48,9 @@ const AddForm: React.FC<AddFormProps> = ({
           handleChange={handleChange}
           maxChars={maxChars}
         />
-        <div className={`${!commentPost ? "hidden xl:block" : "hidden"}`}>
+        <div
+          className={`${!commentPost ? "hidden text-right xl:block xl:w-[161px]" : "hidden"}`}
+        >
           <FormButton type="reply" feedbackId="" />
         </div>
       </div>

@@ -37,9 +37,9 @@ const Upvote: React.FC<UpvoteProps> = ({ upvotes, feedbackId, page }) => {
       >
         <path
           d="M1 6l4-4 4 4"
-          stroke-width="2.3"
+          strokeWidth="2.3"
           fill="none"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         />
       </svg>
       <span className="text-[13px] font-bold text-el-font_def group-disabled:text-bt-white_def">

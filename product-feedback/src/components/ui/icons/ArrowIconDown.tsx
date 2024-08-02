@@ -11,9 +11,9 @@ const ArrowIconDown: React.FC<ArrowIconDownProps> = ({ color }) => {
         <path
           d="M1 1l4 4 4-4"
           stroke={color}
-          stroke-width="3"
+          strokeWidth="3"
           fill="none"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         />
       </svg>
     </div>
