@@ -1,6 +1,7 @@
 import React from "react";
 import { FeedbackType } from "../../@types/type";
 import Feedback from "../ui/Feedback/Feedback";
+import RoadmapFeedback from "./RoadmapFeedback";
 
 interface RoadmapFeedbacksSectionProps {
   categorizedFeedbacks: {
@@ -33,7 +34,7 @@ const RoadmapFeedbacksSection: React.FC<RoadmapFeedbacksSectionProps> = ({
       </div>
       <div className="flex flex-col gap-[16px]">
         {categorizedFeedbacks[selectedStatus].map((feedback: FeedbackType) => (
-          <Feedback feedback={feedback} page="roadmap" />
+          <RoadmapFeedback feedback={feedback} />
         ))}
       </div>
     </div>
