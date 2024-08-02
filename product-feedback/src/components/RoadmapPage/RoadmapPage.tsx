@@ -3,7 +3,6 @@ import RoadmapHeader from "./RoadmapHeader";
 import RoadmapNavbar from "./RoadmapNavbar";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import { FeedbackType } from "../../@types/type";
-import Feedback from "../ui/Feedback/Feedback";
 import RoadmapFeedbacksSection from "./RoadmapFeedbacksSection";
 
 const RoadmapPage = () => {

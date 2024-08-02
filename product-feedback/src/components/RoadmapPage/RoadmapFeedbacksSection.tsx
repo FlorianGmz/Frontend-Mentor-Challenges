@@ -1,6 +1,5 @@
 import React from "react";
 import { FeedbackType } from "../../@types/type";
-import Feedback from "../ui/Feedback/Feedback";
 import RoadmapFeedback from "./RoadmapFeedback";
 
 interface RoadmapFeedbacksSectionProps {
