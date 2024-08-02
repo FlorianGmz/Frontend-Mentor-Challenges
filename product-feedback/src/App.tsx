@@ -7,6 +7,7 @@ import { FeedbacksProvider } from "./contexts/FeedbackContext";
 import { Toaster } from "react-hot-toast";
 import FeedbackEditPage from "./components/FeedbackEditPage/FeedbackEditPage";
 import RoadmapPage from "./components/RoadmapPage/RoadmapPage";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -52,6 +53,15 @@ function App() {
         <>
           <ScrollToTop />
           <RoadmapPage />
+        </>
+      ),
+    },
+    {
+      path: "*",
+      element: (
+        <>
+          <ScrollToTop />
+          <ErrorPage />
         </>
       ),
     },
