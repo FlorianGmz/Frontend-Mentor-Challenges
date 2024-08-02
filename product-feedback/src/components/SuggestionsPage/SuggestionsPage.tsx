@@ -1,6 +1,6 @@
 import SuggestionsBar from "./SuggestionsBar/SuggestionsBar";
 import Feedback from "../ui/Feedback/Feedback";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FeedbackType } from "../../@types/type";
 import NoFeedback from "./EmptySuggestions.tsx/EmptySuggestion";
 import SideSection from "./SideSection/SideSection";
@@ -8,6 +8,8 @@ import { useFeedbacks } from "../../contexts/FeedbackContext";
 
 const SuggestionsPage = () => {
   const { currentUser, allFeedbacks } = useFeedbacks();
+
+  useEffect(() => {}, [allFeedbacks]);
 
   const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -62,13 +64,13 @@ const SuggestionsPage = () => {
           setSelectedOption={setSelectedOption}
           suggestionsCount={filteredSuggestions.length}
         />
-        <section className="mb-[70px] mt-[32px] flex flex-col gap-[16px] md:mt-[24px] xl:gap-[20px]">
+        <section className="mb-[70px] mt-[32px] flex flex-col gap-[16px] px-[24px] md:mt-[24px] md:px-0 xl:gap-[20px]">
           {filteredSuggestions.length >= 1 ? (
             filteredSuggestions.map((feedback: FeedbackType) => (
               <Feedback
                 key={feedback.id}
                 feedback={feedback}
-                feedbackDetailPage={false}
+                page="suggestions"
               />
             ))
           ) : (

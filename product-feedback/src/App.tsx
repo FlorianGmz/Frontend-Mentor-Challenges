@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import SuggestionsPage from "./components/SuggestionsPage.tsx/SuggestionsPage";
-import FeedbackDetailPage from "./components/FeedbackDetailPage.tsx/FeedbackDetailPage";
+import SuggestionsPage from "./components/SuggestionsPage/SuggestionsPage";
+import FeedbackDetailPage from "./components/FeedbackDetailPage/FeedbackDetailPage";
 import ScrollToTop from "./ScrollToTop";
-import CreateFeedbackPage from "./components/CreateFeedbackPage.tsx/CreateFeedbackPage";
+import CreateFeedbackPage from "./components/CreateFeedbackPage/CreateFeedbackPage";
 import { FeedbacksProvider } from "./contexts/FeedbackContext";
 import { Toaster } from "react-hot-toast";
 import FeedbackEditPage from "./components/FeedbackEditPage/FeedbackEditPage";
+import RoadmapPage from "./components/RoadmapPage/RoadmapPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -42,6 +43,15 @@ function App() {
         <>
           <ScrollToTop />
           <FeedbackEditPage />
+        </>
+      ),
+    },
+    {
+      path: "/roadmap",
+      element: (
+        <>
+          <ScrollToTop />
+          <RoadmapPage />
         </>
       ),
     },

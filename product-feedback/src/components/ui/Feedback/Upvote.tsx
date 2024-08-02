@@ -4,14 +4,17 @@ import { useFeedbacks } from "../../../contexts/FeedbackContext";
 interface UpvoteProps {
   upvotes: number;
   feedbackId: number;
+  page: string;
 }
 
-const Upvote: React.FC<UpvoteProps> = ({ upvotes, feedbackId }) => {
+const Upvote: React.FC<UpvoteProps> = ({ upvotes, feedbackId, page }) => {
   const { addVote, votedFeedbackId } = useFeedbacks();
 
   const handleClick = () => {
     addVote(feedbackId);
   };
+
+  const roadmapPage = page === "roadmap";
 
   const voted = votedFeedbackId.some((vote: number) => vote === feedbackId);
 
@@ -19,7 +22,11 @@ const Upvote: React.FC<UpvoteProps> = ({ upvotes, feedbackId }) => {
     <button
       type="button"
       disabled={voted}
-      className="focus:text-bt-white_de group flex h-[32px] w-[69px] items-center justify-around rounded-xl bg-el_def px-[13px] py-[6px] transition-colors hover:bg-el_hover disabled:bg-el_active md:h-[53px] md:w-[40px] md:flex-col md:px-[9px]"
+      className={`group flex h-[32px] w-[69px] items-center justify-around rounded-xl bg-el_def px-[13px] py-[6px] transition-colors hover:bg-el_hover focus:text-bt-white_def disabled:bg-el_active ${
+        roadmapPage
+          ? "md:flex md:w-[69px] md:flex-row md:px-[16px] xl:py-[10px]"
+          : "md:h-[53px] md:w-[40px] md:flex-col md:px-[9px]"
+      }`}
       onClick={handleClick}
     >
       <svg

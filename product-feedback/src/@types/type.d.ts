@@ -22,7 +22,7 @@ export interface FeedbackType {
   title: string;
   category: string;
   upvotes: number;
-  status: string;
+  status: "planned" | "in-progress" | "live";
   description: string;
   comments?: Comment[];
 }

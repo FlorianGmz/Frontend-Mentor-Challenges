@@ -23,6 +23,9 @@ export default {
       "el-sort_active": "#C3C7D9",
       "feedback-description": "#637196",
       "feedback-board": "#DBDCFD",
+      "status-planned": "#F49F85",
+      "status-inProgress": "#AD1FEA",
+      "status-live": "#62BCFA",
     },
     fontSize: {
       h1: [
