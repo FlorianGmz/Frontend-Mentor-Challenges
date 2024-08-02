@@ -14,11 +14,7 @@ const NoFeedback = () => {
         Got a suggestion? Found a bug that needs to be squashed? We love hearing
         about new ideas to improve our app.
       </p>
-      <NavButton
-        to="/feedback/add"
-        bgColor="bt-purple_def"
-        bgHoverColor="bt-purple_hover"
-      />
+      <NavButton to="/feedback/add" type="create" />
     </div>
   );
 };
