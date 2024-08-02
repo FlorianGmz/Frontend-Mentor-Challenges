@@ -4,19 +4,17 @@ import Request from "./Request";
 import Upvote from "./Upvote";
 import { NavLink } from "react-router-dom";
 import { FeedbackType } from "../../../@types/type";
-import RoadmapStatus from "../../SuggestionsPage/SideSection/RoadmapNav/RoadmapStatus";
 
 interface FeedbackProps {
   feedback: FeedbackType;
-  page: string;
+  feedbackDetailPage: boolean;
 }
 
-const Feedback: React.FC<FeedbackProps> = ({ feedback, page }) => {
-  const { id, title, status, category, upvotes, description, comments } =
-    feedback;
-
-  const detailPage = page === "detail";
-  const roadmapPage = page === "roadmap";
+const Feedback: React.FC<FeedbackProps> = ({
+  feedback,
+  feedbackDetailPage,
+}) => {
+  const { id, title, category, upvotes, description, comments } = feedback;
 
   let numberOfComments = comments ? comments.length : 0;
 
@@ -30,37 +28,11 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback, page }) => {
 
   return (
     <div
-      className={`group relative mx-auto flex h-[200px] w-full cursor-pointer flex-col gap-[12px] rounded-xl bg-bt-white_def p-[24px] md:h-[151px] md:flex-row md:justify-between md:px-[32px] md:py-[28px] ${
-        roadmapPage
-          ? "h-[233px] gap-[16px] md:h-[270px] md:w-[223px] md:flex-col md:items-start md:px-[16px] md:py-[20px] xl:w-[350px] xl:p-[24px]"
-          : detailPage
-            ? "md:w-[689px] xl:w-[730px]"
-            : "md:w-[689px] md:items-center xl:w-[825px]"
-      }`}
+      className={`group mx-auto flex h-[200px] w-full cursor-pointer flex-col gap-[12px] rounded-xl bg-bt-white_def p-[24px] md:mx-auto md:h-[151px] md:w-[689px] md:flex-row md:items-center md:justify-between md:px-[32px] md:py-[28px] ${feedbackDetailPage ? "xl:w-[730px]" : "xl:w-[825px]"}`}
     >
-      {roadmapPage && (
-        <>
-          <span
-            className={`absolute left-0 top-0 h-[6px] w-full rounded-t-xl ${
-              status === "planned"
-                ? "bg-status-planned"
-                : status === "in-progress"
-                  ? "bg-status-inProgress"
-                  : status === "live"
-                    ? "bg-status-live"
-                    : ""
-            }`}
-          />
-          <div>
-            <RoadmapStatus feedback={feedback} status={status} page="roadmap" />
-          </div>
-        </>
-      )}
-      {/* Visible on tablet and desktop viewport */}
-      <div
-        className={`hidden ${roadmapPage ? "" : "md:mr-[40px] md:block md:self-start"}`}
-      >
-        <Upvote upvotes={upvotes} feedbackId={id} page="roadmap" />
+      {/* Visible on tablet and desktop */}
+      <div className="hidden md:mr-[40px] md:block md:self-start">
+        <Upvote upvotes={upvotes} feedbackId={id} page="feedback" />
       </div>
       {/*  */}
 
@@ -72,19 +44,19 @@ const Feedback: React.FC<FeedbackProps> = ({ feedback, page }) => {
           category={category}
           title={title}
           description={description}
-          page="roadmap"
+          page="feedback"
         />
       </NavLink>
 
-      {/* Visible on smartphone viewport */}
-      <div className={`flex justify-between ${roadmapPage ? "" : "md:hidden"}`}>
-        <Upvote upvotes={upvotes} feedbackId={id} page="roadmap" />
+      {/* Visible on smartphone */}
+      <div className="flex justify-between md:hidden">
+        <Upvote upvotes={upvotes} feedbackId={id} page="feedback" />
         <CommentCount numberOfComments={numberOfComments} />
       </div>
       {/*  */}
 
-      {/* Visible on tablet and desktop viewport */}
-      <div className={`hidden ${roadmapPage ? "" : "md:block"}`}>
+      {/* Visible on tablet and desktop */}
+      <div className="hidden md:block">
         <CommentCount numberOfComments={numberOfComments} />
       </div>
       {/*  */}
