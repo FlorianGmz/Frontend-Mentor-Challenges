@@ -29,7 +29,7 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
       </p>
       <div
         onClick={handleClick}
-        className={`mt-[16px] flex h-[48px] w-full items-center justify-between rounded-lg bg-body-bg px-[24px] py-[13px] text-el-font_def ${focus ? "outline outline-1 outline-bt-blue_def" : ""}`}
+        className={`mt-[16px] flex h-[48px] w-full items-center justify-between rounded-lg bg-body-bg px-[24px] py-[13px] text-el-font_def hover:cursor-pointer ${focus ? "outline outline-1 outline-bt-blue_def" : ""}`}
       >
         <p className="text-[13px] capitalize md:text-[14px]">
           {selectedCategory === "ui" || selectedCategory === "ux"

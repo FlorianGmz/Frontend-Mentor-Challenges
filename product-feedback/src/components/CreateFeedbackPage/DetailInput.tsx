@@ -22,7 +22,7 @@ const DetailInput: React.FC<DetailInputProps> = ({
       <textarea
         onChange={(e) => setDescription(e.target.value)}
         defaultValue={defaultValue}
-        className={`${emptySubmit ? "outline outline-1 outline-bt-red_def" : ""} mt-[16px] h-[120px] w-full rounded-lg bg-body-bg px-[24px] py-[13px] text-[13px] text-el-font_def focus:outline focus:outline-1 focus:outline-bt-blue_def md:text-[14px]`}
+        className={`${emptySubmit ? "outline outline-1 outline-bt-red_def" : ""} mt-[16px] h-[120px] w-full rounded-lg bg-body-bg px-[24px] py-[13px] text-[13px] text-el-font_def hover:cursor-pointer focus:outline focus:outline-1 focus:outline-bt-blue_def md:text-[14px]`}
       />
       {emptySubmit && (
         <p className={`absolute text-[14px] text-bt-red_def`}>Can't be empty</p>
