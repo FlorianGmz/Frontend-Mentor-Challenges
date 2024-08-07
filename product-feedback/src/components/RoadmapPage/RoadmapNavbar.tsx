@@ -9,7 +9,9 @@ interface RoadmapNavbarProps {
     live: FeedbackType[] | [];
   };
   selectedStatus: string;
-  setSelectedStatus: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedStatus: React.Dispatch<
+    React.SetStateAction<"planned" | "in-progress" | "live">
+  >;
 }
 
 const RoadmapNavbar: React.FC<RoadmapNavbarProps> = ({

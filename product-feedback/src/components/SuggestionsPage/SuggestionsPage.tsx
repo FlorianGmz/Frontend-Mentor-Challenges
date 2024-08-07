@@ -7,7 +7,7 @@ import SideSection from "./SideSection/SideSection";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 
 const SuggestionsPage = () => {
-  const { currentUser, allFeedbacks } = useFeedbacks();
+  const { allFeedbacks } = useFeedbacks();
 
   useEffect(() => {}, [allFeedbacks]);
 
@@ -70,7 +70,7 @@ const SuggestionsPage = () => {
               <Feedback
                 key={feedback.id}
                 feedback={feedback}
-                page="suggestions"
+                feedbackDetailPage={false}
               />
             ))
           ) : (

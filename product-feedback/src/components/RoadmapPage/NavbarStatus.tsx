@@ -2,10 +2,12 @@ import React from "react";
 import { FeedbackType } from "../../@types/type";
 
 interface NavbarStatusProps {
-  status: string;
+  status: "planned" | "in-progress" | "live";
   feedbacks: FeedbackType[];
   selectedStatus: string;
-  setSelectedStatus: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedStatus: React.Dispatch<
+    React.SetStateAction<"planned" | "in-progress" | "live">
+  >;
 }
 const NavbarStatus: React.FC<NavbarStatusProps> = ({
   status,

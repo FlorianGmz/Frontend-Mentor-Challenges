@@ -29,7 +29,9 @@ const FeedbackDetailPage = () => {
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    getFeedback(id);
+    if (id) {
+      getFeedback(id);
+    }
   }, [allFeedbacks, id]);
 
   const totalComments = allFeedbacks.flatMap((request: FeedbackType) => {
@@ -40,23 +42,25 @@ const FeedbackDetailPage = () => {
   const newCommentId = currentCommentId + 1;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (comment.trim()) {
-      setEmptySubmit(false);
-      const newComment: CommentType = {
-        id: newCommentId,
-        content: comment,
-        user: currentUser,
-        replies: [],
-      };
-      addComment(newComment, id);
-      setComment("");
-      setCharCount(250);
-    } else {
-      setEmptySubmit(true);
+    if (id) {
+      e.preventDefault();
+      if (comment.trim()) {
+        setEmptySubmit(false);
+        const newComment: CommentType = {
+          id: newCommentId,
+          content: comment,
+          user: currentUser,
+          replies: [],
+        };
+        addComment(newComment, id);
+        setComment("");
+        setCharCount(250);
+      } else {
+        setEmptySubmit(true);
+      }
     }
   };
-
+  console.log(currentFeedback);
   const comments = currentFeedback?.comments || [];
   let numberOfComments = comments ? comments.length : 0;
 

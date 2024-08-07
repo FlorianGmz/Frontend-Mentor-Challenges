@@ -8,7 +8,7 @@ interface RoadmapFeedbacksSectionProps {
     "in-progress": FeedbackType[] | [];
     live: FeedbackType[] | [];
   };
-  selectedStatus: string;
+  selectedStatus: "planned" | "in-progress" | "live";
 }
 
 const RoadmapFeedbacksSection: React.FC<RoadmapFeedbacksSectionProps> = ({

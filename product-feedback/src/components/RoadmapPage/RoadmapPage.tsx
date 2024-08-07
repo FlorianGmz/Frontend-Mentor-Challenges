@@ -6,7 +6,9 @@ import { FeedbackType } from "../../@types/type";
 import RoadmapFeedbacksSection from "./RoadmapFeedbacksSection";
 
 const RoadmapPage = () => {
-  const [selectedStatus, setSelectedStatus] = useState("in-progress");
+  const [selectedStatus, setSelectedStatus] = useState<
+    "planned" | "in-progress" | "live"
+  >("in-progress");
 
   const { allFeedbacks } = useFeedbacks();
 

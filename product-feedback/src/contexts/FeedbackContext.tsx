@@ -2,7 +2,24 @@ import { createContext, ReactNode, useContext, useReducer } from "react";
 import data from "../data/data.json";
 import { Comment, FeedbackType, Reply, User } from "../@types/type";
 
-const FeedbacksContext = createContext();
+interface FeedbacksContextType {
+  currentUser: User;
+  allFeedbacks: FeedbackType[];
+  currentFeedback: FeedbackType | null;
+  votedFeedbackId: number[];
+  dispatch: React.Dispatch<any>;
+  addVote: (id: number) => void;
+  getFeedback: (id: string) => void;
+  addComment: (newComment: Comment, id: string) => void;
+  addReply: (newReply: Reply, commentId: number, id: number) => void;
+  createFeedback: (newFeedback: FeedbackType) => void;
+  editFeedback: (feedback: FeedbackType) => void;
+  deleteFeedback: (id: number) => void;
+}
+
+const FeedbacksContext = createContext<FeedbacksContextType | undefined>(
+  undefined,
+);
 
 interface initialStateType {
   currentUser: User;
@@ -20,7 +37,7 @@ const initialState: initialStateType = {
   currentFeedback: null,
 };
 
-function reducer(state: initialStateType, action) {
+function reducer(state: initialStateType, action: any) {
   switch (action.type) {
     case "currentFeedback/set":
       return { ...state, currentFeedback: action.payload };
@@ -52,7 +69,7 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  function getFeedback(id: number) {
+  function getFeedback(id: string) {
     const feedback = allFeedbacks.find(
       (request: FeedbackType) => request.id === Number(id),
     );
@@ -92,7 +109,7 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
     dispatch({ type: "feedback/newComment", payload: updatedRequests });
   }
 
-  function addReply(newReply: Reply, commentId: number, id: string) {
+  function addReply(newReply: Reply, commentId: number, id: number) {
     const updatedRequests = allFeedbacks.map((request: FeedbackType) => {
       if (request.id === Number(id)) {
         return {

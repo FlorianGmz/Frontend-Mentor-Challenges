@@ -20,7 +20,9 @@ const FeedbackEditPage = () => {
     currentFeedback;
 
   useEffect(() => {
-    getFeedback(id);
+    if (id) {
+      getFeedback(id);
+    }
   }, [allFeedbacks]);
 
   const [feedbackTitle, setTitle] = useState(title);
@@ -51,7 +53,7 @@ const FeedbackEditPage = () => {
     if (!isTitleEmpty && !isDescriptionEmpty) {
       editFeedback(editedFeedback);
       navigate(-1);
-      toast.success("Feedback successfully edited!");
+      toast.success("Modification succesfully saved!");
     }
   };
 

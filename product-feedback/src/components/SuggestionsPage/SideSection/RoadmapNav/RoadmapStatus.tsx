@@ -4,7 +4,7 @@ import React from "react";
 
 interface RoadmapStatusProps {
   feedback: FeedbackType[] | FeedbackType;
-  status: "planned" | "in-progress" | "live";
+  status: "planned" | "in-progress" | "live" | "suggestion";
   page: string;
 }
 
@@ -17,6 +17,7 @@ const RoadmapStatus: React.FC<RoadmapStatusProps> = ({
     planned: "#F49F85",
     "in-progress": "#AD1FEA",
     live: "#62BCFA",
+    suggestion: "#f0f",
   };
 
   const roadmapPage = page === "roadmap";
