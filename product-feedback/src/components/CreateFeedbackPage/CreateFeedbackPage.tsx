@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FeedbackType } from "../../@types/type";
 import GoBackLink from "../ui/GoBackLink";
 import IconNewFeedback from "../ui/icons/IconNewFeedback";
@@ -21,10 +21,7 @@ const CreateFeedbackPage = () => {
   const [description, setDescription] = useState("");
   const [emptyDescription, setEmptyDescription] = useState(false);
 
-  const totalComments = allFeedbacks.flatMap((request: FeedbackType) => {
-    return request.comments || [];
-  });
-  const newFeedbackId = totalComments.length + 1;
+  const newFeedbackId = allFeedbacks.length + 1;
 
   const newFeedback: FeedbackType = {
     id: newFeedbackId,

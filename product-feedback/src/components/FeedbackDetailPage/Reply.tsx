@@ -47,7 +47,6 @@ const Reply: React.FC<ReplyProps> = ({
         replyingTo: commentUsername,
         user: currentUser,
       };
-      console.log([commentId, feedbackId]);
       addReply(newReply, commentId, feedbackId);
       setComment("");
       setCharCount(250);

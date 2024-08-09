@@ -14,19 +14,18 @@ const RoadmapPage = () => {
 
   const categorizedFeedbacks = {
     planned:
-      allFeedbacks.filter(
-        (feedback: FeedbackType) => feedback.status === "planned",
-      ) || [],
+      allFeedbacks
+        .filter((feedback: FeedbackType) => feedback.status === "planned")
+        .sort((a, b) => b.upvotes - a.upvotes) || [],
     "in-progress":
-      allFeedbacks.filter(
-        (feedback: FeedbackType) => feedback.status === "in-progress",
-      ) || [],
+      allFeedbacks
+        .filter((feedback: FeedbackType) => feedback.status === "in-progress")
+        .sort((a, b) => b.upvotes - a.upvotes) || [],
     live:
-      allFeedbacks.filter(
-        (feedback: FeedbackType) => feedback.status === "live",
-      ) || [],
+      allFeedbacks
+        .filter((feedback: FeedbackType) => feedback.status === "live")
+        .sort((a, b) => b.upvotes - a.upvotes) || [],
   };
-  console.log(categorizedFeedbacks);
   return (
     <div>
       <RoadmapHeader />

@@ -26,6 +26,7 @@ const FeedbackDetailPage = () => {
     addComment,
   } = useFeedbacks();
 
+  console.log(allFeedbacks);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
