@@ -6,15 +6,15 @@ import { FeedbackType } from "../../@types/type";
 interface DropdownCategoryProps {
   selectedCategory: string;
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
-  setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
-  setFocus: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsFocused: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DropdownCategory: React.FC<DropdownCategoryProps> = ({
   selectedCategory,
   setSelectedCategory,
-  setOpenMenu,
-  setFocus,
+  setIsMenuOpen,
+  setIsFocused,
 }) => {
   const { allFeedbacks } = useFeedbacks();
 
@@ -28,8 +28,8 @@ const DropdownCategory: React.FC<DropdownCategoryProps> = ({
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
-    setOpenMenu(false);
-    setFocus(false);
+    setIsMenuOpen(false);
+    setIsFocused(false);
   };
 
   return (
