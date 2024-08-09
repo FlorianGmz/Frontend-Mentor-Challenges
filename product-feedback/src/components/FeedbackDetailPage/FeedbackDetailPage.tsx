@@ -26,7 +26,6 @@ const FeedbackDetailPage = () => {
     addComment,
   } = useFeedbacks();
 
-  console.log(allFeedbacks);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -61,7 +60,7 @@ const FeedbackDetailPage = () => {
       }
     }
   };
-  console.log(currentFeedback);
+
   const comments = currentFeedback?.comments || [];
   let numberOfComments = comments ? comments.length : 0;
 
