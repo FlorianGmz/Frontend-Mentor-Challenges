@@ -1,15 +1,15 @@
 import React from "react";
 
 interface TitleInputProps {
-  defaultValue: string;
+  value?: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
-  emptySubmit: boolean;
+  isEmpty: boolean;
 }
 
 const TitleInput: React.FC<TitleInputProps> = ({
-  defaultValue,
+  value,
   setTitle,
-  emptySubmit,
+  isEmpty,
 }) => {
   return (
     <div className="relative">
@@ -22,10 +22,10 @@ const TitleInput: React.FC<TitleInputProps> = ({
       <input
         onChange={(e) => setTitle(e.target.value)}
         type="text"
-        defaultValue={defaultValue}
-        className={`${emptySubmit ? "outline outline-1 outline-bt-red_def" : ""} mt-[16px] h-[48px] w-full rounded-lg bg-body-bg px-[24px] py-[13px] text-[13px] text-el-font_def hover:cursor-pointer focus:outline focus:outline-1 focus:outline-bt-blue_def md:text-[14px]`}
+        defaultValue={value}
+        className={`${isEmpty ? "outline outline-1 outline-bt-red_def" : ""} mt-[16px] h-[48px] w-full rounded-lg bg-body-bg px-[24px] py-[13px] text-[13px] text-el-font_def hover:cursor-pointer focus:outline focus:outline-1 focus:outline-bt-blue_def md:text-[14px]`}
       />
-      {emptySubmit && (
+      {isEmpty && (
         <p className={`absolute bottom-[-25px] text-[14px] text-bt-red_def`}>
           Can't be empty
         </p>

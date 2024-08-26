@@ -32,22 +32,26 @@ const FeedbackDetailPage = () => {
     if (id) {
       getFeedback(id);
     }
-  }, [allFeedbacks, id]);
+  }, [getFeedback, id]);
 
   const totalComments = allFeedbacks.flatMap((request: FeedbackType) => {
     return request.comments || [];
   });
 
-  const currentCommentId = totalComments?.length;
-  const newCommentId = currentCommentId + 1;
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!comment.trim()) {
+      setEmptySubmit(true);
+      return;
+    }
+
     if (id) {
-      e.preventDefault();
+      setEmptySubmit(false);
       if (comment.trim()) {
         setEmptySubmit(false);
         const newComment: CommentType = {
-          id: newCommentId,
+          id: totalComments?.length + 1,
           content: comment,
           user: currentUser,
           replies: [],
@@ -55,8 +59,6 @@ const FeedbackDetailPage = () => {
         addComment(newComment, id);
         setComment("");
         setCharCount(250);
-      } else {
-        setEmptySubmit(true);
       }
     }
   };

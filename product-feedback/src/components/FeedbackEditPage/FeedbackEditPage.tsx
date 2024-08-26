@@ -14,8 +14,13 @@ const FeedbackEditPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { getFeedback, allFeedbacks, currentFeedback, editFeedback } =
-    useFeedbacks();
+  const {
+    getFeedback,
+    allFeedbacks,
+    currentFeedback,
+    editFeedback,
+    deleteFeedback,
+  } = useFeedbacks();
   const { title, category, status, description, comments, upvotes } =
     currentFeedback;
 
@@ -57,6 +62,14 @@ const FeedbackEditPage = () => {
     }
   };
 
+  const deleteCurrentFeedback = (id: string | undefined) => {
+    deleteFeedback(Number(id));
+    navigate("/suggestions");
+    toast.success("Feedback successfully deleted!");
+  };
+  console.log(allFeedbacks);
+  console.log(id);
+
   return (
     <div className="flex flex-col">
       <form onSubmit={handleSubmit}>
@@ -71,9 +84,9 @@ const FeedbackEditPage = () => {
             {`Editing '${title}'`}
           </h1>
           <TitleInput
-            defaultValue={feedbackTitle}
+            value={feedbackTitle}
             setTitle={setTitle}
-            emptySubmit={emptyTitle}
+            isEmpty={emptyTitle}
           />
           <CategoryInput
             selectedCategory={selectedCategory}
@@ -84,27 +97,43 @@ const FeedbackEditPage = () => {
             setSelectedStatus={setSelectedStatus}
           />
           <DetailInput
-            defaultValue={feedbackDescription}
+            value={feedbackDescription}
             setDescription={setDescription}
-            emptySubmit={emptyDescription}
+            isEmpty={emptyDescription}
           />
 
           {/* This div is rendered only on smartphone viewport */}
           <div className="mt-[8px] flex flex-col gap-[16px] md:hidden md:flex-row-reverse">
-            <FormButton type="edit" feedbackId="" />
-            <FormButton type="cancel" feedbackId="" />
-            <FormButton type="delete" feedbackId={id} />
+            <FormButton type="submit" label="save changes" />
+            <FormButton
+              type="button"
+              label="cancel"
+              onClick={() => navigate(-1)}
+            />
+            <FormButton
+              type="submit"
+              label="delete"
+              onClick={() => deleteCurrentFeedback(id)}
+            />
           </div>
           {/*  */}
 
           {/* This div is rendered only on tablet and desktop viewport */}
           <div className="hidden md:mt-[8px] md:flex md:flex-row-reverse md:justify-between md:gap-[16px]">
             <div className="md:flex md:flex-row-reverse md:justify-end md:gap-[16px]">
-              <FormButton type="edit" feedbackId="" />
-              <FormButton type="cancel" feedbackId="" />
+              <FormButton type="submit" label="save changes" />
+              <FormButton
+                type="button"
+                label="cancel"
+                onClick={() => navigate(-1)}
+              />
             </div>
             <div>
-              <FormButton type="delete" feedbackId={id} />
+              <FormButton
+                type="button"
+                label="delete"
+                onClick={() => deleteCurrentFeedback(id)}
+              />
             </div>
           </div>
           {/*  */}

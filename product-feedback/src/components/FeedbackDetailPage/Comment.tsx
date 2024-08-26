@@ -13,15 +13,13 @@ interface CommentProps {
 }
 
 const Comment: React.FC<CommentProps> = ({
-  commentData,
+  commentData: { user, content, replies, id },
   index,
   feedbackId,
 }) => {
-  const { user, content, replies, id } = commentData;
-
   const { currentUser, addReply } = useFeedbacks();
 
-  const [postReply, setPostReply] = useState(false);
+  const [isReplying, setIsReplying] = useState(false);
 
   const {
     comment,
@@ -32,18 +30,24 @@ const Comment: React.FC<CommentProps> = ({
     setEmptySubmit,
   } = useFormState();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const resetFormState = () => {
+    setComment("");
+    setCharCount(250);
+    setIsReplying(false);
+  };
+
+  const handleReplySubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (comment.trim()) {
       const newReply = {
         content: comment,
         replyingTo: user.username,
         user: currentUser,
       };
+
       addReply(newReply, id, feedbackId);
-      setComment("");
-      setCharCount(250);
-      setPostReply(false);
+      resetFormState();
     } else {
       setEmptySubmit(true);
     }
@@ -58,14 +62,14 @@ const Comment: React.FC<CommentProps> = ({
       )}
       <CommentCard
         user={user}
-        setPostReply={setPostReply}
+        setPostReply={setIsReplying}
         content={content}
         replyingTo={user.username}
         reply={false}
       />
-      {postReply && (
+      {isReplying && (
         <div className="w-full pb-[24px]">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleReplySubmit}>
             <AddForm
               charCount={charCount}
               setCharCount={setCharCount}
