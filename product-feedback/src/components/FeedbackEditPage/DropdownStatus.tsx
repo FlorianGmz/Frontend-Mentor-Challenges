@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
-import { useFeedbacks } from "../../contexts/FeedbackContext";
 import { FeedbackType } from "../../@types/type";
+import { useFeedbacks } from "../../contexts/FeedbackContext";
 import CheckIcon from "../ui/icons/CheckIcon";
 
 interface DropdownStatusProps {
-  selectedStatus: string | undefined;
+  selectedStatus: string;
   setSelectedStatus: React.Dispatch<
-    React.SetStateAction<"planned" | "in-progress" | "live" | "suggestion">
+    React.SetStateAction<FeedbackType["status"]>
   >;
   setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
   setFocus: React.Dispatch<React.SetStateAction<boolean>>;

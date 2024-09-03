@@ -4,7 +4,7 @@ import DropdownCategory from "./DropdownCategory";
 import ArrowIconUp from "../ui/icons/ArrowIconUp";
 
 interface CategoryInputProps {
-  selectedCategory: string | undefined;
+  selectedCategory: string;
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { FeedbackType } from "../../@types/type";
 import ArrowIconUp from "../ui/icons/ArrowIconUp";
 import ArrowIconDown from "../ui/icons/ArrowIconDown";
 import DropdownStatus from "./DropdownStatus";
 
 interface StatusInputProps {
-  selectedStatus: string | undefined;
+  selectedStatus: string;
   setSelectedStatus: React.Dispatch<
-    React.SetStateAction<"planned" | "in-progress" | "live" | "suggestion">
+    React.SetStateAction<FeedbackType["status"]>
   >;
 }
 
@@ -14,12 +15,12 @@ const StatusInput: React.FC<StatusInputProps> = ({
   selectedStatus,
   setSelectedStatus,
 }) => {
-  const [focus, setFocus] = useState(false);
-  const [openMenu, setOpenMenu] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleClick = () => {
-    setFocus((toggle) => !toggle);
-    setOpenMenu((toggle) => !toggle);
+    setIsFocused((prevState) => !prevState);
+    setIsMenuOpen((prevState) => !prevState);
   };
   return (
     <div className="relative">
@@ -31,22 +32,22 @@ const StatusInput: React.FC<StatusInputProps> = ({
       </p>
       <div
         onClick={handleClick}
-        className={`mt-[16px] flex h-[48px] w-full items-center justify-between rounded-lg bg-body-bg px-[24px] py-[13px] text-el-font_def hover:cursor-pointer ${focus ? "outline outline-1 outline-bt-blue_def" : ""}`}
+        className={`mt-[16px] flex h-[48px] w-full items-center justify-between rounded-lg bg-body-bg px-[24px] py-[13px] text-el-font_def hover:cursor-pointer ${isFocused ? "outline outline-1 outline-bt-blue_def" : ""}`}
       >
         <p className="text-[13px] capitalize md:text-[14px]">
           {selectedStatus}
         </p>
-        {openMenu ? (
+        {isMenuOpen ? (
           <ArrowIconUp color={"#4661E6"} />
         ) : (
           <ArrowIconDown color={"#4661E6"} />
         )}
       </div>
-      {openMenu && (
+      {isMenuOpen && (
         <div className="absolute">
           <DropdownStatus
-            setOpenMenu={setOpenMenu}
-            setFocus={setFocus}
+            setOpenMenu={setIsMenuOpen}
+            setFocus={setIsFocused}
             selectedStatus={selectedStatus}
             setSelectedStatus={setSelectedStatus}
           />
