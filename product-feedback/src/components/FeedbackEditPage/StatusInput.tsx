@@ -4,8 +4,10 @@ import ArrowIconDown from "../ui/icons/ArrowIconDown";
 import DropdownStatus from "./DropdownStatus";
 
 interface StatusInputProps {
-  selectedStatus: string;
-  setSelectedStatus: React.Dispatch<React.SetStateAction<string>>;
+  selectedStatus: string | undefined;
+  setSelectedStatus: React.Dispatch<
+    React.SetStateAction<"planned" | "in-progress" | "live" | "suggestion">
+  >;
 }
 
 const StatusInput: React.FC<StatusInputProps> = ({

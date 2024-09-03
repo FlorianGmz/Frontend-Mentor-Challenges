@@ -4,7 +4,7 @@ import { useFeedbacks } from "../../contexts/FeedbackContext";
 import { FeedbackType } from "../../@types/type";
 
 interface DropdownCategoryProps {
-  selectedCategory: string;
+  selectedCategory: string | undefined;
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setIsFocused: React.Dispatch<React.SetStateAction<boolean>>;

@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 
 const FeedbackEditPage = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   const {
     getFeedback,
@@ -21,54 +21,61 @@ const FeedbackEditPage = () => {
     editFeedback,
     deleteFeedback,
   } = useFeedbacks();
-  const { title, category, status, description, comments, upvotes } =
-    currentFeedback;
 
   useEffect(() => {
     if (id) {
       getFeedback(id);
     }
-  }, [allFeedbacks]);
+  }, [id, allFeedbacks]);
 
-  const [feedbackTitle, setTitle] = useState(title);
+  const [feedbackTitle, setFeedbackTitle] = useState(
+    currentFeedback?.title || "",
+  );
+  const [selectedCategory, setSelectedCategory] = useState(
+    currentFeedback?.category || "",
+  );
+  const [selectedStatus, setSelectedStatus] = useState(
+    currentFeedback?.status || "suggestion",
+  );
+  const [feedbackDescription, setDescription] = useState(
+    currentFeedback?.description || "",
+  );
+
   const [emptyTitle, setEmptyTitle] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(category);
-  const [selectedStatus, setSelectedStatus] = useState(status);
-  const [feedbackDescription, setDescription] = useState(description);
   const [emptyDescription, setEmptyDescription] = useState(false);
 
-  const editedFeedback = {
-    id: Number(id),
-    title: feedbackTitle,
-    category: selectedCategory,
-    status: selectedStatus,
-    upvotes: upvotes,
-    description: feedbackDescription,
-    comments: comments ? comments : [],
+  const validateForm = () => {
+    const isTitleEmpty = !feedbackTitle?.trim();
+    const isDescriptionEmpty = !feedbackDescription?.trim();
+    setEmptyTitle(isTitleEmpty);
+    setEmptyDescription(isDescriptionEmpty);
+    return !isTitleEmpty && !isDescriptionEmpty;
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const isTitleEmpty = !feedbackTitle;
-    const isDescriptionEmpty = !feedbackDescription;
+    if (!validateForm()) return;
 
-    setEmptyTitle(isTitleEmpty);
-    setEmptyDescription(isDescriptionEmpty);
+    const updatedFeedback = {
+      ...currentFeedback,
+      id: Number(id),
+      title: feedbackTitle.trim(),
+      category: selectedCategory.trim(),
+      status: selectedStatus,
+      description: feedbackDescription.trim(),
+      upvotes: currentFeedback?.upvotes ?? 0,
+    };
 
-    if (!isTitleEmpty && !isDescriptionEmpty) {
-      editFeedback(editedFeedback);
-      navigate(-1);
-      toast.success("Modification succesfully saved!");
-    }
+    editFeedback(updatedFeedback);
+    navigate(-1);
+    toast.success("Modification succesfully saved!");
   };
 
-  const deleteCurrentFeedback = (id: string | undefined) => {
+  const handleDelete = (id: string | undefined) => {
     deleteFeedback(Number(id));
     navigate("/suggestions");
     toast.success("Feedback successfully deleted!");
   };
-  console.log(allFeedbacks);
-  console.log(id);
 
   return (
     <div className="flex flex-col">
@@ -81,11 +88,11 @@ const FeedbackEditPage = () => {
             <IconNewFeedback />
           </div>
           <h1 className="mt-[20px] text-h3 text-el-font_def md:my-[16px] md:text-h1">
-            {`Editing '${title}'`}
+            {`Editing '${feedbackTitle}'`}
           </h1>
           <TitleInput
             value={feedbackTitle}
-            setTitle={setTitle}
+            setTitle={setFeedbackTitle}
             isEmpty={emptyTitle}
           />
           <CategoryInput
@@ -113,7 +120,7 @@ const FeedbackEditPage = () => {
             <FormButton
               type="submit"
               label="delete"
-              onClick={() => deleteCurrentFeedback(id)}
+              onClick={() => handleDelete(id)}
             />
           </div>
           {/*  */}
@@ -132,7 +139,7 @@ const FeedbackEditPage = () => {
               <FormButton
                 type="button"
                 label="delete"
-                onClick={() => deleteCurrentFeedback(id)}
+                onClick={() => handleDelete(id)}
               />
             </div>
           </div>

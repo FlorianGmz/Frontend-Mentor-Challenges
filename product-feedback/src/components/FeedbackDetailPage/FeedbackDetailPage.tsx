@@ -38,6 +38,11 @@ const FeedbackDetailPage = () => {
     return request.comments || [];
   });
 
+  const resetForm = () => {
+    setComment("");
+    setCharCount(250);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -57,8 +62,7 @@ const FeedbackDetailPage = () => {
           replies: [],
         };
         addComment(newComment, id);
-        setComment("");
-        setCharCount(250);
+        resetForm();
       }
     }
   };
