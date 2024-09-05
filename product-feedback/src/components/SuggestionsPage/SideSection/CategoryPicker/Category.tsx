@@ -13,25 +13,26 @@ const Category: React.FC<CategoryProps> = ({
   setSelectedCategory,
   setSidebarIsOpen,
 }) => {
+  const isSelected = categoryName === selectedCategory;
+
   const handleClick = () => {
-    setSelectedCategory("");
-    setSelectedCategory(categoryName);
+    if (!isSelected) {
+      setSelectedCategory(categoryName);
+    }
     setSidebarIsOpen(false);
   };
 
-  const isSelected = categoryName === selectedCategory;
-  const bgColor = isSelected ? "bg-el_active" : "bg-el_def";
-  const textColor = isSelected ? "text-bt-white_def" : "text-bt-blue_def";
-  const hoverColor = isSelected ? "" : "hover:bg-el_hover";
+  const formattedCategoryName =
+    categoryName === "ui" || categoryName === "ux"
+      ? categoryName.toUpperCase()
+      : categoryName;
 
   return (
     <div
       onClick={handleClick}
-      className={`cursor-pointer items-start rounded-xl ${bgColor} px-[16px] py-[5px] text-body-3 capitalize ${textColor} transition-colors ${hoverColor}`}
+      className={`cursor-pointer items-start rounded-xl px-[16px] py-[5px] text-body-3 capitalize transition-colors ${isSelected ? "bg-el_active text-bt-white_def" : "bg-el_def text-bt-blue_def hover:bg-el_hover"}`}
     >
-      {categoryName === "ui" || categoryName === "ux"
-        ? categoryName.toUpperCase()
-        : categoryName}
+      {formattedCategoryName}
     </div>
   );
 };

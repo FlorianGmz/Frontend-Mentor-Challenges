@@ -2,13 +2,13 @@ import { useState } from "react";
 import RoadmapHeader from "./RoadmapHeader";
 import RoadmapNavbar from "./RoadmapNavbar";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
-import { FeedbackType } from "../../@types/type";
+import { FeedbackType, RoadmapStatusType } from "../../@types/type";
 import RoadmapFeedbacksSection from "./RoadmapFeedbacksSection";
 
 const RoadmapPage = () => {
-  const [selectedStatus, setSelectedStatus] = useState<
-    "planned" | "in-progress" | "live"
-  >("in-progress");
+  const statusType: RoadmapStatusType[] = ["planned", "in-progress", "live"];
+  const [selectedStatus, setSelectedStatus] =
+    useState<RoadmapStatusType>("in-progress");
 
   const { allFeedbacks } = useFeedbacks();
 
@@ -30,7 +30,7 @@ const RoadmapPage = () => {
     <div>
       <RoadmapHeader />
 
-      {/* This layout is displayed only on smartphone */}
+      {/* Smartphone layout */}
       <div className="md:hidden">
         <RoadmapNavbar
           categorizedFeedbacks={categorizedFeedbacks}
@@ -43,20 +43,18 @@ const RoadmapPage = () => {
         />
       </div>
       {/*  */}
+
+      {/* Tablet and Desktop layout */}
       <div className="mx-auto hidden md:flex md:w-full md:flex-row md:justify-center md:gap-[10px] xl:w-[1110px] xl:gap-[30px]">
-        <RoadmapFeedbacksSection
-          categorizedFeedbacks={categorizedFeedbacks}
-          selectedStatus={"planned"}
-        />
-        <RoadmapFeedbacksSection
-          categorizedFeedbacks={categorizedFeedbacks}
-          selectedStatus={"in-progress"}
-        />
-        <RoadmapFeedbacksSection
-          categorizedFeedbacks={categorizedFeedbacks}
-          selectedStatus={"live"}
-        />
+        {statusType.map((status) => (
+          <RoadmapFeedbacksSection
+            key={status}
+            categorizedFeedbacks={categorizedFeedbacks}
+            selectedStatus={status}
+          />
+        ))}
       </div>
+      {/*  */}
     </div>
   );
 };

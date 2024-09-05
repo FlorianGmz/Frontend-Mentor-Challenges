@@ -31,4 +31,4 @@ export interface AppData {
   localData: { currentUser: User; productRequests: FeedbackType[] };
 }
 
-export type RoadmapStatus = "planned" | "in-progress" | "live";
+export type RoadmapStatusType = "planned" | "in-progress" | "live";

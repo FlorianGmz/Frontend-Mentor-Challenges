@@ -1,11 +1,11 @@
 import React from "react";
-import { FeedbackType, RoadmapStatus } from "../../@types/type";
+import { FeedbackType, RoadmapStatusType } from "../../@types/type";
 
 interface NavbarStatusProps {
-  status: RoadmapStatus;
+  status: RoadmapStatusType;
   feedbacks: FeedbackType[];
   selectedStatus: string;
-  setSelectedStatus: React.Dispatch<React.SetStateAction<RoadmapStatus>>;
+  setSelectedStatus: React.Dispatch<React.SetStateAction<RoadmapStatusType>>;
 }
 const NavbarStatus: React.FC<NavbarStatusProps> = ({
   status,
@@ -13,7 +13,7 @@ const NavbarStatus: React.FC<NavbarStatusProps> = ({
   selectedStatus,
   setSelectedStatus,
 }) => {
-  const getStatusBarClass = (status: RoadmapStatus) => {
+  const getStatusBarClass = (status: RoadmapStatusType) => {
     switch (status) {
       case "planned":
         return "bg-status-planned";

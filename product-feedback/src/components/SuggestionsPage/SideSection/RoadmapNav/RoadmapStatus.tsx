@@ -4,7 +4,7 @@ import React from "react";
 
 interface RoadmapStatusProps {
   feedback: FeedbackType[] | FeedbackType;
-  status: "planned" | "in-progress" | "live" | "suggestion";
+  status: FeedbackType["status"];
   page: string;
 }
 

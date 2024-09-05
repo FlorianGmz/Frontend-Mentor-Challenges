@@ -1,5 +1,5 @@
 import React from "react";
-import { FeedbackType, RoadmapStatus } from "../../@types/type";
+import { FeedbackType, RoadmapStatusType } from "../../@types/type";
 import NavbarStatus from "./NavbarStatus";
 
 interface RoadmapNavbarProps {
@@ -8,8 +8,8 @@ interface RoadmapNavbarProps {
     "in-progress": FeedbackType[];
     live: FeedbackType[];
   };
-  selectedStatus: RoadmapStatus;
-  setSelectedStatus: React.Dispatch<React.SetStateAction<RoadmapStatus>>;
+  selectedStatus: RoadmapStatusType;
+  setSelectedStatus: React.Dispatch<React.SetStateAction<RoadmapStatusType>>;
 }
 
 const RoadmapNavbar: React.FC<RoadmapNavbarProps> = ({
@@ -17,7 +17,11 @@ const RoadmapNavbar: React.FC<RoadmapNavbarProps> = ({
   selectedStatus,
   setSelectedStatus,
 }) => {
-  const statusTypes: Array<RoadmapStatus> = ["planned", "in-progress", "live"];
+  const statusTypes: Array<RoadmapStatusType> = [
+    "planned",
+    "in-progress",
+    "live",
+  ];
 
   return (
     <div className="flex flex-col">
