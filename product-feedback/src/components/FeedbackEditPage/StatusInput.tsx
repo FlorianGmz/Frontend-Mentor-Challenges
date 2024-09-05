@@ -22,6 +22,7 @@ const StatusInput: React.FC<StatusInputProps> = ({
     setIsFocused((prevState) => !prevState);
     setIsMenuOpen((prevState) => !prevState);
   };
+
   return (
     <div className="relative">
       <h3 className="text-[13px] font-bold text-el-font_def md:text-h4">
