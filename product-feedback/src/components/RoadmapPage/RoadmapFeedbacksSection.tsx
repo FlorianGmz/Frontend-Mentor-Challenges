@@ -1,5 +1,5 @@
 import React from "react";
-import { FeedbackType } from "../../@types/type";
+import { FeedbackType, RoadmapStatus } from "../../@types/type";
 import RoadmapFeedback from "./RoadmapFeedback";
 
 interface RoadmapFeedbacksSectionProps {
@@ -8,14 +8,14 @@ interface RoadmapFeedbacksSectionProps {
     "in-progress": FeedbackType[];
     live: FeedbackType[];
   };
-  selectedStatus: "planned" | "in-progress" | "live";
+  selectedStatus: RoadmapStatus;
 }
 
 const RoadmapFeedbacksSection: React.FC<RoadmapFeedbacksSectionProps> = ({
   categorizedFeedbacks,
   selectedStatus,
 }) => {
-  const getStatusDescription = (status: "planned" | "in-progress" | "live") => {
+  const getStatusDescription = (status: RoadmapStatus) => {
     switch (status) {
       case "planned":
         return "Ideas prioritized for research";
