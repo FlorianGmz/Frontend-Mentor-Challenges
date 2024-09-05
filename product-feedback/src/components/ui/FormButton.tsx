@@ -1,7 +1,4 @@
 import React from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { useFeedbacks } from "../../contexts/FeedbackContext";
 
 interface FormButtonProps {
   type: "submit" | "reset" | "button" | undefined;
@@ -10,41 +7,10 @@ interface FormButtonProps {
   onClick?: () => void;
 }
 
-const FormButton: React.FC<FormButtonProps> = ({
-  type,
-  feedbackId,
-  label,
-  onClick,
-}) => {
-  const { deleteFeedback } = useFeedbacks();
-
+const FormButton: React.FC<FormButtonProps> = ({ type, label, onClick }) => {
   const commentButton = type === "submit";
   const cancelButton = label === "cancel";
   const deleteButton = label === "delete";
-
-  const buttonTexts: { [key: string]: string } = {
-    comment: "post comment",
-    feedback: "add feedback",
-    edit: "save changes",
-    reply: "post reply",
-    cancel: "cancel",
-    delete: "delete",
-  };
-
-  const navigate = useNavigate();
-
-  const handleClickCancel = () => {
-    if (cancelButton) {
-      navigate(-1);
-    }
-    if (deleteButton) {
-      deleteFeedback(Number(feedbackId));
-      navigate("/suggestions");
-      toast.success("Feedback successfully deleted!");
-    }
-  };
-
-  const buttonText = buttonTexts[type];
 
   return (
     <button
