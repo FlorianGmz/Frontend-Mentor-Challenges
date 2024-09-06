@@ -30,7 +30,7 @@ const RoadmapNav = () => {
           <RoadmapStatus
             key={status}
             feedback={filterFeedbackByStatus(status)}
-            page="suggestion"
+            page="suggestions"
             status={status}
           />
         ))}
