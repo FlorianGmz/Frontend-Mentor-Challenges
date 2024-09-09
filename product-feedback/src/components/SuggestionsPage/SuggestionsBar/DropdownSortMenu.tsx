@@ -22,7 +22,7 @@ const DropdownMenu: React.FC<DropDownMenuProps> = ({
     { label: "Least Comments", value: "least-comments" },
   ];
 
-  const handleOptionClick = (label: string, value: string) => {
+  const handleOptionSelect = (label: string, value: string) => {
     setSelectedOption({ label, value });
   };
 
@@ -32,11 +32,13 @@ const DropdownMenu: React.FC<DropDownMenuProps> = ({
         <React.Fragment key={option.value}>
           <div
             className="flex cursor-pointer items-center justify-between px-[18px]"
-            onClick={() => handleOptionClick(option.label, option.value)}
+            onClick={() => handleOptionSelect(option.label, option.value)}
           >
             <p data-value={option.value}>{option.label}</p>
             {selectedOption.value === option.value && <CheckIcon />}
           </div>
+
+          {/* Add divider only if not the last item */}
           {index !== options.length - 1 && (
             <span className="h-[1px] w-full bg-bt-dark-blue_back bg-opacity-15" />
           )}
