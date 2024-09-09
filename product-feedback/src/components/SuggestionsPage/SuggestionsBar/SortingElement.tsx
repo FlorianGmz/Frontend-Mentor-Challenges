@@ -17,35 +17,33 @@ const SortingElement: React.FC<SortingElementProps> = ({
   selectedOption,
   setSelectedOption,
 }) => {
-  const [toggleDropDownMenu, setToggleDropDownMenu] = useState(false);
-
-  const [isClicked, setIsClicked] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleClick = () => {
-    setToggleDropDownMenu((toggle) => !toggle);
-    setIsClicked((toggle) => !toggle);
+    setIsMenuOpen((prevState) => !prevState);
   };
+
   return (
     <div
       onClick={handleClick}
       className="group flex cursor-pointer items-center gap-1"
     >
       <span
-        className={`text-[13px] ${isClicked ? "text-el-sort_active" : "text-el_def"} md:text-[14px]`}
+        className={`text-[13px] ${isMenuOpen ? "text-el-sort_active" : "text-el_def"} md:text-[14px]`}
       >
         Sort by :
       </span>
       <p
-        className={`bg-bt-dark-blue_back text-[13px] font-bold focus:outline-none ${isClicked ? "text-el-sort_active" : "text-bt-white_def"} md:text-[14px]`}
+        className={`bg-bt-dark-blue_back text-[13px] font-bold focus:outline-none ${isMenuOpen ? "text-el-sort_active" : "text-bt-white_def"} md:text-[14px]`}
       >
         {selectedOption.label}
       </p>
-      {toggleDropDownMenu ? (
+      {isMenuOpen ? (
         <ArrowIconUp color="#FFFFFF" />
       ) : (
         <ArrowIconDown color="#FFFFFF" />
       )}
-      {toggleDropDownMenu && (
+      {isMenuOpen && (
         <DropdownSortMenu
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
