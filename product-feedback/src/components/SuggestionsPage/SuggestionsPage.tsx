@@ -28,6 +28,20 @@ const SuggestionsPage = () => {
         : suggestion.category === selectedCategory,
   );
 
+  // Function to get total comment count, including replies
+  const getTotalCommentCount = (feedback: FeedbackType) => {
+    const commentCount = feedback.comments?.length ?? 0;
+
+    const repliesCount = feedback.comments
+      ? feedback.comments.reduce(
+          (acc, comment) => acc + (comment.replies?.length ?? 0),
+          0,
+        )
+      : 0;
+    return commentCount + repliesCount;
+  };
+
+  // Sorting logic for suggestions
   const sortedSuggestions = useMemo(() => {
     return [...filteredSuggestions].sort((a, b) => {
       switch (selectedOption.value) {
@@ -36,9 +50,9 @@ const SuggestionsPage = () => {
         case "least-upvotes":
           return a.upvotes - b.upvotes;
         case "most-comments":
-          return (b.comments?.length ?? 0) - (a.comments?.length ?? 0);
+          return getTotalCommentCount(b) - getTotalCommentCount(a);
         case "least-comments":
-          return (a.comments?.length ?? 0) - (b.comments?.length ?? 0);
+          return getTotalCommentCount(a) - getTotalCommentCount(b);
         default:
           return 0;
       }

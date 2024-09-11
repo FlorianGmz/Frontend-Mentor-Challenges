@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useReducer } from "react";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useReducer,
+} from "react";
 import data from "../data/data.json";
 import { Comment, FeedbackType, Reply, User } from "../@types/type";
 
@@ -69,12 +75,15 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  function getFeedback(id: string) {
-    const feedback = allFeedbacks.find(
-      (request: FeedbackType) => request.id === Number(id),
-    );
-    dispatch({ type: "currentFeedback/set", payload: feedback });
-  }
+  const getFeedback = useCallback(
+    (id: string) => {
+      const feedback = allFeedbacks.find(
+        (request: FeedbackType) => request.id === Number(id),
+      );
+      dispatch({ type: "currentFeedback/set", payload: feedback });
+    },
+    [allFeedbacks],
+  );
 
   function addVote(id: number) {
     const newVote = allFeedbacks.map((request: FeedbackType) => {
