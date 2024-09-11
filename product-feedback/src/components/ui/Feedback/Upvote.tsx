@@ -7,6 +7,17 @@ interface UpvoteProps {
   page: string;
 }
 
+const UpvoteArrow: React.FC = () => (
+  <svg
+    width="10"
+    height="7"
+    xmlns="http://www.w3.org/2000/svg"
+    className="stroke-bt-blue_def group-disabled:stroke-bt-white_def"
+  >
+    <path d="M1 6l4-4 4 4" strokeWidth="2.3" fill="none" fillRule="evenodd" />
+  </svg>
+);
+
 const Upvote: React.FC<UpvoteProps> = ({ upvotes, feedbackId, page }) => {
   const { addVote, votedFeedbackId } = useFeedbacks();
 
@@ -29,19 +40,7 @@ const Upvote: React.FC<UpvoteProps> = ({ upvotes, feedbackId, page }) => {
       }`}
       onClick={handleClick}
     >
-      <svg
-        width="10"
-        height="7"
-        xmlns="http://www.w3.org/2000/svg"
-        className="stroke-bt-blue_def group-disabled:stroke-bt-white_def"
-      >
-        <path
-          d="M1 6l4-4 4 4"
-          strokeWidth="2.3"
-          fill="none"
-          fillRule="evenodd"
-        />
-      </svg>
+      <UpvoteArrow />
       <span className="text-[13px] font-bold text-el-font_def group-disabled:text-bt-white_def">
         {upvotes}
       </span>

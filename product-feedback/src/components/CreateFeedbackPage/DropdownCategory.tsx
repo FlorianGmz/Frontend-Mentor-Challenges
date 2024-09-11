@@ -41,6 +41,7 @@ const DropdownCategory: React.FC<DropdownCategoryProps> = ({
       <ul className="flex h-auto w-[279px] flex-col justify-between rounded-xl bg-bt-white_def text-[13px] text-feedback-description md:w-[460px] md:text-[14px]">
         {categories.map((category, index) => (
           <li
+            key={category}
             className="flex flex-col"
             onClick={() => handleCategoryClick(category)}
           >

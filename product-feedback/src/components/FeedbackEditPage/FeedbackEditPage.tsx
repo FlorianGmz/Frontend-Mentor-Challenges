@@ -9,40 +9,39 @@ import StatusInput from "./StatusInput";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import FormButton from "../ui/FormButton";
 import toast from "react-hot-toast";
+import { FeedbackType } from "../../@types/type";
 
 const FeedbackEditPage = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
-  const {
-    getFeedback,
-    allFeedbacks,
-    currentFeedback,
-    editFeedback,
-    deleteFeedback,
-  } = useFeedbacks();
+  const { getFeedback, currentFeedback, editFeedback, deleteFeedback } =
+    useFeedbacks();
 
   useEffect(() => {
     if (id) {
       getFeedback(id);
     }
-  }, [id, allFeedbacks]);
+  }, [id, getFeedback]);
 
-  const [feedbackTitle, setFeedbackTitle] = useState(
-    currentFeedback?.title || "",
-  );
-  const [selectedCategory, setSelectedCategory] = useState(
-    currentFeedback?.category || "",
-  );
-  const [selectedStatus, setSelectedStatus] = useState(
-    currentFeedback?.status || "suggestion",
-  );
-  const [feedbackDescription, setDescription] = useState(
-    currentFeedback?.description || "",
-  );
+  const [feedbackTitle, setFeedbackTitle] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedStatus, setSelectedStatus] =
+    useState<FeedbackType["status"]>("suggestion");
+  const [feedbackDescription, setDescription] = useState("");
 
   const [emptyTitle, setEmptyTitle] = useState(false);
   const [emptyDescription, setEmptyDescription] = useState(false);
+
+  // Update the form fields when currentFeedback is loaded
+  useEffect(() => {
+    if (currentFeedback) {
+      setFeedbackTitle(currentFeedback.title);
+      setSelectedCategory(currentFeedback.category);
+      setSelectedStatus(currentFeedback.status);
+      setDescription(currentFeedback.description);
+    }
+  }, [currentFeedback]);
 
   const validateForm = () => {
     const isTitleEmpty = !feedbackTitle?.trim();
