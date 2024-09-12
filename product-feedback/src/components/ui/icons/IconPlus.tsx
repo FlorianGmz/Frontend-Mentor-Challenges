@@ -4,10 +4,10 @@ const IconPlus = () => {
       <text
         transform="translate(-24 -20)"
         fill="#FFFFFF"
-        fill-rule="evenodd"
-        font-family="Jost-Bold, Jost"
-        font-size="14"
-        font-weight="bold"
+        fillRule="evenodd"
+        fontFamily="Jost-Bold, Jost"
+        fontSize="14"
+        fontWeight="bold"
       >
         <tspan x="24" y="27.5">
           +

@@ -25,9 +25,8 @@ const Reply: React.FC<ReplyProps> = ({
   feedbackId,
 }) => {
   const { content, replyingTo, user } = reply;
-  const firstReply = index === 0;
-  const commentUsername = user.username;
   const { currentUser } = useFeedbacks();
+
   const [postReply, setPostReply] = useState(false);
 
   const {
@@ -39,18 +38,24 @@ const Reply: React.FC<ReplyProps> = ({
     setEmptySubmit,
   } = useFormState();
 
+  const isFirstReply = index === 0;
+
+  const resetForm = () => {
+    setComment("");
+    setCharCount(250);
+    setPostReply(false);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (comment.trim()) {
       const newReply = {
         content: comment,
-        replyingTo: commentUsername,
+        replyingTo: user.username,
         user: currentUser,
       };
       addReply(newReply, commentId, feedbackId);
-      setComment("");
-      setCharCount(250);
-      setPostReply(false);
+      resetForm();
     } else {
       setEmptySubmit(true);
     }
@@ -58,7 +63,7 @@ const Reply: React.FC<ReplyProps> = ({
 
   return (
     <div>
-      {firstReply && (
+      {isFirstReply && (
         <span className="relative top-0 h-full w-[1px] bg-[#8C92B3] opacity-30"></span>
       )}
       <div className="ml-[24px] md:ml-[46px]">

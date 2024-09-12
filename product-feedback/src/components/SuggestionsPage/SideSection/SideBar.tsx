@@ -5,11 +5,13 @@ import RoadmapNav from "./RoadmapNav/RoadmapNav";
 interface SideBarProps {
   selectedCategory: string;
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+  setSidebarIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SideBar: React.FC<SideBarProps> = ({
   selectedCategory,
   setSelectedCategory,
+  setSidebarIsOpen,
 }) => {
   return (
     <div className="absolute left-0 top-[72px] z-10 flex h-screen w-screen justify-end bg-[#000000] bg-opacity-60">
@@ -17,6 +19,7 @@ const SideBar: React.FC<SideBarProps> = ({
         <CategoryPicker
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
+          setSidebarIsOpen={setSidebarIsOpen}
         />
         <RoadmapNav />
       </div>

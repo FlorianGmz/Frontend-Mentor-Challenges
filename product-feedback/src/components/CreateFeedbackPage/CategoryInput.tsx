@@ -12,13 +12,19 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
   selectedCategory,
   setSelectedCategory,
 }) => {
-  const [focus, setFocus] = useState(false);
-  const [openMenu, setOpenMenu] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleClick = () => {
-    setFocus((toggle) => !toggle);
-    setOpenMenu((toggle) => !toggle);
+  const toggleDropdown = () => {
+    setIsFocused((prev) => !prev);
+    setIsMenuOpen((prev) => !prev);
   };
+
+  const formattedCategory =
+    selectedCategory === "ui" || selectedCategory === "ux"
+      ? selectedCategory.toUpperCase()
+      : selectedCategory;
+
   return (
     <div className="relative">
       <h3 className="text-[13px] font-bold text-el-font_def md:text-h4">
@@ -28,25 +34,23 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
         Choose a category for your feedback
       </p>
       <div
-        onClick={handleClick}
-        className={`mt-[16px] flex h-[48px] w-full items-center justify-between rounded-lg bg-body-bg px-[24px] py-[13px] text-el-font_def ${focus ? "outline outline-1 outline-bt-blue_def" : ""}`}
+        onClick={toggleDropdown}
+        className={`mt-[16px] flex h-[48px] w-full items-center justify-between rounded-lg bg-body-bg px-[24px] py-[13px] text-el-font_def hover:cursor-pointer ${isFocused ? "outline outline-1 outline-bt-blue_def" : ""}`}
       >
         <p className="text-[13px] capitalize md:text-[14px]">
-          {selectedCategory === "ui" || selectedCategory === "ux"
-            ? selectedCategory.toUpperCase()
-            : selectedCategory}
+          {formattedCategory}
         </p>
-        {openMenu ? (
+        {isMenuOpen ? (
           <ArrowIconUp color={"#4661E6"} />
         ) : (
           <ArrowIconDown color={"#4661E6"} />
         )}
       </div>
-      {openMenu && (
+      {isMenuOpen && (
         <div className="absolute">
           <DropdownCategory
-            setOpenMenu={setOpenMenu}
-            setFocus={setFocus}
+            setIsMenuOpen={setIsMenuOpen}
+            setIsFocused={setIsFocused}
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
           />

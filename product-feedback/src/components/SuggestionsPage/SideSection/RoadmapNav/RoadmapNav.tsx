@@ -1,20 +1,18 @@
 import { NavLink } from "react-router-dom";
 import RoadmapStatus from "./RoadmapStatus";
 import { useFeedbacks } from "../../../../contexts/FeedbackContext";
-import { FeedbackType } from "../../../../@types/type";
+import { FeedbackType, RoadmapStatusType } from "../../../../@types/type";
 
 const RoadmapNav = () => {
   const { allFeedbacks } = useFeedbacks();
 
-  const filterFeedbackByStatus = (status: FeedbackType["status"]) => {
+  const statusType: RoadmapStatusType[] = ["planned", "in-progress", "live"];
+
+  const filterFeedbackByStatus = (status: RoadmapStatusType) => {
     return allFeedbacks.filter(
       (feedback: FeedbackType) => feedback.status === status,
     );
   };
-
-  const plannedFeedback = filterFeedbackByStatus("planned");
-  const inProgressFeedback = filterFeedbackByStatus("in-progress");
-  const liveFeedback = filterFeedbackByStatus("live");
 
   return (
     <div className="flex h-[178px] w-[223px] flex-col justify-between rounded-xl bg-bt-white_def px-[24px] py-[19px] md:h-[178px] xl:w-[255px]">
@@ -28,9 +26,14 @@ const RoadmapNav = () => {
         </NavLink>
       </div>
       <div className="flex flex-col gap-[8px]">
-        <RoadmapStatus feedback={plannedFeedback} status="planned" />
-        <RoadmapStatus feedback={inProgressFeedback} status="in-progress" />
-        <RoadmapStatus feedback={liveFeedback} status="live" />
+        {statusType.map((status) => (
+          <RoadmapStatus
+            key={status}
+            feedback={filterFeedbackByStatus(status)}
+            page="suggestions"
+            status={status}
+          />
+        ))}
       </div>
     </div>
   );

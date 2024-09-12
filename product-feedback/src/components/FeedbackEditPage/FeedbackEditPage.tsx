@@ -9,50 +9,71 @@ import StatusInput from "./StatusInput";
 import { useFeedbacks } from "../../contexts/FeedbackContext";
 import FormButton from "../ui/FormButton";
 import toast from "react-hot-toast";
+import { FeedbackType } from "../../@types/type";
 
 const FeedbackEditPage = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
-  const { getFeedback, allFeedbacks, currentFeedback, editFeedback } =
+  const { getFeedback, currentFeedback, editFeedback, deleteFeedback } =
     useFeedbacks();
-  const { title, category, status, description, comments, upvotes } =
-    currentFeedback;
 
   useEffect(() => {
-    getFeedback(id);
-  }, [allFeedbacks]);
+    if (id) {
+      getFeedback(id);
+    }
+  }, [id, getFeedback]);
 
-  const [feedbackTitle, setTitle] = useState(title);
+  const [feedbackTitle, setFeedbackTitle] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedStatus, setSelectedStatus] =
+    useState<FeedbackType["status"]>("suggestion");
+  const [feedbackDescription, setDescription] = useState("");
+
   const [emptyTitle, setEmptyTitle] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(category);
-  const [selectedStatus, setSelectedStatus] = useState(status);
-  const [feedbackDescription, setDescription] = useState(description);
   const [emptyDescription, setEmptyDescription] = useState(false);
 
-  const editedFeedback = {
-    id: Number(id),
-    title: feedbackTitle,
-    category: selectedCategory,
-    status: selectedStatus,
-    upvotes: upvotes,
-    description: feedbackDescription,
-    comments: comments ? comments : [],
+  // Update the form fields when currentFeedback is loaded
+  useEffect(() => {
+    if (currentFeedback) {
+      setFeedbackTitle(currentFeedback.title);
+      setSelectedCategory(currentFeedback.category);
+      setSelectedStatus(currentFeedback.status);
+      setDescription(currentFeedback.description);
+    }
+  }, [currentFeedback]);
+
+  const validateForm = () => {
+    const isTitleEmpty = !feedbackTitle?.trim();
+    const isDescriptionEmpty = !feedbackDescription?.trim();
+    setEmptyTitle(isTitleEmpty);
+    setEmptyDescription(isDescriptionEmpty);
+    return !isTitleEmpty && !isDescriptionEmpty;
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const isTitleEmpty = !feedbackTitle;
-    const isDescriptionEmpty = !feedbackDescription;
+    if (!validateForm()) return;
 
-    setEmptyTitle(isTitleEmpty);
-    setEmptyDescription(isDescriptionEmpty);
+    const updatedFeedback = {
+      ...currentFeedback,
+      id: Number(id),
+      title: feedbackTitle.trim(),
+      category: selectedCategory.trim(),
+      status: selectedStatus,
+      description: feedbackDescription.trim(),
+      upvotes: currentFeedback?.upvotes ?? 0,
+    };
 
-    if (!isTitleEmpty && !isDescriptionEmpty) {
-      editFeedback(editedFeedback);
-      navigate(-1);
-      toast.success("Feedback successfully edited!");
-    }
+    editFeedback(updatedFeedback);
+    navigate(-1);
+    toast.success("Modification succesfully saved!");
+  };
+
+  const handleDelete = (id: string | undefined) => {
+    deleteFeedback(Number(id));
+    navigate("/suggestions");
+    toast.success("Feedback successfully deleted!");
   };
 
   return (
@@ -66,12 +87,12 @@ const FeedbackEditPage = () => {
             <IconNewFeedback />
           </div>
           <h1 className="mt-[20px] text-h3 text-el-font_def md:my-[16px] md:text-h1">
-            {`Editing '${title}'`}
+            {`Editing '${feedbackTitle}'`}
           </h1>
           <TitleInput
-            defaultValue={feedbackTitle}
-            setTitle={setTitle}
-            emptySubmit={emptyTitle}
+            value={feedbackTitle}
+            setTitle={setFeedbackTitle}
+            isEmpty={emptyTitle}
           />
           <CategoryInput
             selectedCategory={selectedCategory}
@@ -82,27 +103,43 @@ const FeedbackEditPage = () => {
             setSelectedStatus={setSelectedStatus}
           />
           <DetailInput
-            defaultValue={feedbackDescription}
+            value={feedbackDescription}
             setDescription={setDescription}
-            emptySubmit={emptyDescription}
+            isEmpty={emptyDescription}
           />
 
           {/* This div is rendered only on smartphone viewport */}
           <div className="mt-[8px] flex flex-col gap-[16px] md:hidden md:flex-row-reverse">
-            <FormButton type="edit" feedbackId="" />
-            <FormButton type="cancel" feedbackId="" />
-            <FormButton type="delete" feedbackId={id} />
+            <FormButton type="submit" label="save changes" />
+            <FormButton
+              type="button"
+              label="cancel"
+              onClick={() => navigate(-1)}
+            />
+            <FormButton
+              type="submit"
+              label="delete"
+              onClick={() => handleDelete(id)}
+            />
           </div>
           {/*  */}
 
           {/* This div is rendered only on tablet and desktop viewport */}
           <div className="hidden md:mt-[8px] md:flex md:flex-row-reverse md:justify-between md:gap-[16px]">
             <div className="md:flex md:flex-row-reverse md:justify-end md:gap-[16px]">
-              <FormButton type="edit" feedbackId="" />
-              <FormButton type="cancel" feedbackId="" />
+              <FormButton type="submit" label="save changes" />
+              <FormButton
+                type="button"
+                label="cancel"
+                onClick={() => navigate(-1)}
+              />
             </div>
             <div>
-              <FormButton type="delete" feedbackId={id} />
+              <FormButton
+                type="button"
+                label="delete"
+                onClick={() => handleDelete(id)}
+              />
             </div>
           </div>
           {/*  */}

@@ -1,11 +1,11 @@
 import React from "react";
-import { FeedbackType } from "../../@types/type";
+import { FeedbackType, RoadmapStatusType } from "../../@types/type";
 
 interface NavbarStatusProps {
-  status: string;
+  status: RoadmapStatusType;
   feedbacks: FeedbackType[];
   selectedStatus: string;
-  setSelectedStatus: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedStatus: React.Dispatch<React.SetStateAction<RoadmapStatusType>>;
 }
 const NavbarStatus: React.FC<NavbarStatusProps> = ({
   status,
@@ -13,10 +13,25 @@ const NavbarStatus: React.FC<NavbarStatusProps> = ({
   selectedStatus,
   setSelectedStatus,
 }) => {
+  const getStatusBarClass = (status: RoadmapStatusType) => {
+    switch (status) {
+      case "planned":
+        return "bg-status-planned";
+      case "in-progress":
+        return "bg-status-inProgress";
+      case "live":
+        return "bg-status-live";
+      default:
+        return "";
+    }
+  };
+
   const handleClick = () => {
     setSelectedStatus(status);
   };
+
   const isActive = selectedStatus === status;
+
   return (
     <div
       onClick={handleClick}
@@ -30,17 +45,7 @@ const NavbarStatus: React.FC<NavbarStatusProps> = ({
         </p>
       </div>
       {isActive && (
-        <span
-          className={`h-[4px] w-full ${
-            status === "planned"
-              ? "bg-status-planned"
-              : status === "in-progress"
-                ? "bg-status-inProgress"
-                : status === "live"
-                  ? "bg-status-live"
-                  : ""
-          }`}
-        />
+        <span className={`h-[4px] w-full ${getStatusBarClass(status)}`} />
       )}
     </div>
   );

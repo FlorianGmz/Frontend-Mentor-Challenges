@@ -29,31 +29,41 @@ const FeedbackDetailPage = () => {
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    getFeedback(id);
-  }, [allFeedbacks, id]);
+    if (id) {
+      getFeedback(id);
+    }
+  }, [getFeedback, id]);
 
   const totalComments = allFeedbacks.flatMap((request: FeedbackType) => {
     return request.comments || [];
   });
 
-  const currentCommentId = totalComments?.length;
-  const newCommentId = currentCommentId + 1;
+  const resetForm = () => {
+    setComment("");
+    setCharCount(250);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (comment.trim()) {
-      setEmptySubmit(false);
-      const newComment: CommentType = {
-        id: newCommentId,
-        content: comment,
-        user: currentUser,
-        replies: [],
-      };
-      addComment(newComment, id);
-      setComment("");
-      setCharCount(250);
-    } else {
+
+    if (!comment.trim()) {
       setEmptySubmit(true);
+      return;
+    }
+
+    if (id) {
+      setEmptySubmit(false);
+      if (comment.trim()) {
+        setEmptySubmit(false);
+        const newComment: CommentType = {
+          id: totalComments?.length + 1,
+          content: comment,
+          user: currentUser,
+          replies: [],
+        };
+        addComment(newComment, id);
+        resetForm();
+      }
     }
   };
 
