@@ -1,6 +1,6 @@
 import SuggestionsBar from "./SuggestionsBar/SuggestionsBar";
 import Feedback from "../ui/Feedback/Feedback";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { FeedbackType } from "../../@types/type";
 import NoFeedback from "./EmptySuggestions.tsx/EmptySuggestion";
 import SideSection from "./SideSection/SideSection";
@@ -8,8 +8,6 @@ import { useFeedbacks } from "../../contexts/FeedbackContext";
 
 const SuggestionsPage = () => {
   const { allFeedbacks } = useFeedbacks();
-
-  useEffect(() => {}, [allFeedbacks]);
 
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedOption, setSelectedOption] = useState({

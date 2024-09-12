@@ -3,7 +3,7 @@ import StatusCircle from "./StatusCircle";
 import React from "react";
 
 interface RoadmapStatusProps {
-  feedback: FeedbackType[];
+  feedback: FeedbackType | FeedbackType[];
   status: FeedbackType["status"];
   page: "roadmap" | "suggestions";
 }
@@ -23,7 +23,7 @@ const RoadmapStatus: React.FC<RoadmapStatusProps> = ({
 
   const roadmapPage = page === "roadmap";
 
-  const feedbackCount = feedback.length;
+  const feedbackCount = Array.isArray(feedback) ? feedback.length : 1;
 
   return (
     <div className="flex justify-between">
@@ -35,11 +35,13 @@ const RoadmapStatus: React.FC<RoadmapStatusProps> = ({
           {status}
         </p>
       </div>
-      <p
-        className={`${roadmapPage ? "md:text-[13px]" : ""} items-center text-body-1 text-comment-count xl:text-[16px]`}
-      >
-        {feedbackCount}
-      </p>
+      {!roadmapPage && (
+        <p
+          className={`${roadmapPage ? "md:text-[13px]" : ""} items-center text-body-1 text-comment-count xl:text-[16px]`}
+        >
+          {feedbackCount}
+        </p>
+      )}
     </div>
   );
 };
