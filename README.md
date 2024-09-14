@@ -29,6 +29,7 @@ Figma design files were provided, including layouts for mobile, tablet, and desk
 - **React** with **Vite**
 - **Tailwind css** for styling
 - **React Router DOM** for routing
+- **React-hot-toast** for toast display
 
 ## Getting Started
 
