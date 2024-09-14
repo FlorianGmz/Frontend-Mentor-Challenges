@@ -6,14 +6,15 @@ import {
   useReducer,
 } from "react";
 import data from "../data/data.json";
-import { Comment, FeedbackType, Reply, User } from "../@types/type";
+import { AppData, Comment, FeedbackType, Reply, User } from "../@types/type";
+import { ActionType } from "../@types/type.reducer";
 
 interface FeedbacksContextType {
   currentUser: User;
   allFeedbacks: FeedbackType[];
   currentFeedback: FeedbackType | null;
   votedFeedbackId: number[];
-  dispatch: React.Dispatch<any>;
+  dispatch: React.Dispatch<ActionType>;
   addVote: (id: number) => void;
   getFeedback: (id: string) => void;
   addComment: (newComment: Comment, id: string) => void;
@@ -29,12 +30,12 @@ const FeedbacksContext = createContext<FeedbacksContextType | undefined>(
 
 interface initialStateType {
   currentUser: User;
-  votedFeedbackId: [];
+  votedFeedbackId: number[];
   allFeedbacks: FeedbackType[];
   currentFeedback: FeedbackType | null;
 }
 
-const localData = data;
+const localData = data as AppData["localData"];
 
 const initialState: initialStateType = {
   currentUser: localData.currentUser,
@@ -43,7 +44,7 @@ const initialState: initialStateType = {
   currentFeedback: null,
 };
 
-function reducer(state: initialStateType, action: any) {
+function reducer(state: initialStateType, action: ActionType) {
   switch (action.type) {
     case "currentFeedback/set":
       return { ...state, currentFeedback: action.payload };
@@ -73,14 +74,18 @@ function FeedbacksProvider({ children }: { children: ReactNode }) {
   const [
     { currentUser, allFeedbacks, currentFeedback, votedFeedbackId },
     dispatch,
-  ] = useReducer(reducer, initialState);
+  ] = useReducer<
+    (state: initialStateType, action: ActionType) => initialStateType
+  >(reducer, initialState);
 
   const getFeedback = useCallback(
     (id: string) => {
       const feedback = allFeedbacks.find(
         (request: FeedbackType) => request.id === Number(id),
       );
-      dispatch({ type: "currentFeedback/set", payload: feedback });
+      if (feedback) {
+        dispatch({ type: "currentFeedback/set", payload: feedback });
+      }
     },
     [allFeedbacks],
   );
