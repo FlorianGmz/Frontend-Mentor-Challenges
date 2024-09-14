@@ -106,6 +106,11 @@ export default {
       animation: {
         slideIn: "slideIn 0.2s ease-out forwards",
       },
+      backgroundImage: {
+        "mobile-bg": "url('/assets/suggestions/mobile/background-header.png')",
+        "tablet-bg": "url('/assets/suggestions/tablet/background-header.png')",
+        "desktop-bg": "/assets/suggestions/desktop/background-header.png')",
+      },
     },
   },
   plugins: [],
