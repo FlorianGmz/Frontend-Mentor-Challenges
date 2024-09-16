@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const ErrorPage = () => {
   return (
     <div className="flex w-full flex-col gap-[20px] text-el-font_def">
-      <div className="xl-w-[825px] bg-mobile-bg md:bg-tablet-bg xl:bg-desktop-bg flex h-[72px] w-screen items-center justify-between bg-cover px-[24px] py-[15px] md:mx-auto md:mt-[50px] md:h-[178px] md:w-[689px] md:items-end md:rounded-xl xl:h-[137px] xl:w-[825px] xl:p-[24px]">
+      <div className="xl-w-[825px] flex h-[72px] w-screen items-center justify-between bg-mobile-bg bg-cover px-[24px] py-[15px] md:mx-auto md:mt-[50px] md:h-[178px] md:w-[689px] md:items-end md:rounded-xl md:bg-tablet-bg xl:h-[137px] xl:w-[825px] xl:bg-desktop-bg xl:p-[24px]">
         <div className="flex flex-col">
           <p className="text-body-4 text-bt-white_def md:text-h2">
             Frontend Mentor
