@@ -1,11 +1,4 @@
-import {
-  // createBrowserRouter,
-  HashRouter,
-  Navigate,
-  Route,
-  // RouterProvider,
-  Routes,
-} from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import SuggestionsPage from "./components/SuggestionsPage/SuggestionsPage";
 import FeedbackDetailPage from "./components/FeedbackDetailPage/FeedbackDetailPage";
 import ScrollToTop from "./ScrollToTop";
@@ -17,80 +10,7 @@ import RoadmapPage from "./components/RoadmapPage/RoadmapPage";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 function App() {
-  /*   const router = createBrowserRouter(
-    [
-      {
-        path: "/",
-        element: <Navigate to={"/suggestions"} replace />,
-      },
-      {
-        path: "/suggestions",
-        element: (
-          <>
-            <ScrollToTop />
-            <SuggestionsPage />
-          </>
-        ),
-      },
-      {
-        path: "/feedback/:id",
-        element: (
-          <>
-            <ScrollToTop />
-            <FeedbackDetailPage />
-          </>
-        ),
-      },
-      {
-        path: "/feedback/create",
-        element: (
-          <>
-            <ScrollToTop />
-            <CreateFeedbackPage />
-          </>
-        ),
-      },
-      {
-        path: "/feedback/:id/edit",
-        element: (
-          <>
-            <ScrollToTop />
-            <FeedbackEditPage />
-          </>
-        ),
-      },
-      {
-        path: "/roadmap",
-        element: (
-          <>
-            <ScrollToTop />
-            <RoadmapPage />
-          </>
-        ),
-      },
-      {
-        path: "*",
-        element: (
-          <>
-            <ScrollToTop />
-            <ErrorPage />
-          </>
-        ),
-      },
-    ],
-    {
-      basename: "/Frontend-Mentor-Challenges_Product-Feedback",
-    }
-  );
-
-  return (
-    <>
-      <FeedbacksProvider>
-        <RouterProvider router={router}></RouterProvider>
-        <Toaster position="top-center" />
-      </FeedbacksProvider>
-    </>
-  ); */
+  //  We use HashRouter instead of BrowserRouter for Github pages hosting
   return (
     <>
       <FeedbacksProvider>
