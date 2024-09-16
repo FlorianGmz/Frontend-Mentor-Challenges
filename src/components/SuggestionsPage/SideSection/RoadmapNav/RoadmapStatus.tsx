@@ -37,7 +37,7 @@ const RoadmapStatus: React.FC<RoadmapStatusProps> = ({
       </div>
       {!roadmapPage && (
         <p
-          className={`${roadmapPage ? "md:text-[13px]" : ""} items-center text-body-1 text-comment-count xl:text-[16px]`}
+          className={`${roadmapPage ? "md:text-[13px]" : ""} items-center text-body-1 text-comment-count font-bold text-feedback-description xl:text-[16px]`}
         >
           {feedbackCount}
         </p>
